@@ -6,10 +6,22 @@ package stdgo.encoding.pem;
         this.type = (v : stdgo.GoString);
         return v;
     }
-    public var headers(get, set) : stdgo.GoMap<stdgo.GoString, stdgo.GoString>;
-    function get_headers():stdgo.GoMap<stdgo.GoString, stdgo.GoString> return this.headers;
-    function set_headers(v:stdgo.GoMap<stdgo.GoString, stdgo.GoString>):stdgo.GoMap<stdgo.GoString, stdgo.GoString> {
-        this.headers = (v : stdgo.GoMap<stdgo.GoString, stdgo.GoString>);
+    public var headers(get, set) : Map<String, String>;
+    function get_headers():Map<String, String> return {
+        final __obj__:Map<String, String> = [];
+        for (key => value in this.headers) {
+            __obj__[key] = value;
+        };
+        __obj__;
+    };
+    function set_headers(v:Map<String, String>):Map<String, String> {
+        this.headers = {
+            final __obj__ = new stdgo.GoMap<stdgo.GoString, stdgo.GoString>();
+            for (key => value in v) {
+                __obj__[(key : stdgo.GoString)] = (value : stdgo.GoString);
+            };
+            __obj__;
+        };
         return v;
     }
     public var bytes(get, set) : Array<std.UInt>;
@@ -18,11 +30,17 @@ package stdgo.encoding.pem;
         this.bytes = ([for (i in v) (i : stdgo.GoUInt8)] : stdgo.Slice<stdgo.GoUInt8>);
         return v;
     }
-    public function new(?type:String, ?headers:stdgo.GoMap<stdgo.GoString, stdgo.GoString>, ?bytes:Array<std.UInt>) this = new stdgo._internal.encoding.pem.Pem_block.Block((type : stdgo.GoString), (headers : stdgo.GoMap<stdgo.GoString, stdgo.GoString>), ([for (i in bytes) (i : stdgo.GoUInt8)] : stdgo.Slice<stdgo.GoUInt8>));
+    public function new(?type:String, ?headers:Map<String, String>, ?bytes:Array<std.UInt>) this = new stdgo._internal.encoding.pem.Pem_block.Block((type : stdgo.GoString), {
+        final __obj__ = new stdgo.GoMap<stdgo.GoString, stdgo.GoString>();
+        for (key => value in headers) {
+            __obj__[(key : stdgo.GoString)] = (value : stdgo.GoString);
+        };
+        __obj__;
+    }, ([for (i in bytes) (i : stdgo.GoUInt8)] : stdgo.Slice<stdgo.GoUInt8>));
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-@:structInit @:using(stdgo.encoding.pem.Pem.T_lineBreaker_static_extension) abstract T_lineBreaker(stdgo._internal.encoding.pem.Pem_t_linebreaker.T_lineBreaker) from stdgo._internal.encoding.pem.Pem_t_linebreaker.T_lineBreaker to stdgo._internal.encoding.pem.Pem_t_linebreaker.T_lineBreaker {
+@:structInit @:using(stdgo.encoding.pem.Pem.T_lineBreaker_static_extension) @:dox(hide) abstract T_lineBreaker(stdgo._internal.encoding.pem.Pem_t_linebreaker.T_lineBreaker) from stdgo._internal.encoding.pem.Pem_t_linebreaker.T_lineBreaker to stdgo._internal.encoding.pem.Pem_t_linebreaker.T_lineBreaker {
     public var _line(get, set) : haxe.ds.Vector<std.UInt>;
     function get__line():haxe.ds.Vector<std.UInt> return haxe.ds.Vector.fromArrayCopy([for (i in this._line) i]);
     function set__line(v:haxe.ds.Vector<std.UInt>):haxe.ds.Vector<std.UInt> {
@@ -49,8 +67,8 @@ typedef BlockPointer = stdgo._internal.encoding.pem.Pem_blockpointer.BlockPointe
 class Block_static_extension {
 
 }
-typedef T_lineBreakerPointer = stdgo._internal.encoding.pem.Pem_t_linebreakerpointer.T_lineBreakerPointer;
-class T_lineBreaker_static_extension {
+@:dox(hide) typedef T_lineBreakerPointer = stdgo._internal.encoding.pem.Pem_t_linebreakerpointer.T_lineBreakerPointer;
+@:dox(hide) class T_lineBreaker_static_extension {
     static public function close(_l:T_lineBreaker):stdgo.Error {
         final _l = (_l : stdgo.Ref<stdgo._internal.encoding.pem.Pem_t_linebreaker.T_lineBreaker>);
         return stdgo._internal.encoding.pem.Pem_t_linebreaker_static_extension.T_lineBreaker_static_extension.close(_l);

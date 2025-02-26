@@ -713,7 +713,7 @@ class Go {
 					Context.error("complexType converted to type is null", Context.currentPos());
 				final toType = gtDecode(t2, null, []);
 				// trace(new haxe.macro.Printer().printExpr(e));
-				final e = @:pos(Context.currentPos()) macro({
+				final e = macro @:pos(Context.currentPos()) ({
 					var t = new stdgo._internal.internal.reflect.Reflect._Type($toType);
 					// trace($e.type._common());
 					// trace(t._common());
@@ -1480,6 +1480,25 @@ class Go {
 		return getTypeInfoData(path);
 	}
 	#end
+
+	public static macro function min(exprs:Array<Expr>) {
+		final block:Array<Expr> = [macro var num = ${exprs[0]}];
+		for (i in 1...exprs.length) {
+			block.push(macro if (num > ${exprs[i]}) num = ${exprs[i]});
+		}
+		block.push(macro num);
+		return macro $b{block};
+	}
+
+	public static macro function max(exprs:Array<Expr>) {
+		final block:Array<Expr> = [macro var num = ${exprs[0]}];
+		for (i in 1...exprs.length) {
+			block.push(macro if (num < ${exprs[i]}) num = ${exprs[i]});
+		}
+		block.push(macro num);
+		return macro $b{block};
+	}
+	
 
 	public static macro function setKeys(expr:Expr) {
 		var t = Context.toComplexType(Context.getExpectedType());

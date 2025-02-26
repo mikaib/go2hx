@@ -55,10 +55,10 @@ private function set_errFinalToken(v:stdgo.Error):stdgo.Error {
         stdgo._internal.bufio.Bufio_errfinaltoken.errFinalToken = (v : stdgo.Error);
         return v;
     }
-var isSpace(get, set) : stdgo.GoInt32 -> Bool;
-private function get_isSpace():stdgo.GoInt32 -> Bool return _0 -> stdgo._internal.bufio.Bufio_isspace.isSpace(_0);
-private function set_isSpace(v:stdgo.GoInt32 -> Bool):stdgo.GoInt32 -> Bool {
-        stdgo._internal.bufio.Bufio_isspace.isSpace = v;
+var isSpace(get, set) : StdTypes.Int -> Bool;
+private function get_isSpace():StdTypes.Int -> Bool return _0 -> stdgo._internal.bufio.Bufio_isspace.isSpace(_0);
+private function set_isSpace(v:StdTypes.Int -> Bool):StdTypes.Int -> Bool {
+        stdgo._internal.bufio.Bufio_isspace.isSpace = _0 -> v((_0 : stdgo.GoInt32));
         return v;
     }
 @:structInit @:using(stdgo.bufio.Bufio.Reader_static_extension) abstract Reader(stdgo._internal.bufio.Bufio_reader.Reader) from stdgo._internal.bufio.Bufio_reader.Reader to stdgo._internal.bufio.Bufio_reader.Reader {

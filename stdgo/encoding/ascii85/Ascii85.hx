@@ -1,5 +1,5 @@
 package stdgo.encoding.ascii85;
-@:structInit @:using(stdgo.encoding.ascii85.Ascii85.T_encoder_static_extension) abstract T_encoder(stdgo._internal.encoding.ascii85.Ascii85_t_encoder.T_encoder) from stdgo._internal.encoding.ascii85.Ascii85_t_encoder.T_encoder to stdgo._internal.encoding.ascii85.Ascii85_t_encoder.T_encoder {
+@:structInit @:using(stdgo.encoding.ascii85.Ascii85.T_encoder_static_extension) @:dox(hide) abstract T_encoder(stdgo._internal.encoding.ascii85.Ascii85_t_encoder.T_encoder) from stdgo._internal.encoding.ascii85.Ascii85_t_encoder.T_encoder to stdgo._internal.encoding.ascii85.Ascii85_t_encoder.T_encoder {
     public var _err(get, set) : stdgo.Error;
     function get__err():stdgo.Error return this._err;
     function set__err(v:stdgo.Error):stdgo.Error {
@@ -34,7 +34,7 @@ package stdgo.encoding.ascii85;
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-@:structInit @:using(stdgo.encoding.ascii85.Ascii85.T_decoder_static_extension) abstract T_decoder(stdgo._internal.encoding.ascii85.Ascii85_t_decoder.T_decoder) from stdgo._internal.encoding.ascii85.Ascii85_t_decoder.T_decoder to stdgo._internal.encoding.ascii85.Ascii85_t_decoder.T_decoder {
+@:structInit @:using(stdgo.encoding.ascii85.Ascii85.T_decoder_static_extension) @:dox(hide) abstract T_decoder(stdgo._internal.encoding.ascii85.Ascii85_t_decoder.T_decoder) from stdgo._internal.encoding.ascii85.Ascii85_t_decoder.T_decoder to stdgo._internal.encoding.ascii85.Ascii85_t_decoder.T_decoder {
     public var _err(get, set) : stdgo.Error;
     function get__err():stdgo.Error return this._err;
     function set__err(v:stdgo.Error):stdgo.Error {
@@ -81,9 +81,43 @@ package stdgo.encoding.ascii85;
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
+@:structInit @:using(stdgo.encoding.ascii85.Ascii85.T_testpair_static_extension) @:dox(hide) abstract T_testpair(stdgo._internal.encoding.ascii85.Ascii85_t_testpair.T_testpair) from stdgo._internal.encoding.ascii85.Ascii85_t_testpair.T_testpair to stdgo._internal.encoding.ascii85.Ascii85_t_testpair.T_testpair {
+    public var _decoded(get, set) : String;
+    function get__decoded():String return this._decoded;
+    function set__decoded(v:String):String {
+        this._decoded = (v : stdgo.GoString);
+        return v;
+    }
+    public var _encoded(get, set) : String;
+    function get__encoded():String return this._encoded;
+    function set__encoded(v:String):String {
+        this._encoded = (v : stdgo.GoString);
+        return v;
+    }
+    public function new(?_decoded:String, ?_encoded:String) this = new stdgo._internal.encoding.ascii85.Ascii85_t_testpair.T_testpair((_decoded : stdgo.GoString), (_encoded : stdgo.GoString));
+    public function __underlying__() return stdgo.Go.toInterface(this);
+    public function __copy__() return this.__copy__();
+}
 typedef CorruptInputError = stdgo._internal.encoding.ascii85.Ascii85_corruptinputerror.CorruptInputError;
-typedef T_encoderPointer = stdgo._internal.encoding.ascii85.Ascii85_t_encoderpointer.T_encoderPointer;
-class T_encoder_static_extension {
+@:structInit @:using(stdgo.encoding.ascii85.Ascii85.T_testDecodeCorrupt___localname___corrupt_4391_static_extension) @:dox(hide) abstract T_testDecodeCorrupt___localname___corrupt_4391(stdgo._internal.encoding.ascii85.Ascii85_t_testdecodecorrupt___localname___corrupt_4391.T_testDecodeCorrupt___localname___corrupt_4391) from stdgo._internal.encoding.ascii85.Ascii85_t_testdecodecorrupt___localname___corrupt_4391.T_testDecodeCorrupt___localname___corrupt_4391 to stdgo._internal.encoding.ascii85.Ascii85_t_testdecodecorrupt___localname___corrupt_4391.T_testDecodeCorrupt___localname___corrupt_4391 {
+    public var _e(get, set) : String;
+    function get__e():String return this._e;
+    function set__e(v:String):String {
+        this._e = (v : stdgo.GoString);
+        return v;
+    }
+    public var _p(get, set) : StdTypes.Int;
+    function get__p():StdTypes.Int return this._p;
+    function set__p(v:StdTypes.Int):StdTypes.Int {
+        this._p = (v : stdgo.GoInt);
+        return v;
+    }
+    public function new(?_e:String, ?_p:StdTypes.Int) this = new stdgo._internal.encoding.ascii85.Ascii85_t_testdecodecorrupt___localname___corrupt_4391.T_testDecodeCorrupt___localname___corrupt_4391((_e : stdgo.GoString), (_p : stdgo.GoInt));
+    public function __underlying__() return stdgo.Go.toInterface(this);
+    public function __copy__() return this.__copy__();
+}
+@:dox(hide) typedef T_encoderPointer = stdgo._internal.encoding.ascii85.Ascii85_t_encoderpointer.T_encoderPointer;
+@:dox(hide) class T_encoder_static_extension {
     static public function close(_e:T_encoder):stdgo.Error {
         final _e = (_e : stdgo.Ref<stdgo._internal.encoding.ascii85.Ascii85_t_encoder.T_encoder>);
         return stdgo._internal.encoding.ascii85.Ascii85_t_encoder_static_extension.T_encoder_static_extension.close(_e);
@@ -97,8 +131,8 @@ class T_encoder_static_extension {
         };
     }
 }
-typedef T_decoderPointer = stdgo._internal.encoding.ascii85.Ascii85_t_decoderpointer.T_decoderPointer;
-class T_decoder_static_extension {
+@:dox(hide) typedef T_decoderPointer = stdgo._internal.encoding.ascii85.Ascii85_t_decoderpointer.T_decoderPointer;
+@:dox(hide) class T_decoder_static_extension {
     static public function read(_d:T_decoder, _p:Array<std.UInt>):stdgo.Tuple<StdTypes.Int, stdgo.Error> {
         final _d = (_d : stdgo.Ref<stdgo._internal.encoding.ascii85.Ascii85_t_decoder.T_decoder>);
         final _p = ([for (i in _p) (i : stdgo.GoUInt8)] : stdgo.Slice<stdgo.GoUInt8>);
@@ -108,11 +142,19 @@ class T_decoder_static_extension {
         };
     }
 }
+@:dox(hide) typedef T_testpairPointer = stdgo._internal.encoding.ascii85.Ascii85_t_testpairpointer.T_testpairPointer;
+@:dox(hide) class T_testpair_static_extension {
+
+}
 typedef CorruptInputErrorPointer = stdgo._internal.encoding.ascii85.Ascii85_corruptinputerrorpointer.CorruptInputErrorPointer;
 class CorruptInputError_static_extension {
     static public function error(_e:CorruptInputError):String {
         return stdgo._internal.encoding.ascii85.Ascii85_corruptinputerror_static_extension.CorruptInputError_static_extension.error(_e);
     }
+}
+@:dox(hide) typedef T_testDecodeCorrupt___localname___corrupt_4391Pointer = stdgo._internal.encoding.ascii85.Ascii85_t_testdecodecorrupt___localname___corrupt_4391pointer.T_testDecodeCorrupt___localname___corrupt_4391Pointer;
+@:dox(hide) class T_testDecodeCorrupt___localname___corrupt_4391_static_extension {
+
 }
 /**
     * Package ascii85 implements the ascii85 data encoding
@@ -180,5 +222,41 @@ class Ascii85 {
     **/
     static public inline function newDecoder(_r:stdgo._internal.io.Io_reader.Reader):stdgo._internal.io.Io_reader.Reader {
         return stdgo._internal.encoding.ascii85.Ascii85_newdecoder.newDecoder(_r);
+    }
+    static public inline function testEncode(_t:stdgo._internal.testing.Testing_t_.T_):Void {
+        final _t = (_t : stdgo.Ref<stdgo._internal.testing.Testing_t_.T_>);
+        stdgo._internal.encoding.ascii85.Ascii85_testencode.testEncode(_t);
+    }
+    static public inline function testEncoder(_t:stdgo._internal.testing.Testing_t_.T_):Void {
+        final _t = (_t : stdgo.Ref<stdgo._internal.testing.Testing_t_.T_>);
+        stdgo._internal.encoding.ascii85.Ascii85_testencoder.testEncoder(_t);
+    }
+    static public inline function testEncoderBuffering(_t:stdgo._internal.testing.Testing_t_.T_):Void {
+        final _t = (_t : stdgo.Ref<stdgo._internal.testing.Testing_t_.T_>);
+        stdgo._internal.encoding.ascii85.Ascii85_testencoderbuffering.testEncoderBuffering(_t);
+    }
+    static public inline function testDecode(_t:stdgo._internal.testing.Testing_t_.T_):Void {
+        final _t = (_t : stdgo.Ref<stdgo._internal.testing.Testing_t_.T_>);
+        stdgo._internal.encoding.ascii85.Ascii85_testdecode.testDecode(_t);
+    }
+    static public inline function testDecoder(_t:stdgo._internal.testing.Testing_t_.T_):Void {
+        final _t = (_t : stdgo.Ref<stdgo._internal.testing.Testing_t_.T_>);
+        stdgo._internal.encoding.ascii85.Ascii85_testdecoder.testDecoder(_t);
+    }
+    static public inline function testDecoderBuffering(_t:stdgo._internal.testing.Testing_t_.T_):Void {
+        final _t = (_t : stdgo.Ref<stdgo._internal.testing.Testing_t_.T_>);
+        stdgo._internal.encoding.ascii85.Ascii85_testdecoderbuffering.testDecoderBuffering(_t);
+    }
+    static public inline function testDecodeCorrupt(_t:stdgo._internal.testing.Testing_t_.T_):Void {
+        final _t = (_t : stdgo.Ref<stdgo._internal.testing.Testing_t_.T_>);
+        stdgo._internal.encoding.ascii85.Ascii85_testdecodecorrupt.testDecodeCorrupt(_t);
+    }
+    static public inline function testBig(_t:stdgo._internal.testing.Testing_t_.T_):Void {
+        final _t = (_t : stdgo.Ref<stdgo._internal.testing.Testing_t_.T_>);
+        stdgo._internal.encoding.ascii85.Ascii85_testbig.testBig(_t);
+    }
+    static public inline function testDecoderInternalWhitespace(_t:stdgo._internal.testing.Testing_t_.T_):Void {
+        final _t = (_t : stdgo.Ref<stdgo._internal.testing.Testing_t_.T_>);
+        stdgo._internal.encoding.ascii85.Ascii85_testdecoderinternalwhitespace.testDecoderInternalWhitespace(_t);
     }
 }

@@ -15,7 +15,15 @@ class Auth_static_extension {
         };
     }
 }
-typedef Auth = stdgo._internal.net.smtp.Smtp_auth.Auth;
+@:interface @:forward abstract Auth(stdgo._internal.net.smtp.Smtp_auth.Auth) from stdgo._internal.net.smtp.Smtp_auth.Auth to stdgo._internal.net.smtp.Smtp_auth.Auth {
+    @:from
+    static function fromHaxeInterface(x:{ function start(_server:ServerInfo):stdgo.Tuple.Tuple3<String, Array<std.UInt>, stdgo.Error>; function next(_fromServer:Array<std.UInt>, _more:Bool):stdgo.Tuple<Array<std.UInt>, stdgo.Error>; }):Auth {
+        var __f__:Void -> stdgo.AnyInterface = null;
+        final y:Auth = { start : _0 -> x.start(_0), next : (_0, _1) -> x.next([for (i in _0) i], _1), __underlying__ : () -> __f__() };
+        __f__ = () -> stdgo.Go.toInterface(y);
+        return y;
+    }
+}
 @:structInit @:using(stdgo.net.smtp.Smtp.ServerInfo_static_extension) abstract ServerInfo(stdgo._internal.net.smtp.Smtp_serverinfo.ServerInfo) from stdgo._internal.net.smtp.Smtp_serverinfo.ServerInfo to stdgo._internal.net.smtp.Smtp_serverinfo.ServerInfo {
     public var name(get, set) : String;
     function get_name():String return this.name;
@@ -39,7 +47,7 @@ typedef Auth = stdgo._internal.net.smtp.Smtp_auth.Auth;
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-@:structInit @:using(stdgo.net.smtp.Smtp.T_plainAuth_static_extension) abstract T_plainAuth(stdgo._internal.net.smtp.Smtp_t_plainauth.T_plainAuth) from stdgo._internal.net.smtp.Smtp_t_plainauth.T_plainAuth to stdgo._internal.net.smtp.Smtp_t_plainauth.T_plainAuth {
+@:structInit @:using(stdgo.net.smtp.Smtp.T_plainAuth_static_extension) @:dox(hide) abstract T_plainAuth(stdgo._internal.net.smtp.Smtp_t_plainauth.T_plainAuth) from stdgo._internal.net.smtp.Smtp_t_plainauth.T_plainAuth to stdgo._internal.net.smtp.Smtp_t_plainauth.T_plainAuth {
     public var _identity(get, set) : String;
     function get__identity():String return this._identity;
     function set__identity(v:String):String {
@@ -68,7 +76,7 @@ typedef Auth = stdgo._internal.net.smtp.Smtp_auth.Auth;
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-@:structInit @:using(stdgo.net.smtp.Smtp.T_cramMD5Auth_static_extension) abstract T_cramMD5Auth(stdgo._internal.net.smtp.Smtp_t_crammd5auth.T_cramMD5Auth) from stdgo._internal.net.smtp.Smtp_t_crammd5auth.T_cramMD5Auth to stdgo._internal.net.smtp.Smtp_t_crammd5auth.T_cramMD5Auth {
+@:structInit @:using(stdgo.net.smtp.Smtp.T_cramMD5Auth_static_extension) @:dox(hide) abstract T_cramMD5Auth(stdgo._internal.net.smtp.Smtp_t_crammd5auth.T_cramMD5Auth) from stdgo._internal.net.smtp.Smtp_t_crammd5auth.T_cramMD5Auth to stdgo._internal.net.smtp.Smtp_t_crammd5auth.T_cramMD5Auth {
     public var _username(get, set) : String;
     function get__username():String return this._username;
     function set__username(v:String):String {
@@ -110,10 +118,22 @@ typedef Auth = stdgo._internal.net.smtp.Smtp_auth.Auth;
         this._serverName = (v : stdgo.GoString);
         return v;
     }
-    public var _ext(get, set) : stdgo.GoMap<stdgo.GoString, stdgo.GoString>;
-    function get__ext():stdgo.GoMap<stdgo.GoString, stdgo.GoString> return this._ext;
-    function set__ext(v:stdgo.GoMap<stdgo.GoString, stdgo.GoString>):stdgo.GoMap<stdgo.GoString, stdgo.GoString> {
-        this._ext = (v : stdgo.GoMap<stdgo.GoString, stdgo.GoString>);
+    public var _ext(get, set) : Map<String, String>;
+    function get__ext():Map<String, String> return {
+        final __obj__:Map<String, String> = [];
+        for (key => value in this._ext) {
+            __obj__[key] = value;
+        };
+        __obj__;
+    };
+    function set__ext(v:Map<String, String>):Map<String, String> {
+        this._ext = {
+            final __obj__ = new stdgo.GoMap<stdgo.GoString, stdgo.GoString>();
+            for (key => value in v) {
+                __obj__[(key : stdgo.GoString)] = (value : stdgo.GoString);
+            };
+            __obj__;
+        };
         return v;
     }
     public var _auth(get, set) : Array<String>;
@@ -140,11 +160,17 @@ typedef Auth = stdgo._internal.net.smtp.Smtp_auth.Auth;
         this._helloError = (v : stdgo.Error);
         return v;
     }
-    public function new(?text:stdgo._internal.net.textproto.Textproto_conn.Conn, ?_conn:stdgo._internal.net.Net_conn.Conn, ?_tls:Bool, ?_serverName:String, ?_ext:stdgo.GoMap<stdgo.GoString, stdgo.GoString>, ?_auth:Array<String>, ?_localName:String, ?_didHello:Bool, ?_helloError:stdgo.Error) this = new stdgo._internal.net.smtp.Smtp_client.Client((text : stdgo.Ref<stdgo._internal.net.textproto.Textproto_conn.Conn>), _conn, _tls, (_serverName : stdgo.GoString), (_ext : stdgo.GoMap<stdgo.GoString, stdgo.GoString>), ([for (i in _auth) (i : stdgo.GoString)] : stdgo.Slice<stdgo.GoString>), (_localName : stdgo.GoString), _didHello, (_helloError : stdgo.Error));
+    public function new(?text:stdgo._internal.net.textproto.Textproto_conn.Conn, ?_conn:stdgo._internal.net.Net_conn.Conn, ?_tls:Bool, ?_serverName:String, ?_ext:Map<String, String>, ?_auth:Array<String>, ?_localName:String, ?_didHello:Bool, ?_helloError:stdgo.Error) this = new stdgo._internal.net.smtp.Smtp_client.Client((text : stdgo.Ref<stdgo._internal.net.textproto.Textproto_conn.Conn>), _conn, _tls, (_serverName : stdgo.GoString), {
+        final __obj__ = new stdgo.GoMap<stdgo.GoString, stdgo.GoString>();
+        for (key => value in _ext) {
+            __obj__[(key : stdgo.GoString)] = (value : stdgo.GoString);
+        };
+        __obj__;
+    }, ([for (i in _auth) (i : stdgo.GoString)] : stdgo.Slice<stdgo.GoString>), (_localName : stdgo.GoString), _didHello, (_helloError : stdgo.Error));
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-@:structInit @:using(stdgo.net.smtp.Smtp.T_dataCloser_static_extension) abstract T_dataCloser(stdgo._internal.net.smtp.Smtp_t_datacloser.T_dataCloser) from stdgo._internal.net.smtp.Smtp_t_datacloser.T_dataCloser to stdgo._internal.net.smtp.Smtp_t_datacloser.T_dataCloser {
+@:structInit @:using(stdgo.net.smtp.Smtp.T_dataCloser_static_extension) @:dox(hide) abstract T_dataCloser(stdgo._internal.net.smtp.Smtp_t_datacloser.T_dataCloser) from stdgo._internal.net.smtp.Smtp_t_datacloser.T_dataCloser to stdgo._internal.net.smtp.Smtp_t_datacloser.T_dataCloser {
     public var _c(get, set) : Client;
     function get__c():Client return this._c;
     function set__c(v:Client):Client {
@@ -165,8 +191,8 @@ typedef ServerInfoPointer = stdgo._internal.net.smtp.Smtp_serverinfopointer.Serv
 class ServerInfo_static_extension {
 
 }
-typedef T_plainAuthPointer = stdgo._internal.net.smtp.Smtp_t_plainauthpointer.T_plainAuthPointer;
-class T_plainAuth_static_extension {
+@:dox(hide) typedef T_plainAuthPointer = stdgo._internal.net.smtp.Smtp_t_plainauthpointer.T_plainAuthPointer;
+@:dox(hide) class T_plainAuth_static_extension {
     static public function next(_a:T_plainAuth, _fromServer:Array<std.UInt>, _more:Bool):stdgo.Tuple<Array<std.UInt>, stdgo.Error> {
         final _a = (_a : stdgo.Ref<stdgo._internal.net.smtp.Smtp_t_plainauth.T_plainAuth>);
         final _fromServer = ([for (i in _fromServer) (i : stdgo.GoUInt8)] : stdgo.Slice<stdgo.GoUInt8>);
@@ -184,8 +210,8 @@ class T_plainAuth_static_extension {
         };
     }
 }
-typedef T_cramMD5AuthPointer = stdgo._internal.net.smtp.Smtp_t_crammd5authpointer.T_cramMD5AuthPointer;
-class T_cramMD5Auth_static_extension {
+@:dox(hide) typedef T_cramMD5AuthPointer = stdgo._internal.net.smtp.Smtp_t_crammd5authpointer.T_cramMD5AuthPointer;
+@:dox(hide) class T_cramMD5Auth_static_extension {
     static public function next(_a:T_cramMD5Auth, _fromServer:Array<std.UInt>, _more:Bool):stdgo.Tuple<Array<std.UInt>, stdgo.Error> {
         final _a = (_a : stdgo.Ref<stdgo._internal.net.smtp.Smtp_t_crammd5auth.T_cramMD5Auth>);
         final _fromServer = ([for (i in _fromServer) (i : stdgo.GoUInt8)] : stdgo.Slice<stdgo.GoUInt8>);
@@ -294,8 +320,8 @@ class Client_static_extension {
         return stdgo._internal.net.smtp.Smtp_client_static_extension.Client_static_extension.close(_c);
     }
 }
-typedef T_dataCloserPointer = stdgo._internal.net.smtp.Smtp_t_datacloserpointer.T_dataCloserPointer;
-class T_dataCloser_static_extension {
+@:dox(hide) typedef T_dataCloserPointer = stdgo._internal.net.smtp.Smtp_t_datacloserpointer.T_dataCloserPointer;
+@:dox(hide) class T_dataCloser_static_extension {
     static public function close(_d:T_dataCloser):stdgo.Error {
         final _d = (_d : stdgo.Ref<stdgo._internal.net.smtp.Smtp_t_datacloser.T_dataCloser>);
         return stdgo._internal.net.smtp.Smtp_t_datacloser_static_extension.T_dataCloser_static_extension.close(_d);

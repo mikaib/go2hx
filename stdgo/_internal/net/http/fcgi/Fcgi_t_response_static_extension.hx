@@ -26,7 +26,7 @@ package stdgo._internal.net.http.fcgi;
         (@:checkr _r ?? throw "null pointer dereference")._wroteCGIHeader = true;
         stdgo._internal.fmt.Fmt_fprintf.fprintf(stdgo.Go.asInterface((@:checkr _r ?? throw "null pointer dereference")._w), ("Status: %d %s\r\n" : stdgo.GoString), stdgo.Go.toInterface((@:checkr _r ?? throw "null pointer dereference")._code), stdgo.Go.toInterface(stdgo._internal.net.http.Http_statustext.statusText((@:checkr _r ?? throw "null pointer dereference")._code)));
         {
-            var __tmp__ = ((@:checkr _r ?? throw "null pointer dereference")._header != null && (@:checkr _r ?? throw "null pointer dereference")._header.exists(("Content-Type" : stdgo.GoString)) ? { _0 : (@:checkr _r ?? throw "null pointer dereference")._header[("Content-Type" : stdgo.GoString)], _1 : true } : { _0 : (null : stdgo.Slice<stdgo.GoString>), _1 : false }), __0:stdgo.Slice<stdgo.GoString> = __tmp__._0, _hasType:Bool = __tmp__._1;
+            var __tmp__ = ((@:checkr _r ?? throw "null pointer dereference")._header != null && (@:checkr _r ?? throw "null pointer dereference")._header.__exists__(("Content-Type" : stdgo.GoString)) ? { _0 : (@:checkr _r ?? throw "null pointer dereference")._header[("Content-Type" : stdgo.GoString)], _1 : true } : { _0 : (null : stdgo.Slice<stdgo.GoString>), _1 : false }), __0:stdgo.Slice<stdgo.GoString> = __tmp__._0, _hasType:Bool = __tmp__._1;
             if ((((@:checkr _r ?? throw "null pointer dereference")._code != (304 : stdgo.GoInt)) && !_hasType : Bool)) {
                 (@:checkr _r ?? throw "null pointer dereference")._header.set(("Content-Type" : stdgo.GoString), stdgo._internal.net.http.Http_detectcontenttype.detectContentType(_p)?.__copy__());
             };
@@ -65,10 +65,10 @@ package stdgo._internal.net.http.fcgi;
             @:check2r _r._writeCGIHeader(_p);
         };
         return {
-            final __tmp__:{ var _0 : stdgo.GoInt; var _1 : stdgo.Error; } = @:check2r (@:checkr _r ?? throw "null pointer dereference")._w.write(_p);
+            final __tmp__ = @:check2r (@:checkr _r ?? throw "null pointer dereference")._w.write(_p);
             _n = __tmp__._0;
             _err = __tmp__._1;
-            __tmp__;
+            { _0 : _n, _1 : _err };
         };
     }
     @:keep

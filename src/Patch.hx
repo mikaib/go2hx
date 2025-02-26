@@ -36,6 +36,8 @@ final list = [
 	// stdgo/errors
 	"errors:_errorType" => macro stdgo._internal.internal.reflectlite.Reflectlite_typeof.typeOf(stdgo.Go.toInterface((null : stdgo.Ref<stdgo.Error>))).elem(),
 	// stdgo/os
+	// exclude because it pulls in x/net/
+	"os_test:_createSocketPair" => macro return {_0: null, _1: null},
 	"os:mkdir" => macro @:define("(sys || hxnodejs)") try {
 		sys.FileSystem.createDirectory(_name);
 		return null;
@@ -102,7 +104,7 @@ final list = [
 				var result = "";
 		
 				for (i in 0...length) {
-					var randomIndex = Math.floor(Math.random() * chars.length);
+					var randomIndex = std.Math.floor(std.Math.random() * chars.length);
 					result += chars.charAt(randomIndex);
 				}
 		
@@ -204,6 +206,13 @@ final list = [
 		deleteRecursively(_path);
 		return null;
 	},
+	"os.File:readFrom" => macro {
+		final data = stdgo._internal.io.Io_readall.readAll(_r);
+		if (data._1 != null)
+			return {_0: 0, _1: data._1};
+		final obj = _f.write(data._0);
+		return {_0: obj._0, _1: obj._1};
+	},
 	"os:readFile" => macro {
 		return @:define("(sys || hxnodejs)") {
 			if (!sys.FileSystem.exists(_name)) {
@@ -260,6 +269,15 @@ final list = [
 		@:privateAccess _f._input.close();
 		@:privateAccess _f._output.close();
 		return null;
+	},
+	"os:getEnv" => macro {
+		return @:define("(sys || hxnodejs)") {
+			try {
+				return {_0: std.Sys.getEnv(_key), _1: null};
+			} catch (e) {
+				return {_0: null, _1: stdgo._internal.errors.Errors_new_.new_(e.details())};
+			}
+		};
 	},
 	"os:getwd" => macro {
 		return @:define("(sys || hxnodejs)") {
@@ -478,8 +496,11 @@ final list = [
 		// special cases
 		if (_x > 0 && !std.Math.isFinite(_x.toBasic()) || _y > 0 && !std.Math.isFinite(_y.toBasic()))
 			return stdgo._internal.math.Math_inf.inf(1);
-		if (_x == 0.0 && !stdgo._internal.math.Math_signbit.signbit(_x) && !stdgo._internal.math.Math_isnan.isNaN(_y) || _y == 0.0 && !stdgo._internal.math.Math_signbit.signbit(_y) && !stdgo._internal.math.Math_isnan.isNaN(_x))
+		if (_x == 0.0 && _y == 0.0 && !stdgo._internal.math.Math_signbit.signbit(_x) && !stdgo._internal.math.Math_isnan.isNaN(_y) 
+		 || _x == 0.0 && _y == 0.0 && !stdgo._internal.math.Math_signbit.signbit(_y) && !stdgo._internal.math.Math_isnan.isNaN(_x)) {
+
 			return 0.0;
+		}
 		if (stdgo._internal.math.Math_isnan.isNaN(_x) || stdgo._internal.math.Math_isnan.isNaN(_y))
 			return stdgo._internal.math.Math_nan.naN();
 		return std.Math.max(_x.toBasic(), _y.toBasic());
@@ -568,6 +589,8 @@ final list = [
 		std.Std.random(1) > 0 ? -std.Std.random(2147483647) - 1 : std.Std.random(2147483647)),
 	// stdgo/runtime
 	// :)
+	// (pc uintptr, file string, line int, ok bool)
+	"runtime:caller" => macro  return { _0 : new stdgo.GoUIntptr(0), _1 : "", _2 : 0, _3 : false },
 	"runtime:numCPU" => macro return 1,
 	"runtime:compiler" => macro "go2hx",
 	"runtime:gOMAXPROCS" => macro return 1,
@@ -1393,13 +1416,13 @@ final list = [
 	// func (x *Pointer[T]) Swap(new *T) (old *T) { return (*T)(SwapPointer(&x.v, unsafe.Pointer(new))) }
 	"sync.atomic_.Pointer_:swap" => macro {
 		final old = @:privateAccess _x._v;
-		_x._v = stdgo.Go.toInterface(_new);
+		_x._v = stdgo.Go.toInterface(_new_);
 		return stdgo.Go.toInterface(old);
 	},
 	"sync.atomic_.Pointer_:compareAndSwap" => macro {
-		final b = stdgo.Go.toInterface(_old) == stdgo.Go.toInterface(_new);
+		final b = stdgo.Go.toInterface(_old) == stdgo.Go.toInterface(_new_);
 		if (b)
-			_x._v = stdgo.Go.toInterface(_new);
+			_x._v = stdgo.Go.toInterface(_new_);
 		return b;
 	},
 	"sync.atomic_.Pointer_:store" => macro {
@@ -1628,6 +1651,7 @@ final list = [
 		var m = new stdgo._internal.testing.Testing_m.M(_deps, testlist, _benchmarks, _fuzzTargets, _examples);
 		return m;
 	},
+	"testing:testing" => macro return true,
 	"testing:coverMode" => macro return "",
 	"testing:short" => macro return true,
 	"testing:allocsPerRun" => macro return 0,
@@ -1637,14 +1661,14 @@ final list = [
 	"testing.T_common:logf" => macro {},
 	"testing.T_common:fatal" => macro {
 		stdgo._internal.fmt.Fmt_println.println(...[for (arg in _args) arg]);
-		//_c.failNow();
+		_c.failNow();
 	},
 	"testing.T_common:cleanup" => macro {
 		_c._cleanups = _c._cleanups.__append__(_f);
 	},
 	"testing.T_common:fatalf" => macro {
 		stdgo._internal.fmt.Fmt_printf.printf(_format, ...[for (arg in _args) arg]);
-		//_c.failNow();
+		_c.failNow();
 	},
 	"testing.T_common:tempDir" => macro {
 		final pattern = "";
@@ -1759,8 +1783,11 @@ final list = [
 ];
 
 final skipTests = [
+	"math.rand_test:testConcurrent" => [], // sync.WaitGroup and goroutines with exceptions inside
 	"path.filepath_test:testCVE202230632" => [], // segfault
 	"fmt_test:testPanics" => [], // keep Haxe specific throws, no need to replicate
+	"bytes_test:testLargeStringWrites" => ["js"], // max call stack
+	"bytes_test:testLargeByteWrites" => ["js"], // max call stack
 	"bytes_test:testSplit" => [], // Segmentation fault (core dumped)
 	"bytes_test:testMixedReadsAndWrites" => ["js"], // randomly causes errors in max call stack depth uses rand.Intn in the tests so it is random
 	"fmt_test:testFinderNext" => [], // Segmentation fault (core dumped)
@@ -1768,6 +1795,7 @@ final skipTests = [
 	"math_test:testFloatMinima" => ["interp", "js"],
 	"math_test:testNextafter32" => ["interp", "js"],
 	"strconv_test:testRoundTrip32" => ["interp", "js"], // imprecise float
+	"bufio_test:TestReadStringAllocs" => [], // checks runtime allocations num
 	// "math_test:testSignbit" => ["interp"],
 	"math_test:testGamma" => ["interp", "js"],
 	"strconv_test:testAtof" => [], // uses rand and sync
@@ -1789,6 +1817,7 @@ final skipTests = [
 	"bytes_test:testClone" => [], // uses unsafe sliceData
 	"bytes_test:testReaderLenSize" => [], // TODO: implement - sync
 	"bytes_test:testCompareBytes" => [], // very slow but passes
+	"encoding.json:TestHTTPDecoding" => [], // uses net/http
 	"encoding.binary_test:testNativeEndian" => [], // uses unsafe pointer conversions
 	// stdgo/math_test
 	"math_test:testFloatMinMax" => [], // fmt formatter

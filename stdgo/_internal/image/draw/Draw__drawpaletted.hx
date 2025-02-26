@@ -20,13 +20,12 @@ var _stride = __2, _pix = __1, _palette = __0;
                 {
                     final __tmp__0 = ((@:checkr _p ?? throw "null pointer dereference").pix.__slice__(@:check2r _p.pixOffset(_r.min.x, _r.min.y)) : stdgo.Slice<stdgo.GoUInt8>);
                     final __tmp__1 = (@:checkr _p ?? throw "null pointer dereference").stride;
-                    _pix = __tmp__0;
-                    _stride = __tmp__1;
+                    _pix = @:binopAssign __tmp__0;
+                    _stride = @:binopAssign __tmp__1;
                 };
             };
         };
-        var __0:stdgo.Slice<stdgo.GoArray<stdgo.GoInt32>> = (null : stdgo.Slice<stdgo.GoArray<stdgo.GoInt32>>), __1:stdgo.Slice<stdgo.GoArray<stdgo.GoInt32>> = (null : stdgo.Slice<stdgo.GoArray<stdgo.GoInt32>>);
-var _quantErrorNext = __1, _quantErrorCurr = __0;
+        var _quantErrorCurr:stdgo.Slice<stdgo.GoArray<stdgo.GoInt32>> = (null : stdgo.Slice<stdgo.GoArray<stdgo.GoInt32>>), _quantErrorNext:stdgo.Slice<stdgo.GoArray<stdgo.GoInt32>> = (null : stdgo.Slice<stdgo.GoArray<stdgo.GoInt32>>);
         if (_floydSteinberg) {
             _quantErrorCurr = (new stdgo.Slice<stdgo.GoArray<stdgo.GoInt32>>((_r.dx() + (2 : stdgo.GoInt) : stdgo.GoInt).toBasic(), 0, ...[for (i in 0 ... ((_r.dx() + (2 : stdgo.GoInt) : stdgo.GoInt).toBasic() > 0 ? (_r.dx() + (2 : stdgo.GoInt) : stdgo.GoInt).toBasic() : 0 : stdgo.GoInt).toBasic()) new stdgo.GoArray<stdgo.GoInt32>(4, 4).__setNumber32__()]) : stdgo.Slice<stdgo.GoArray<stdgo.GoInt32>>);
             _quantErrorNext = (new stdgo.Slice<stdgo.GoArray<stdgo.GoInt32>>((_r.dx() + (2 : stdgo.GoInt) : stdgo.GoInt).toBasic(), 0, ...[for (i in 0 ... ((_r.dx() + (2 : stdgo.GoInt) : stdgo.GoInt).toBasic() > 0 ? (_r.dx() + (2 : stdgo.GoInt) : stdgo.GoInt).toBasic() : 0 : stdgo.GoInt).toBasic()) new stdgo.GoArray<stdgo.GoInt32>(4, 4).__setNumber32__()]) : stdgo.Slice<stdgo.GoArray<stdgo.GoInt32>>);
@@ -34,12 +33,12 @@ var _quantErrorNext = __1, _quantErrorCurr = __0;
         var _pxRGBA = (function(_x:stdgo.GoInt, _y:stdgo.GoInt):{ var _0 : stdgo.GoUInt32; var _1 : stdgo.GoUInt32; var _2 : stdgo.GoUInt32; var _3 : stdgo.GoUInt32; } {
             var _r = (0 : stdgo.GoUInt32), _g = (0 : stdgo.GoUInt32), _b = (0 : stdgo.GoUInt32), _a = (0 : stdgo.GoUInt32);
             return {
-                final __tmp__:{ var _0 : stdgo.GoUInt32; var _1 : stdgo.GoUInt32; var _2 : stdgo.GoUInt32; var _3 : stdgo.GoUInt32; } = _src.at(_x, _y).rGBA();
+                final __tmp__ = _src.at(_x, _y).rGBA();
                 _r = __tmp__._0;
                 _g = __tmp__._1;
                 _b = __tmp__._2;
                 _a = __tmp__._3;
-                __tmp__;
+                { _0 : _r, _1 : _g, _2 : _b, _3 : _a };
             };
         } : (stdgo.GoInt, stdgo.GoInt) -> { var _0 : stdgo.GoUInt32; var _1 : stdgo.GoUInt32; var _2 : stdgo.GoUInt32; var _3 : stdgo.GoUInt32; });
         {
@@ -49,12 +48,12 @@ var _quantErrorNext = __1, _quantErrorCurr = __0;
                 _pxRGBA = function(_x:stdgo.GoInt, _y:stdgo.GoInt):{ var _0 : stdgo.GoUInt32; var _1 : stdgo.GoUInt32; var _2 : stdgo.GoUInt32; var _3 : stdgo.GoUInt32; } {
                     var _r = (0 : stdgo.GoUInt32), _g = (0 : stdgo.GoUInt32), _b = (0 : stdgo.GoUInt32), _a = (0 : stdgo.GoUInt32);
                     return {
-                        final __tmp__:{ var _0 : stdgo.GoUInt32; var _1 : stdgo.GoUInt32; var _2 : stdgo.GoUInt32; var _3 : stdgo.GoUInt32; } = @:check2r _src0.rGBAAt(_x, _y).rGBA();
+                        final __tmp__ = @:check2r _src0.rGBAAt(_x, _y).rGBA();
                         _r = __tmp__._0;
                         _g = __tmp__._1;
                         _b = __tmp__._2;
                         _a = __tmp__._3;
-                        __tmp__;
+                        { _0 : _r, _1 : _g, _2 : _b, _3 : _a };
                     };
                 };
             } else if (stdgo.Go.typeEquals((__type__ : stdgo.Ref<stdgo._internal.image.Image_nrgba.NRGBA>))) {
@@ -62,12 +61,12 @@ var _quantErrorNext = __1, _quantErrorCurr = __0;
                 _pxRGBA = function(_x:stdgo.GoInt, _y:stdgo.GoInt):{ var _0 : stdgo.GoUInt32; var _1 : stdgo.GoUInt32; var _2 : stdgo.GoUInt32; var _3 : stdgo.GoUInt32; } {
                     var _r = (0 : stdgo.GoUInt32), _g = (0 : stdgo.GoUInt32), _b = (0 : stdgo.GoUInt32), _a = (0 : stdgo.GoUInt32);
                     return {
-                        final __tmp__:{ var _0 : stdgo.GoUInt32; var _1 : stdgo.GoUInt32; var _2 : stdgo.GoUInt32; var _3 : stdgo.GoUInt32; } = @:check2r _src0.nRGBAAt(_x, _y).rGBA();
+                        final __tmp__ = @:check2r _src0.nRGBAAt(_x, _y).rGBA();
                         _r = __tmp__._0;
                         _g = __tmp__._1;
                         _b = __tmp__._2;
                         _a = __tmp__._3;
-                        __tmp__;
+                        { _0 : _r, _1 : _g, _2 : _b, _3 : _a };
                     };
                 };
             } else if (stdgo.Go.typeEquals((__type__ : stdgo.Ref<stdgo._internal.image.Image_ycbcr.YCbCr>))) {
@@ -75,12 +74,12 @@ var _quantErrorNext = __1, _quantErrorCurr = __0;
                 _pxRGBA = function(_x:stdgo.GoInt, _y:stdgo.GoInt):{ var _0 : stdgo.GoUInt32; var _1 : stdgo.GoUInt32; var _2 : stdgo.GoUInt32; var _3 : stdgo.GoUInt32; } {
                     var _r = (0 : stdgo.GoUInt32), _g = (0 : stdgo.GoUInt32), _b = (0 : stdgo.GoUInt32), _a = (0 : stdgo.GoUInt32);
                     return {
-                        final __tmp__:{ var _0 : stdgo.GoUInt32; var _1 : stdgo.GoUInt32; var _2 : stdgo.GoUInt32; var _3 : stdgo.GoUInt32; } = @:check2r _src0.yCbCrAt(_x, _y).rGBA();
+                        final __tmp__ = @:check2r _src0.yCbCrAt(_x, _y).rGBA();
                         _r = __tmp__._0;
                         _g = __tmp__._1;
                         _b = __tmp__._2;
                         _a = __tmp__._3;
-                        __tmp__;
+                        { _0 : _r, _1 : _g, _2 : _b, _3 : _a };
                     };
                 };
             };
@@ -110,8 +109,8 @@ var _bestSum = __1, _bestIndex = __0;
                                     {
                                         final __tmp__0 = _index;
                                         final __tmp__1 = _sum;
-                                        _bestIndex = __tmp__0;
-                                        _bestSum = __tmp__1;
+                                        _bestIndex = @:binopAssign __tmp__0;
+                                        _bestSum = @:binopAssign __tmp__1;
                                     };
                                     if (_sum == ((0u32 : stdgo.GoUInt32))) {
                                         break;
@@ -176,8 +175,8 @@ if (_floydSteinberg) {
                     {
                         final __tmp__0 = _quantErrorNext;
                         final __tmp__1 = _quantErrorCurr;
-                        _quantErrorCurr = __tmp__0;
-                        _quantErrorNext = __tmp__1;
+                        _quantErrorCurr = @:binopAssign __tmp__0;
+                        _quantErrorNext = @:binopAssign __tmp__1;
                     };
                     for (_i => _ in _quantErrorNext) {
                         _quantErrorNext[(_i : stdgo.GoInt)] = (new stdgo.GoArray<stdgo.GoInt32>(4, 4, ...[]).__setNumber32__() : stdgo.GoArray<stdgo.GoInt32>)?.__copy__();

@@ -1,7 +1,7 @@
 # DO NOT EDIT. Generated from scripts/github-action
 name: build
 
-on: [push]
+on: [push, pull_request]
 
 concurrency:
   group: ${{ github.ref }}
@@ -74,6 +74,41 @@ jobs:
       - name: Create vendor
         run: go mod vendor
       - run: go run . -goto
+  interop:
+    timeout-minutes: 15
+    needs: setup
+    strategy:
+      fail-fast: false
+    runs-on: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v3
+        with:
+          go-version: '1.21.3' # The Go version to download (if necessary) and use.
+      - name: Install lix
+        run: npm i lix -g
+      - name: Run lix
+        run: npx lix download
+      # go2hx setup
+      - name: Build go2hx compiler
+        run: npx haxe --run Run build
+      - name: Set source
+        run: haxelib dev go2hx .
+      - name: Clean stdgo
+        run: npx haxe --run Run clean
+      - uses: actions/cache/restore@v4
+        id: setup-cache
+        with:
+          path: |
+            TypeInfoData_go2hx_hxb.hx
+            ./_internal/*
+            ./stdgo/*
+            ./go2hx.*.zip 
+          key: ${{ github.sha }}-build-${{ env.cache-name }}
+      - name: Build interop test
+        run: haxelib run go2hx ./tests/interop --nolibwrap
+      - name: Test interop
+        run: haxe tests/interop.hxml
   pointer:
     timeout-minutes: 15
     strategy:
@@ -123,6 +158,7 @@ jobs:
             message: stdgo automatic compile
             pull: --rebase --autostash
             add: --no-ignore-removal .
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
   create-test-lists:
     timeout-minutes: 15
     needs: []
@@ -152,8 +188,162 @@ jobs:
             message: create test lists
             pull: --rebase --autostash
             add: ./tests
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+  libs-hl:
+    timeout-minutes: 75
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v3
+        with:
+          go-version: '1.21.3' # The Go version to download (if necessary) and use.
+      - uses: cedx/setup-hashlink@v6.0.0
+      # Get the cores 
+      - name: Get number of cores (Ubuntu)
+        if: startsWith(runner.os, 'Linux')
+        run: echo "CORES=$(nproc --all)" >> $GITHUB_ENV
+      - name: Get number of cores (macOS)
+        if: startsWith(runner.os, 'macOS')
+        run: echo "CORES=$(sysctl -n hw.logicalcpu)" >> $GITHUB_ENV
+      - name: Install lix
+        run: npm i lix -g
+      - name: Run lix
+        run: npx lix download
+      # go2hx setup
+      - name: Clean stdgo
+        run: npx haxe --run Run clean
+      - name: Build go2hx compiler
+        run: npx haxe --run Run build
+      - name: Set source
+        run: npx haxelib dev go2hx .
+      - uses: actions/cache/restore@v4
+        id: setup-cache
+        with:
+          path: |
+            TypeInfoData_go2hx_hxb.hx
+            ./_internal/*
+            ./stdgo/*
+            ./go2hx.*.zip 
+          key: ${{ github.sha }}-build-${{ env.cache-name }}
+      - name: Run lib tests
+        run: npx haxe tests/tests.hxml -D libs -D ci -D runnerCount=${{ env.CORES }} -D targets=hl #-D hxb
+      - name: Remove stdgo folder
+        run: rm -r -d stdgo
+      - name: Remove _internal folder
+        run: rm -r -d _internal
+      - uses: EndBug/add-and-commit@v9
+        with:
+            message: libs tests update hl
+            add: ./tests
+            pull: --rebase --autostash
+        continue-on-error: true
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+  libs-interp:
+    timeout-minutes: 75
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v3
+        with:
+          go-version: '1.21.3' # The Go version to download (if necessary) and use.
+    
+      # Get the cores 
+      - name: Get number of cores (Ubuntu)
+        if: startsWith(runner.os, 'Linux')
+        run: echo "CORES=$(nproc --all)" >> $GITHUB_ENV
+      - name: Get number of cores (macOS)
+        if: startsWith(runner.os, 'macOS')
+        run: echo "CORES=$(sysctl -n hw.logicalcpu)" >> $GITHUB_ENV
+      - name: Install lix
+        run: npm i lix -g
+      - name: Run lix
+        run: npx lix download
+      # go2hx setup
+      - name: Clean stdgo
+        run: npx haxe --run Run clean
+      - name: Build go2hx compiler
+        run: npx haxe --run Run build
+      - name: Set source
+        run: npx haxelib dev go2hx .
+      - uses: actions/cache/restore@v4
+        id: setup-cache
+        with:
+          path: |
+            TypeInfoData_go2hx_hxb.hx
+            ./_internal/*
+            ./stdgo/*
+            ./go2hx.*.zip 
+          key: ${{ github.sha }}-build-${{ env.cache-name }}
+      - name: Run lib tests
+        run: npx haxe tests/tests.hxml -D libs -D ci -D runnerCount=${{ env.CORES }} -D targets=interp #-D hxb
+      - name: Remove stdgo folder
+        run: rm -r -d stdgo
+      - name: Remove _internal folder
+        run: rm -r -d _internal
+      - uses: EndBug/add-and-commit@v9
+        with:
+            message: libs tests update interp
+            add: ./tests
+            pull: --rebase --autostash
+        continue-on-error: true
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+  libs-js:
+    timeout-minutes: 75
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v3
+        with:
+          go-version: '1.21.3' # The Go version to download (if necessary) and use.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 23
+      - run: node --v8-options
+      # Get the cores 
+      - name: Get number of cores (Ubuntu)
+        if: startsWith(runner.os, 'Linux')
+        run: echo "CORES=$(nproc --all)" >> $GITHUB_ENV
+      - name: Get number of cores (macOS)
+        if: startsWith(runner.os, 'macOS')
+        run: echo "CORES=$(sysctl -n hw.logicalcpu)" >> $GITHUB_ENV
+      - name: Install lix
+        run: npm i lix -g
+      - name: Run lix
+        run: npx lix download
+      # go2hx setup
+      - name: Clean stdgo
+        run: npx haxe --run Run clean
+      - name: Build go2hx compiler
+        run: npx haxe --run Run build
+      - name: Set source
+        run: npx haxelib dev go2hx .
+      - uses: actions/cache/restore@v4
+        id: setup-cache
+        with:
+          path: |
+            TypeInfoData_go2hx_hxb.hx
+            ./_internal/*
+            ./stdgo/*
+            ./go2hx.*.zip 
+          key: ${{ github.sha }}-build-${{ env.cache-name }}
+      - name: Run lib tests
+        run: npx haxe tests/tests.hxml -D libs -D ci -D runnerCount=${{ env.CORES }} -D targets=js #-D hxb
+      - name: Remove stdgo folder
+        run: rm -r -d stdgo
+      - name: Remove _internal folder
+        run: rm -r -d _internal
+      - uses: EndBug/add-and-commit@v9
+        with:
+            message: libs tests update js
+            add: ./tests
+            pull: --rebase --autostash
+        continue-on-error: true
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
   go-easy-hl:
-    timeout-minutes: 25
+    timeout-minutes: 75
     needs: setup
     strategy:
       fail-fast: false
@@ -207,8 +397,6 @@ jobs:
       # run go easy tests
       - name: Run go easy tests
         run: npx haxe tests/tests.hxml -D go -D ci -D mode=easy -D runnerCount=${{ env.CORES }} -D nologs -D targets=hl #-D hxb
-      - name: Report results
-        run: npx haxe tests/tests.hxml -D go -D ci -D mode=easy -D report -D runnerCount=${{ env.CORES }} -D nologs -D targets=hl #-D hxb
       - name: Remove stdgo folder
         run: rm -r -d stdgo
       - name: Remove _internal folder
@@ -219,9 +407,10 @@ jobs:
             message: go easy tests update hl
             add: ./tests
             pull: --rebase --autostash
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
         continue-on-error: true
   go-easy-interp:
-    timeout-minutes: 25
+    timeout-minutes: 75
     needs: setup
     strategy:
       fail-fast: false
@@ -275,8 +464,6 @@ jobs:
       # run go easy tests
       - name: Run go easy tests
         run: npx haxe tests/tests.hxml -D go -D ci -D mode=easy -D runnerCount=${{ env.CORES }} -D nologs -D targets=interp #-D hxb
-      - name: Report results
-        run: npx haxe tests/tests.hxml -D go -D ci -D mode=easy -D report -D runnerCount=${{ env.CORES }} -D nologs -D targets=interp #-D hxb
       - name: Remove stdgo folder
         run: rm -r -d stdgo
       - name: Remove _internal folder
@@ -287,9 +474,10 @@ jobs:
             message: go easy tests update interp
             add: ./tests
             pull: --rebase --autostash
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
         continue-on-error: true
   go-easy-js:
-    timeout-minutes: 25
+    timeout-minutes: 75
     needs: setup
     strategy:
       fail-fast: false
@@ -308,6 +496,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 23
+      - run: node --v8-options
       # Get the cores 
       - name: Get number of cores (Ubuntu)
         if: startsWith(runner.os, 'Linux')
@@ -345,8 +534,6 @@ jobs:
       # run go easy tests
       - name: Run go easy tests
         run: npx haxe tests/tests.hxml -D go -D ci -D mode=easy -D runnerCount=${{ env.CORES }} -D nologs -D targets=js #-D hxb
-      - name: Report results
-        run: npx haxe tests/tests.hxml -D go -D ci -D mode=easy -D report -D runnerCount=${{ env.CORES }} -D nologs -D targets=js #-D hxb
       - name: Remove stdgo folder
         run: rm -r -d stdgo
       - name: Remove _internal folder
@@ -357,9 +544,10 @@ jobs:
             message: go easy tests update js
             add: ./tests
             pull: --rebase --autostash
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
         continue-on-error: true
   yaegi-easy-hl:
-    timeout-minutes: 25
+    timeout-minutes: 75
     needs: setup
     runs-on: ubuntu-latest
     steps:
@@ -402,8 +590,6 @@ jobs:
         run: go run ./scripts/sortTests ci
       - name: Run yaegi easy tests
         run: npx haxe tests/tests.hxml -D yaegi -D ci -D mode=easy -D runnerCount=${{ env.CORES }} -D targets=hl #-D hxb
-      - name: Report results
-        run: npx haxe tests/tests.hxml -D yaegi -D ci -D mode=easy -D report -D runnerCount=${{ env.CORES }} -D targets=hl #-D hxb
       - name: Remove stdgo folder
         run: rm -r -d stdgo
       - name: Remove _internal folder
@@ -415,8 +601,9 @@ jobs:
             add: ./tests
             pull: --rebase --autostash
         continue-on-error: true
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
   yaegi-easy-interp:
-    timeout-minutes: 25
+    timeout-minutes: 75
     needs: setup
     runs-on: ubuntu-latest
     steps:
@@ -459,8 +646,6 @@ jobs:
         run: go run ./scripts/sortTests ci
       - name: Run yaegi easy tests
         run: npx haxe tests/tests.hxml -D yaegi -D ci -D mode=easy -D runnerCount=${{ env.CORES }} -D targets=interp #-D hxb
-      - name: Report results
-        run: npx haxe tests/tests.hxml -D yaegi -D ci -D mode=easy -D report -D runnerCount=${{ env.CORES }} -D targets=interp #-D hxb
       - name: Remove stdgo folder
         run: rm -r -d stdgo
       - name: Remove _internal folder
@@ -472,8 +657,9 @@ jobs:
             add: ./tests
             pull: --rebase --autostash
         continue-on-error: true
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
   yaegi-easy-js:
-    timeout-minutes: 25
+    timeout-minutes: 75
     needs: setup
     runs-on: ubuntu-latest
     steps:
@@ -484,6 +670,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 23
+      - run: node --v8-options
       # Get the cores 
       - name: Get number of cores (Ubuntu)
         if: startsWith(runner.os, 'Linux')
@@ -518,8 +705,6 @@ jobs:
         run: go run ./scripts/sortTests ci
       - name: Run yaegi easy tests
         run: npx haxe tests/tests.hxml -D yaegi -D ci -D mode=easy -D runnerCount=${{ env.CORES }} -D targets=js #-D hxb
-      - name: Report results
-        run: npx haxe tests/tests.hxml -D yaegi -D ci -D mode=easy -D report -D runnerCount=${{ env.CORES }} -D targets=js #-D hxb
       - name: Remove stdgo folder
         run: rm -r -d stdgo
       - name: Remove _internal folder
@@ -531,8 +716,9 @@ jobs:
             add: ./tests
             pull: --rebase --autostash
         continue-on-error: true
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
   go-medium-hl:
-    timeout-minutes: 25
+    timeout-minutes: 75
     needs: setup
     strategy:
       fail-fast: false
@@ -586,8 +772,6 @@ jobs:
       # run go medium tests
       - name: Run go medium tests
         run: npx haxe tests/tests.hxml -D go -D ci -D mode=medium -D runnerCount=${{ env.CORES }} -D nologs -D targets=hl #-D hxb
-      - name: Report results
-        run: npx haxe tests/tests.hxml -D go -D ci -D mode=medium -D report -D runnerCount=${{ env.CORES }} -D nologs -D targets=hl #-D hxb
       - name: Remove stdgo folder
         run: rm -r -d stdgo
       - name: Remove _internal folder
@@ -598,9 +782,10 @@ jobs:
             message: go medium tests update hl
             add: ./tests
             pull: --rebase --autostash
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
         continue-on-error: true
   go-medium-js:
-    timeout-minutes: 25
+    timeout-minutes: 75
     needs: setup
     strategy:
       fail-fast: false
@@ -619,6 +804,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 23
+      - run: node --v8-options
       # Get the cores 
       - name: Get number of cores (Ubuntu)
         if: startsWith(runner.os, 'Linux')
@@ -656,8 +842,6 @@ jobs:
       # run go medium tests
       - name: Run go medium tests
         run: npx haxe tests/tests.hxml -D go -D ci -D mode=medium -D runnerCount=${{ env.CORES }} -D nologs -D targets=js #-D hxb
-      - name: Report results
-        run: npx haxe tests/tests.hxml -D go -D ci -D mode=medium -D report -D runnerCount=${{ env.CORES }} -D nologs -D targets=js #-D hxb
       - name: Remove stdgo folder
         run: rm -r -d stdgo
       - name: Remove _internal folder
@@ -668,9 +852,10 @@ jobs:
             message: go medium tests update js
             add: ./tests
             pull: --rebase --autostash
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
         continue-on-error: true
   yaegi-medium-hl:
-    timeout-minutes: 25
+    timeout-minutes: 75
     needs: setup
     runs-on: ubuntu-latest
     steps:
@@ -713,8 +898,6 @@ jobs:
         run: go run ./scripts/sortTests ci
       - name: Run yaegi medium tests
         run: npx haxe tests/tests.hxml -D yaegi -D ci -D mode=medium -D runnerCount=${{ env.CORES }} -D targets=hl #-D hxb
-      - name: Report results
-        run: npx haxe tests/tests.hxml -D yaegi -D ci -D mode=medium -D report -D runnerCount=${{ env.CORES }} -D targets=hl #-D hxb
       - name: Remove stdgo folder
         run: rm -r -d stdgo
       - name: Remove _internal folder
@@ -726,8 +909,9 @@ jobs:
             add: ./tests
             pull: --rebase --autostash
         continue-on-error: true
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
   yaegi-medium-interp:
-    timeout-minutes: 25
+    timeout-minutes: 75
     needs: setup
     runs-on: ubuntu-latest
     steps:
@@ -770,8 +954,6 @@ jobs:
         run: go run ./scripts/sortTests ci
       - name: Run yaegi medium tests
         run: npx haxe tests/tests.hxml -D yaegi -D ci -D mode=medium -D runnerCount=${{ env.CORES }} -D targets=interp #-D hxb
-      - name: Report results
-        run: npx haxe tests/tests.hxml -D yaegi -D ci -D mode=medium -D report -D runnerCount=${{ env.CORES }} -D targets=interp #-D hxb
       - name: Remove stdgo folder
         run: rm -r -d stdgo
       - name: Remove _internal folder
@@ -783,8 +965,9 @@ jobs:
             add: ./tests
             pull: --rebase --autostash
         continue-on-error: true
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
   yaegi-medium-js:
-    timeout-minutes: 25
+    timeout-minutes: 75
     needs: setup
     runs-on: ubuntu-latest
     steps:
@@ -795,6 +978,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 23
+      - run: node --v8-options
       # Get the cores 
       - name: Get number of cores (Ubuntu)
         if: startsWith(runner.os, 'Linux')
@@ -829,8 +1013,6 @@ jobs:
         run: go run ./scripts/sortTests ci
       - name: Run yaegi medium tests
         run: npx haxe tests/tests.hxml -D yaegi -D ci -D mode=medium -D runnerCount=${{ env.CORES }} -D targets=js #-D hxb
-      - name: Report results
-        run: npx haxe tests/tests.hxml -D yaegi -D ci -D mode=medium -D report -D runnerCount=${{ env.CORES }} -D targets=js #-D hxb
       - name: Remove stdgo folder
         run: rm -r -d stdgo
       - name: Remove _internal folder
@@ -842,9 +1024,10 @@ jobs:
             add: ./tests
             pull: --rebase --autostash
         continue-on-error: true
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
   build-hl:
     
-    timeout-minutes: 26
+    timeout-minutes: 75
     needs: setup
     strategy:
       fail-fast: false
@@ -895,6 +1078,7 @@ jobs:
             message: go easy tests update hl
             add: ./tests
             pull: --rebase --autostash
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
         continue-on-error: true
       - name: Run std
         run: npx haxe tests/tests.hxml -D std -D ci -D runnerCount=${{ env.CORES }} -D targets=hl  #-D hxb
@@ -903,10 +1087,11 @@ jobs:
             message: build std tests update hl
             add: ./tests
             pull: --rebase --autostash
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
         continue-on-error: true
   build-interp:
     
-    timeout-minutes: 26
+    timeout-minutes: 75
     needs: setup
     strategy:
       fail-fast: false
@@ -957,6 +1142,7 @@ jobs:
             message: go easy tests update interp
             add: ./tests
             pull: --rebase --autostash
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
         continue-on-error: true
       - name: Run std
         run: npx haxe tests/tests.hxml -D std -D ci -D runnerCount=${{ env.CORES }} -D targets=interp  #-D hxb
@@ -965,10 +1151,11 @@ jobs:
             message: build std tests update interp
             add: ./tests
             pull: --rebase --autostash
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
         continue-on-error: true
   build-js:
     
-    timeout-minutes: 26
+    timeout-minutes: 75
     needs: setup
     strategy:
       fail-fast: false
@@ -990,6 +1177,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 23
+      - run: node --v8-options
       - name: Install lix
         run: npm i lix -g
       - name: Run lix
@@ -1021,6 +1209,7 @@ jobs:
             message: go easy tests update js
             add: ./tests
             pull: --rebase --autostash
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
         continue-on-error: true
       - name: Run std
         run: npx haxe tests/tests.hxml -D std -D ci -D runnerCount=${{ env.CORES }} -D targets=js  #-D hxb
@@ -1029,4 +1218,5 @@ jobs:
             message: build std tests update js
             add: ./tests
             pull: --rebase --autostash
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
         continue-on-error: true

@@ -1,5 +1,5 @@
 package stdgo.internal.fuzz;
-class T_mutatorRand_static_extension {
+@:dox(hide) class T_mutatorRand_static_extension {
     static public function _restore(t:stdgo._internal.internal.fuzz.Fuzz_t_mutatorrand.T_mutatorRand, _randState:haxe.UInt64, _randInc:haxe.UInt64):Void {
         final _randState = (_randState : stdgo.GoUInt64);
         final _randInc = (_randInc : stdgo.GoUInt64);
@@ -26,7 +26,15 @@ class T_mutatorRand_static_extension {
         return stdgo._internal.internal.fuzz.Fuzz_t_mutatorrand_static_extension.T_mutatorRand_static_extension._uint32(t);
     }
 }
-typedef T_mutatorRand = stdgo._internal.internal.fuzz.Fuzz_t_mutatorrand.T_mutatorRand;
+@:interface @:dox(hide) @:forward abstract T_mutatorRand(stdgo._internal.internal.fuzz.Fuzz_t_mutatorrand.T_mutatorRand) from stdgo._internal.internal.fuzz.Fuzz_t_mutatorrand.T_mutatorRand to stdgo._internal.internal.fuzz.Fuzz_t_mutatorrand.T_mutatorRand {
+    @:from
+    static function fromHaxeInterface(x:{ function _uint32():std.UInt; function _intn(_0:StdTypes.Int):StdTypes.Int; function _uint32n(_0:std.UInt):std.UInt; function _exp2():StdTypes.Int; function _bool():Bool; function _save(_randState:stdgo.Pointer<haxe.UInt64>, _randInc:stdgo.Pointer<haxe.UInt64>):Void; function _restore(_randState:haxe.UInt64, _randInc:haxe.UInt64):Void; }):T_mutatorRand {
+        var __f__:Void -> stdgo.AnyInterface = null;
+        final y:T_mutatorRand = { _uint32 : () -> x._uint32(), _intn : _0 -> x._intn(_0), _uint32n : _0 -> x._uint32n(_0), _exp2 : () -> x._exp2(), _bool : () -> x._bool(), _save : (_0, _1) -> x._save(_0, _1), _restore : (_0, _1) -> x._restore(_0, _1), __underlying__ : () -> __f__() };
+        __f__ = () -> stdgo.Go.toInterface(y);
+        return y;
+    }
+}
 @:structInit @:using(stdgo.internal.fuzz.Fuzz.CoordinateFuzzingOpts_static_extension) abstract CoordinateFuzzingOpts(stdgo._internal.internal.fuzz.Fuzz_coordinatefuzzingopts.CoordinateFuzzingOpts) from stdgo._internal.internal.fuzz.Fuzz_coordinatefuzzingopts.CoordinateFuzzingOpts to stdgo._internal.internal.fuzz.Fuzz_coordinatefuzzingopts.CoordinateFuzzingOpts {
     public var log(get, set) : stdgo._internal.io.Io_writer.Writer;
     function get_log():stdgo._internal.io.Io_writer.Writer return this.log;
@@ -64,12 +72,12 @@ typedef T_mutatorRand = stdgo._internal.internal.fuzz.Fuzz_t_mutatorrand.T_mutat
         this.parallel = (v : stdgo.GoInt);
         return v;
     }
-    public var seed(get, set) : Array<stdgo.Tuple.Tuple6<String, String, Array<std.UInt>, Array<stdgo.AnyInterface>, StdTypes.Int, Bool>>;
-    function get_seed():Array<stdgo.Tuple.Tuple6<String, String, Array<std.UInt>, Array<stdgo.AnyInterface>, StdTypes.Int, Bool>> return [for (i in this.seed) {
+    public var seed(get, set) : Array<{ var parent : String; var path : String; var data : Array<std.UInt>; var values : Array<stdgo.AnyInterface>; var generation : StdTypes.Int; var isSeed : Bool; }>;
+    function get_seed():Array<{ var parent : String; var path : String; var data : Array<std.UInt>; var values : Array<stdgo.AnyInterface>; var generation : StdTypes.Int; var isSeed : Bool; }> return [for (i in this.seed) {
         final obj = i;
         { parent : obj.parent, path : obj.path, data : [for (i in obj.data) i], values : [for (i in obj.values) i], generation : obj.generation, isSeed : obj.isSeed };
     }];
-    function set_seed(v:Array<stdgo.Tuple.Tuple6<String, String, Array<std.UInt>, Array<stdgo.AnyInterface>, StdTypes.Int, Bool>>):Array<stdgo.Tuple.Tuple6<String, String, Array<std.UInt>, Array<stdgo.AnyInterface>, StdTypes.Int, Bool>> {
+    function set_seed(v:Array<{ var parent : String; var path : String; var data : Array<std.UInt>; var values : Array<stdgo.AnyInterface>; var generation : StdTypes.Int; var isSeed : Bool; }>):Array<{ var parent : String; var path : String; var data : Array<std.UInt>; var values : Array<stdgo.AnyInterface>; var generation : StdTypes.Int; var isSeed : Bool; }> {
         this.seed = ([for (i in v) {
             final obj = i;
             { parent : (obj.parent : stdgo.GoString), path : (obj.path : stdgo.GoString), data : ([for (i in obj.data) (i : stdgo.GoUInt8)] : stdgo.Slice<stdgo.GoUInt8>), values : ([for (i in obj.values) (i : stdgo.AnyInterface)] : stdgo.Slice<stdgo.AnyInterface>), generation : (obj.generation : stdgo.GoInt), isSeed : obj.isSeed };
@@ -94,14 +102,14 @@ typedef T_mutatorRand = stdgo._internal.internal.fuzz.Fuzz_t_mutatorrand.T_mutat
         this.cacheDir = (v : stdgo.GoString);
         return v;
     }
-    public function new(?log:stdgo._internal.io.Io_writer.Writer, ?timeout:stdgo._internal.time.Time_duration.Duration, ?limit:haxe.Int64, ?minimizeTimeout:stdgo._internal.time.Time_duration.Duration, ?minimizeLimit:haxe.Int64, ?parallel:StdTypes.Int, ?seed:Array<stdgo.Tuple.Tuple6<String, String, Array<std.UInt>, Array<stdgo.AnyInterface>, StdTypes.Int, Bool>>, ?types:Array<stdgo._internal.reflect.Reflect_type_.Type_>, ?corpusDir:String, ?cacheDir:String) this = new stdgo._internal.internal.fuzz.Fuzz_coordinatefuzzingopts.CoordinateFuzzingOpts(log, timeout, (limit : stdgo.GoInt64), minimizeTimeout, (minimizeLimit : stdgo.GoInt64), (parallel : stdgo.GoInt), ([for (i in seed) {
+    public function new(?log:stdgo._internal.io.Io_writer.Writer, ?timeout:stdgo._internal.time.Time_duration.Duration, ?limit:haxe.Int64, ?minimizeTimeout:stdgo._internal.time.Time_duration.Duration, ?minimizeLimit:haxe.Int64, ?parallel:StdTypes.Int, ?seed:Array<{ var parent : String; var path : String; var data : Array<std.UInt>; var values : Array<stdgo.AnyInterface>; var generation : StdTypes.Int; var isSeed : Bool; }>, ?types:Array<stdgo._internal.reflect.Reflect_type_.Type_>, ?corpusDir:String, ?cacheDir:String) this = new stdgo._internal.internal.fuzz.Fuzz_coordinatefuzzingopts.CoordinateFuzzingOpts(log, timeout, (limit : stdgo.GoInt64), minimizeTimeout, (minimizeLimit : stdgo.GoInt64), (parallel : stdgo.GoInt), ([for (i in seed) {
         final obj = i;
         { parent : (obj.parent : stdgo.GoString), path : (obj.path : stdgo.GoString), data : ([for (i in obj.data) (i : stdgo.GoUInt8)] : stdgo.Slice<stdgo.GoUInt8>), values : ([for (i in obj.values) (i : stdgo.AnyInterface)] : stdgo.Slice<stdgo.AnyInterface>), generation : (obj.generation : stdgo.GoInt), isSeed : obj.isSeed };
     }] : stdgo.Slice<{ var parent : stdgo.GoString; var path : stdgo.GoString; var data : stdgo.Slice<stdgo.GoUInt8>; var values : stdgo.Slice<stdgo.AnyInterface>; var generation : stdgo.GoInt; var isSeed : Bool; }>), ([for (i in types) i] : stdgo.Slice<stdgo._internal.reflect.Reflect_type_.Type_>), (corpusDir : stdgo.GoString), (cacheDir : stdgo.GoString));
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_crashError_static_extension) abstract T_crashError(stdgo._internal.internal.fuzz.Fuzz_t_crasherror.T_crashError) from stdgo._internal.internal.fuzz.Fuzz_t_crasherror.T_crashError to stdgo._internal.internal.fuzz.Fuzz_t_crasherror.T_crashError {
+@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_crashError_static_extension) @:dox(hide) abstract T_crashError(stdgo._internal.internal.fuzz.Fuzz_t_crasherror.T_crashError) from stdgo._internal.internal.fuzz.Fuzz_t_crasherror.T_crashError to stdgo._internal.internal.fuzz.Fuzz_t_crasherror.T_crashError {
     public var _path(get, set) : String;
     function get__path():String return this._path;
     function set__path(v:String):String {
@@ -118,34 +126,52 @@ typedef T_mutatorRand = stdgo._internal.internal.fuzz.Fuzz_t_mutatorrand.T_mutat
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_corpus_static_extension) abstract T_corpus(stdgo._internal.internal.fuzz.Fuzz_t_corpus.T_corpus) from stdgo._internal.internal.fuzz.Fuzz_t_corpus.T_corpus to stdgo._internal.internal.fuzz.Fuzz_t_corpus.T_corpus {
-    public var _entries(get, set) : Array<stdgo.Tuple.Tuple6<String, String, Array<std.UInt>, Array<stdgo.AnyInterface>, StdTypes.Int, Bool>>;
-    function get__entries():Array<stdgo.Tuple.Tuple6<String, String, Array<std.UInt>, Array<stdgo.AnyInterface>, StdTypes.Int, Bool>> return [for (i in this._entries) {
+@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_corpus_static_extension) @:dox(hide) abstract T_corpus(stdgo._internal.internal.fuzz.Fuzz_t_corpus.T_corpus) from stdgo._internal.internal.fuzz.Fuzz_t_corpus.T_corpus to stdgo._internal.internal.fuzz.Fuzz_t_corpus.T_corpus {
+    public var _entries(get, set) : Array<{ var parent : String; var path : String; var data : Array<std.UInt>; var values : Array<stdgo.AnyInterface>; var generation : StdTypes.Int; var isSeed : Bool; }>;
+    function get__entries():Array<{ var parent : String; var path : String; var data : Array<std.UInt>; var values : Array<stdgo.AnyInterface>; var generation : StdTypes.Int; var isSeed : Bool; }> return [for (i in this._entries) {
         final obj = i;
         { parent : obj.parent, path : obj.path, data : [for (i in obj.data) i], values : [for (i in obj.values) i], generation : obj.generation, isSeed : obj.isSeed };
     }];
-    function set__entries(v:Array<stdgo.Tuple.Tuple6<String, String, Array<std.UInt>, Array<stdgo.AnyInterface>, StdTypes.Int, Bool>>):Array<stdgo.Tuple.Tuple6<String, String, Array<std.UInt>, Array<stdgo.AnyInterface>, StdTypes.Int, Bool>> {
+    function set__entries(v:Array<{ var parent : String; var path : String; var data : Array<std.UInt>; var values : Array<stdgo.AnyInterface>; var generation : StdTypes.Int; var isSeed : Bool; }>):Array<{ var parent : String; var path : String; var data : Array<std.UInt>; var values : Array<stdgo.AnyInterface>; var generation : StdTypes.Int; var isSeed : Bool; }> {
         this._entries = ([for (i in v) {
             final obj = i;
             { parent : (obj.parent : stdgo.GoString), path : (obj.path : stdgo.GoString), data : ([for (i in obj.data) (i : stdgo.GoUInt8)] : stdgo.Slice<stdgo.GoUInt8>), values : ([for (i in obj.values) (i : stdgo.AnyInterface)] : stdgo.Slice<stdgo.AnyInterface>), generation : (obj.generation : stdgo.GoInt), isSeed : obj.isSeed };
         }] : stdgo.Slice<{ var parent : stdgo.GoString; var path : stdgo.GoString; var data : stdgo.Slice<stdgo.GoUInt8>; var values : stdgo.Slice<stdgo.AnyInterface>; var generation : stdgo.GoInt; var isSeed : Bool; }>);
         return v;
     }
-    public var _hashes(get, set) : stdgo.GoMap<stdgo.GoArray<stdgo.GoUInt8>, Bool>;
-    function get__hashes():stdgo.GoMap<stdgo.GoArray<stdgo.GoUInt8>, Bool> return this._hashes;
-    function set__hashes(v:stdgo.GoMap<stdgo.GoArray<stdgo.GoUInt8>, Bool>):stdgo.GoMap<stdgo.GoArray<stdgo.GoUInt8>, Bool> {
-        this._hashes = (v : stdgo.GoMap<stdgo.GoArray<stdgo.GoUInt8>, Bool>);
+    public var _hashes(get, set) : Map<haxe.ds.Vector<std.UInt>, Bool>;
+    function get__hashes():Map<haxe.ds.Vector<std.UInt>, Bool> return {
+        final __obj__:Map<haxe.ds.Vector<std.UInt>, Bool> = [];
+        for (key => value in this._hashes) {
+            __obj__[haxe.ds.Vector.fromArrayCopy([for (i in key) i])] = value;
+        };
+        __obj__;
+    };
+    function set__hashes(v:Map<haxe.ds.Vector<std.UInt>, Bool>):Map<haxe.ds.Vector<std.UInt>, Bool> {
+        this._hashes = {
+            final __obj__ = new stdgo.GoMap<stdgo.GoArray<stdgo.GoUInt8>, Bool>();
+            for (key => value in v) {
+                __obj__[([for (i in key) (i : stdgo.GoUInt8)] : stdgo.GoArray<stdgo.GoUInt8>)] = value;
+            };
+            __obj__;
+        };
         return v;
     }
-    public function new(?_entries:Array<stdgo.Tuple.Tuple6<String, String, Array<std.UInt>, Array<stdgo.AnyInterface>, StdTypes.Int, Bool>>, ?_hashes:stdgo.GoMap<stdgo.GoArray<stdgo.GoUInt8>, Bool>) this = new stdgo._internal.internal.fuzz.Fuzz_t_corpus.T_corpus(([for (i in _entries) {
+    public function new(?_entries:Array<{ var parent : String; var path : String; var data : Array<std.UInt>; var values : Array<stdgo.AnyInterface>; var generation : StdTypes.Int; var isSeed : Bool; }>, ?_hashes:Map<haxe.ds.Vector<std.UInt>, Bool>) this = new stdgo._internal.internal.fuzz.Fuzz_t_corpus.T_corpus(([for (i in _entries) {
         final obj = i;
         { parent : (obj.parent : stdgo.GoString), path : (obj.path : stdgo.GoString), data : ([for (i in obj.data) (i : stdgo.GoUInt8)] : stdgo.Slice<stdgo.GoUInt8>), values : ([for (i in obj.values) (i : stdgo.AnyInterface)] : stdgo.Slice<stdgo.AnyInterface>), generation : (obj.generation : stdgo.GoInt), isSeed : obj.isSeed };
-    }] : stdgo.Slice<{ var parent : stdgo.GoString; var path : stdgo.GoString; var data : stdgo.Slice<stdgo.GoUInt8>; var values : stdgo.Slice<stdgo.AnyInterface>; var generation : stdgo.GoInt; var isSeed : Bool; }>), (_hashes : stdgo.GoMap<stdgo.GoArray<stdgo.GoUInt8>, Bool>));
+    }] : stdgo.Slice<{ var parent : stdgo.GoString; var path : stdgo.GoString; var data : stdgo.Slice<stdgo.GoUInt8>; var values : stdgo.Slice<stdgo.AnyInterface>; var generation : stdgo.GoInt; var isSeed : Bool; }>), {
+        final __obj__ = new stdgo.GoMap<stdgo.GoArray<stdgo.GoUInt8>, Bool>();
+        for (key => value in _hashes) {
+            __obj__[([for (i in key) (i : stdgo.GoUInt8)] : stdgo.GoArray<stdgo.GoUInt8>)] = value;
+        };
+        __obj__;
+    });
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
 typedef CorpusEntry = stdgo._internal.internal.fuzz.Fuzz_corpusentry.CorpusEntry;
-@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_fuzzInput_static_extension) abstract T_fuzzInput(stdgo._internal.internal.fuzz.Fuzz_t_fuzzinput.T_fuzzInput) from stdgo._internal.internal.fuzz.Fuzz_t_fuzzinput.T_fuzzInput to stdgo._internal.internal.fuzz.Fuzz_t_fuzzinput.T_fuzzInput {
+@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_fuzzInput_static_extension) @:dox(hide) abstract T_fuzzInput(stdgo._internal.internal.fuzz.Fuzz_t_fuzzinput.T_fuzzInput) from stdgo._internal.internal.fuzz.Fuzz_t_fuzzinput.T_fuzzInput to stdgo._internal.internal.fuzz.Fuzz_t_fuzzinput.T_fuzzInput {
     public var _entry(get, set) : stdgo._internal.internal.fuzz.Fuzz_corpusentry.CorpusEntry;
     function get__entry():stdgo._internal.internal.fuzz.Fuzz_corpusentry.CorpusEntry return this._entry;
     function set__entry(v:stdgo._internal.internal.fuzz.Fuzz_corpusentry.CorpusEntry):stdgo._internal.internal.fuzz.Fuzz_corpusentry.CorpusEntry {
@@ -180,7 +206,7 @@ typedef CorpusEntry = stdgo._internal.internal.fuzz.Fuzz_corpusentry.CorpusEntry
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_fuzzResult_static_extension) abstract T_fuzzResult(stdgo._internal.internal.fuzz.Fuzz_t_fuzzresult.T_fuzzResult) from stdgo._internal.internal.fuzz.Fuzz_t_fuzzresult.T_fuzzResult to stdgo._internal.internal.fuzz.Fuzz_t_fuzzresult.T_fuzzResult {
+@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_fuzzResult_static_extension) @:dox(hide) abstract T_fuzzResult(stdgo._internal.internal.fuzz.Fuzz_t_fuzzresult.T_fuzzResult) from stdgo._internal.internal.fuzz.Fuzz_t_fuzzresult.T_fuzzResult to stdgo._internal.internal.fuzz.Fuzz_t_fuzzresult.T_fuzzResult {
     public var _entry(get, set) : stdgo._internal.internal.fuzz.Fuzz_corpusentry.CorpusEntry;
     function get__entry():stdgo._internal.internal.fuzz.Fuzz_corpusentry.CorpusEntry return this._entry;
     function set__entry(v:stdgo._internal.internal.fuzz.Fuzz_corpusentry.CorpusEntry):stdgo._internal.internal.fuzz.Fuzz_corpusentry.CorpusEntry {
@@ -233,7 +259,7 @@ typedef CorpusEntry = stdgo._internal.internal.fuzz.Fuzz_corpusentry.CorpusEntry
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_fuzzMinimizeInput_static_extension) abstract T_fuzzMinimizeInput(stdgo._internal.internal.fuzz.Fuzz_t_fuzzminimizeinput.T_fuzzMinimizeInput) from stdgo._internal.internal.fuzz.Fuzz_t_fuzzminimizeinput.T_fuzzMinimizeInput to stdgo._internal.internal.fuzz.Fuzz_t_fuzzminimizeinput.T_fuzzMinimizeInput {
+@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_fuzzMinimizeInput_static_extension) @:dox(hide) abstract T_fuzzMinimizeInput(stdgo._internal.internal.fuzz.Fuzz_t_fuzzminimizeinput.T_fuzzMinimizeInput) from stdgo._internal.internal.fuzz.Fuzz_t_fuzzminimizeinput.T_fuzzMinimizeInput to stdgo._internal.internal.fuzz.Fuzz_t_fuzzminimizeinput.T_fuzzMinimizeInput {
     public var _entry(get, set) : stdgo._internal.internal.fuzz.Fuzz_corpusentry.CorpusEntry;
     function get__entry():stdgo._internal.internal.fuzz.Fuzz_corpusentry.CorpusEntry return this._entry;
     function set__entry(v:stdgo._internal.internal.fuzz.Fuzz_corpusentry.CorpusEntry):stdgo._internal.internal.fuzz.Fuzz_corpusentry.CorpusEntry {
@@ -268,7 +294,7 @@ typedef CorpusEntry = stdgo._internal.internal.fuzz.Fuzz_corpusentry.CorpusEntry
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_coordinator_static_extension) abstract T_coordinator(stdgo._internal.internal.fuzz.Fuzz_t_coordinator.T_coordinator) from stdgo._internal.internal.fuzz.Fuzz_t_coordinator.T_coordinator to stdgo._internal.internal.fuzz.Fuzz_t_coordinator.T_coordinator {
+@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_coordinator_static_extension) @:dox(hide) abstract T_coordinator(stdgo._internal.internal.fuzz.Fuzz_t_coordinator.T_coordinator) from stdgo._internal.internal.fuzz.Fuzz_t_coordinator.T_coordinator to stdgo._internal.internal.fuzz.Fuzz_t_coordinator.T_coordinator {
     public var _opts(get, set) : CoordinateFuzzingOpts;
     function get__opts():CoordinateFuzzingOpts return this._opts;
     function set__opts(v:CoordinateFuzzingOpts):CoordinateFuzzingOpts {
@@ -417,7 +443,7 @@ _minimizeQueue,
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_sharedMem_static_extension) abstract T_sharedMem(stdgo._internal.internal.fuzz.Fuzz_t_sharedmem.T_sharedMem) from stdgo._internal.internal.fuzz.Fuzz_t_sharedmem.T_sharedMem to stdgo._internal.internal.fuzz.Fuzz_t_sharedmem.T_sharedMem {
+@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_sharedMem_static_extension) @:dox(hide) abstract T_sharedMem(stdgo._internal.internal.fuzz.Fuzz_t_sharedmem.T_sharedMem) from stdgo._internal.internal.fuzz.Fuzz_t_sharedmem.T_sharedMem to stdgo._internal.internal.fuzz.Fuzz_t_sharedmem.T_sharedMem {
     public var _f(get, set) : stdgo._internal.os.Os_file.File;
     function get__f():stdgo._internal.os.Os_file.File return this._f;
     function set__f(v:stdgo._internal.os.Os_file.File):stdgo._internal.os.Os_file.File {
@@ -446,7 +472,7 @@ _minimizeQueue,
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_sharedMemHeader_static_extension) abstract T_sharedMemHeader(stdgo._internal.internal.fuzz.Fuzz_t_sharedmemheader.T_sharedMemHeader) from stdgo._internal.internal.fuzz.Fuzz_t_sharedmemheader.T_sharedMemHeader to stdgo._internal.internal.fuzz.Fuzz_t_sharedmemheader.T_sharedMemHeader {
+@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_sharedMemHeader_static_extension) @:dox(hide) abstract T_sharedMemHeader(stdgo._internal.internal.fuzz.Fuzz_t_sharedmemheader.T_sharedMemHeader) from stdgo._internal.internal.fuzz.Fuzz_t_sharedmemheader.T_sharedMemHeader to stdgo._internal.internal.fuzz.Fuzz_t_sharedmemheader.T_sharedMemHeader {
     public var _count(get, set) : haxe.Int64;
     function get__count():haxe.Int64 return this._count;
     function set__count(v:haxe.Int64):haxe.Int64 {
@@ -481,7 +507,7 @@ _minimizeQueue,
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_mutator_static_extension) abstract T_mutator(stdgo._internal.internal.fuzz.Fuzz_t_mutator.T_mutator) from stdgo._internal.internal.fuzz.Fuzz_t_mutator.T_mutator to stdgo._internal.internal.fuzz.Fuzz_t_mutator.T_mutator {
+@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_mutator_static_extension) @:dox(hide) abstract T_mutator(stdgo._internal.internal.fuzz.Fuzz_t_mutator.T_mutator) from stdgo._internal.internal.fuzz.Fuzz_t_mutator.T_mutator to stdgo._internal.internal.fuzz.Fuzz_t_mutator.T_mutator {
     public var _r(get, set) : T_mutatorRand;
     function get__r():T_mutatorRand return this._r;
     function set__r(v:T_mutatorRand):T_mutatorRand {
@@ -498,7 +524,7 @@ _minimizeQueue,
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_pcgRand_static_extension) abstract T_pcgRand(stdgo._internal.internal.fuzz.Fuzz_t_pcgrand.T_pcgRand) from stdgo._internal.internal.fuzz.Fuzz_t_pcgrand.T_pcgRand to stdgo._internal.internal.fuzz.Fuzz_t_pcgrand.T_pcgRand {
+@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_pcgRand_static_extension) @:dox(hide) abstract T_pcgRand(stdgo._internal.internal.fuzz.Fuzz_t_pcgrand.T_pcgRand) from stdgo._internal.internal.fuzz.Fuzz_t_pcgrand.T_pcgRand to stdgo._internal.internal.fuzz.Fuzz_t_pcgrand.T_pcgRand {
     public var _noCopy(get, set) : T_noCopy;
     function get__noCopy():T_noCopy return this._noCopy;
     function set__noCopy(v:T_noCopy):T_noCopy {
@@ -521,12 +547,12 @@ _minimizeQueue,
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_noCopy_static_extension) abstract T_noCopy(stdgo._internal.internal.fuzz.Fuzz_t_nocopy.T_noCopy) from stdgo._internal.internal.fuzz.Fuzz_t_nocopy.T_noCopy to stdgo._internal.internal.fuzz.Fuzz_t_nocopy.T_noCopy {
+@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_noCopy_static_extension) @:dox(hide) abstract T_noCopy(stdgo._internal.internal.fuzz.Fuzz_t_nocopy.T_noCopy) from stdgo._internal.internal.fuzz.Fuzz_t_nocopy.T_noCopy to stdgo._internal.internal.fuzz.Fuzz_t_nocopy.T_noCopy {
     public function new() this = new stdgo._internal.internal.fuzz.Fuzz_t_nocopy.T_noCopy();
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_queue_static_extension) abstract T_queue(stdgo._internal.internal.fuzz.Fuzz_t_queue.T_queue) from stdgo._internal.internal.fuzz.Fuzz_t_queue.T_queue to stdgo._internal.internal.fuzz.Fuzz_t_queue.T_queue {
+@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_queue_static_extension) @:dox(hide) abstract T_queue(stdgo._internal.internal.fuzz.Fuzz_t_queue.T_queue) from stdgo._internal.internal.fuzz.Fuzz_t_queue.T_queue to stdgo._internal.internal.fuzz.Fuzz_t_queue.T_queue {
     public var _elems(get, set) : Array<stdgo.AnyInterface>;
     function get__elems():Array<stdgo.AnyInterface> return [for (i in this._elems) i];
     function set__elems(v:Array<stdgo.AnyInterface>):Array<stdgo.AnyInterface> {
@@ -549,12 +575,12 @@ _minimizeQueue,
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_sharedMemSys_static_extension) abstract T_sharedMemSys(stdgo._internal.internal.fuzz.Fuzz_t_sharedmemsys.T_sharedMemSys) from stdgo._internal.internal.fuzz.Fuzz_t_sharedmemsys.T_sharedMemSys to stdgo._internal.internal.fuzz.Fuzz_t_sharedmemsys.T_sharedMemSys {
+@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_sharedMemSys_static_extension) @:dox(hide) abstract T_sharedMemSys(stdgo._internal.internal.fuzz.Fuzz_t_sharedmemsys.T_sharedMemSys) from stdgo._internal.internal.fuzz.Fuzz_t_sharedmemsys.T_sharedMemSys to stdgo._internal.internal.fuzz.Fuzz_t_sharedmemsys.T_sharedMemSys {
     public function new() this = new stdgo._internal.internal.fuzz.Fuzz_t_sharedmemsys.T_sharedMemSys();
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_worker_static_extension) abstract T_worker(stdgo._internal.internal.fuzz.Fuzz_t_worker.T_worker) from stdgo._internal.internal.fuzz.Fuzz_t_worker.T_worker to stdgo._internal.internal.fuzz.Fuzz_t_worker.T_worker {
+@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_worker_static_extension) @:dox(hide) abstract T_worker(stdgo._internal.internal.fuzz.Fuzz_t_worker.T_worker) from stdgo._internal.internal.fuzz.Fuzz_t_worker.T_worker to stdgo._internal.internal.fuzz.Fuzz_t_worker.T_worker {
     public var _dir(get, set) : String;
     function get__dir():String return this._dir;
     function set__dir(v:String):String {
@@ -636,7 +662,7 @@ _interrupted,
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_call_static_extension) abstract T_call(stdgo._internal.internal.fuzz.Fuzz_t_call.T_call) from stdgo._internal.internal.fuzz.Fuzz_t_call.T_call to stdgo._internal.internal.fuzz.Fuzz_t_call.T_call {
+@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_call_static_extension) @:dox(hide) abstract T_call(stdgo._internal.internal.fuzz.Fuzz_t_call.T_call) from stdgo._internal.internal.fuzz.Fuzz_t_call.T_call to stdgo._internal.internal.fuzz.Fuzz_t_call.T_call {
     public var ping(get, set) : T_pingArgs;
     function get_ping():T_pingArgs return this.ping;
     function set_ping(v:T_pingArgs):T_pingArgs {
@@ -659,7 +685,7 @@ _interrupted,
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_minimizeArgs_static_extension) abstract T_minimizeArgs(stdgo._internal.internal.fuzz.Fuzz_t_minimizeargs.T_minimizeArgs) from stdgo._internal.internal.fuzz.Fuzz_t_minimizeargs.T_minimizeArgs to stdgo._internal.internal.fuzz.Fuzz_t_minimizeargs.T_minimizeArgs {
+@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_minimizeArgs_static_extension) @:dox(hide) abstract T_minimizeArgs(stdgo._internal.internal.fuzz.Fuzz_t_minimizeargs.T_minimizeArgs) from stdgo._internal.internal.fuzz.Fuzz_t_minimizeargs.T_minimizeArgs to stdgo._internal.internal.fuzz.Fuzz_t_minimizeargs.T_minimizeArgs {
     public var timeout(get, set) : stdgo._internal.time.Time_duration.Duration;
     function get_timeout():stdgo._internal.time.Time_duration.Duration return this.timeout;
     function set_timeout(v:stdgo._internal.time.Time_duration.Duration):stdgo._internal.time.Time_duration.Duration {
@@ -688,7 +714,7 @@ _interrupted,
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_minimizeResponse_static_extension) abstract T_minimizeResponse(stdgo._internal.internal.fuzz.Fuzz_t_minimizeresponse.T_minimizeResponse) from stdgo._internal.internal.fuzz.Fuzz_t_minimizeresponse.T_minimizeResponse to stdgo._internal.internal.fuzz.Fuzz_t_minimizeresponse.T_minimizeResponse {
+@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_minimizeResponse_static_extension) @:dox(hide) abstract T_minimizeResponse(stdgo._internal.internal.fuzz.Fuzz_t_minimizeresponse.T_minimizeResponse) from stdgo._internal.internal.fuzz.Fuzz_t_minimizeresponse.T_minimizeResponse to stdgo._internal.internal.fuzz.Fuzz_t_minimizeresponse.T_minimizeResponse {
     public var wroteToMem(get, set) : Bool;
     function get_wroteToMem():Bool return this.wroteToMem;
     function set_wroteToMem(v:Bool):Bool {
@@ -723,7 +749,7 @@ _interrupted,
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_fuzzArgs_static_extension) abstract T_fuzzArgs(stdgo._internal.internal.fuzz.Fuzz_t_fuzzargs.T_fuzzArgs) from stdgo._internal.internal.fuzz.Fuzz_t_fuzzargs.T_fuzzArgs to stdgo._internal.internal.fuzz.Fuzz_t_fuzzargs.T_fuzzArgs {
+@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_fuzzArgs_static_extension) @:dox(hide) abstract T_fuzzArgs(stdgo._internal.internal.fuzz.Fuzz_t_fuzzargs.T_fuzzArgs) from stdgo._internal.internal.fuzz.Fuzz_t_fuzzargs.T_fuzzArgs to stdgo._internal.internal.fuzz.Fuzz_t_fuzzargs.T_fuzzArgs {
     public var timeout(get, set) : stdgo._internal.time.Time_duration.Duration;
     function get_timeout():stdgo._internal.time.Time_duration.Duration return this.timeout;
     function set_timeout(v:stdgo._internal.time.Time_duration.Duration):stdgo._internal.time.Time_duration.Duration {
@@ -752,7 +778,7 @@ _interrupted,
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_fuzzResponse_static_extension) abstract T_fuzzResponse(stdgo._internal.internal.fuzz.Fuzz_t_fuzzresponse.T_fuzzResponse) from stdgo._internal.internal.fuzz.Fuzz_t_fuzzresponse.T_fuzzResponse to stdgo._internal.internal.fuzz.Fuzz_t_fuzzresponse.T_fuzzResponse {
+@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_fuzzResponse_static_extension) @:dox(hide) abstract T_fuzzResponse(stdgo._internal.internal.fuzz.Fuzz_t_fuzzresponse.T_fuzzResponse) from stdgo._internal.internal.fuzz.Fuzz_t_fuzzresponse.T_fuzzResponse to stdgo._internal.internal.fuzz.Fuzz_t_fuzzresponse.T_fuzzResponse {
     public var totalDuration(get, set) : stdgo._internal.time.Time_duration.Duration;
     function get_totalDuration():stdgo._internal.time.Time_duration.Duration return this.totalDuration;
     function set_totalDuration(v:stdgo._internal.time.Time_duration.Duration):stdgo._internal.time.Time_duration.Duration {
@@ -793,17 +819,17 @@ _interrupted,
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_pingArgs_static_extension) abstract T_pingArgs(stdgo._internal.internal.fuzz.Fuzz_t_pingargs.T_pingArgs) from stdgo._internal.internal.fuzz.Fuzz_t_pingargs.T_pingArgs to stdgo._internal.internal.fuzz.Fuzz_t_pingargs.T_pingArgs {
+@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_pingArgs_static_extension) @:dox(hide) abstract T_pingArgs(stdgo._internal.internal.fuzz.Fuzz_t_pingargs.T_pingArgs) from stdgo._internal.internal.fuzz.Fuzz_t_pingargs.T_pingArgs to stdgo._internal.internal.fuzz.Fuzz_t_pingargs.T_pingArgs {
     public function new() this = new stdgo._internal.internal.fuzz.Fuzz_t_pingargs.T_pingArgs();
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_pingResponse_static_extension) abstract T_pingResponse(stdgo._internal.internal.fuzz.Fuzz_t_pingresponse.T_pingResponse) from stdgo._internal.internal.fuzz.Fuzz_t_pingresponse.T_pingResponse to stdgo._internal.internal.fuzz.Fuzz_t_pingresponse.T_pingResponse {
+@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_pingResponse_static_extension) @:dox(hide) abstract T_pingResponse(stdgo._internal.internal.fuzz.Fuzz_t_pingresponse.T_pingResponse) from stdgo._internal.internal.fuzz.Fuzz_t_pingresponse.T_pingResponse to stdgo._internal.internal.fuzz.Fuzz_t_pingresponse.T_pingResponse {
     public function new() this = new stdgo._internal.internal.fuzz.Fuzz_t_pingresponse.T_pingResponse();
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_workerComm_static_extension) abstract T_workerComm(stdgo._internal.internal.fuzz.Fuzz_t_workercomm.T_workerComm) from stdgo._internal.internal.fuzz.Fuzz_t_workercomm.T_workerComm to stdgo._internal.internal.fuzz.Fuzz_t_workercomm.T_workerComm {
+@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_workerComm_static_extension) @:dox(hide) abstract T_workerComm(stdgo._internal.internal.fuzz.Fuzz_t_workercomm.T_workerComm) from stdgo._internal.internal.fuzz.Fuzz_t_workercomm.T_workerComm to stdgo._internal.internal.fuzz.Fuzz_t_workercomm.T_workerComm {
     public var _fuzzIn(get, set) : stdgo._internal.os.Os_file.File;
     function get__fuzzIn():stdgo._internal.os.Os_file.File return this._fuzzIn;
     function set__fuzzIn(v:stdgo._internal.os.Os_file.File):stdgo._internal.os.Os_file.File {
@@ -826,7 +852,7 @@ _interrupted,
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_workerServer_static_extension) abstract T_workerServer(stdgo._internal.internal.fuzz.Fuzz_t_workerserver.T_workerServer) from stdgo._internal.internal.fuzz.Fuzz_t_workerserver.T_workerServer to stdgo._internal.internal.fuzz.Fuzz_t_workerserver.T_workerServer {
+@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_workerServer_static_extension) @:dox(hide) abstract T_workerServer(stdgo._internal.internal.fuzz.Fuzz_t_workerserver.T_workerServer) from stdgo._internal.internal.fuzz.Fuzz_t_workerserver.T_workerServer to stdgo._internal.internal.fuzz.Fuzz_t_workerserver.T_workerServer {
     public var _workerComm(get, set) : T_workerComm;
     function get__workerComm():T_workerComm return this._workerComm;
     function set__workerComm(v:T_workerComm):T_workerComm {
@@ -845,17 +871,17 @@ _interrupted,
         this._coverageMask = ([for (i in v) (i : stdgo.GoUInt8)] : stdgo.Slice<stdgo.GoUInt8>);
         return v;
     }
-    public var _fuzzFn(get, set) : stdgo._internal.internal.fuzz.Fuzz_corpusentry.CorpusEntry -> { var _0 : stdgo._internal.time.Time_duration.Duration; var _1 : stdgo.Error; };
-    function get__fuzzFn():stdgo._internal.internal.fuzz.Fuzz_corpusentry.CorpusEntry -> { var _0 : stdgo._internal.time.Time_duration.Duration; var _1 : stdgo.Error; } return _0 -> this._fuzzFn(_0);
-    function set__fuzzFn(v:stdgo._internal.internal.fuzz.Fuzz_corpusentry.CorpusEntry -> { var _0 : stdgo._internal.time.Time_duration.Duration; var _1 : stdgo.Error; }):stdgo._internal.internal.fuzz.Fuzz_corpusentry.CorpusEntry -> { var _0 : stdgo._internal.time.Time_duration.Duration; var _1 : stdgo.Error; } {
-        this._fuzzFn = v;
+    public var _fuzzFn(get, set) : stdgo._internal.internal.fuzz.Fuzz_corpusentry.CorpusEntry -> stdgo.Tuple<stdgo._internal.time.Time_duration.Duration, stdgo.Error>;
+    function get__fuzzFn():stdgo._internal.internal.fuzz.Fuzz_corpusentry.CorpusEntry -> stdgo.Tuple<stdgo._internal.time.Time_duration.Duration, stdgo.Error> return _0 -> this._fuzzFn(_0);
+    function set__fuzzFn(v:stdgo._internal.internal.fuzz.Fuzz_corpusentry.CorpusEntry -> stdgo.Tuple<stdgo._internal.time.Time_duration.Duration, stdgo.Error>):stdgo._internal.internal.fuzz.Fuzz_corpusentry.CorpusEntry -> stdgo.Tuple<stdgo._internal.time.Time_duration.Duration, stdgo.Error> {
+        this._fuzzFn = _0 -> v(_0);
         return v;
     }
-    public function new(?_workerComm:T_workerComm, ?_m:T_mutator, ?_coverageMask:Array<std.UInt>, ?_fuzzFn:stdgo._internal.internal.fuzz.Fuzz_corpusentry.CorpusEntry -> { var _0 : stdgo._internal.time.Time_duration.Duration; var _1 : stdgo.Error; }) this = new stdgo._internal.internal.fuzz.Fuzz_t_workerserver.T_workerServer(_workerComm, (_m : stdgo.Ref<stdgo._internal.internal.fuzz.Fuzz_t_mutator.T_mutator>), ([for (i in _coverageMask) (i : stdgo.GoUInt8)] : stdgo.Slice<stdgo.GoUInt8>), _fuzzFn);
+    public function new(?_workerComm:T_workerComm, ?_m:T_mutator, ?_coverageMask:Array<std.UInt>, ?_fuzzFn:stdgo._internal.internal.fuzz.Fuzz_corpusentry.CorpusEntry -> stdgo.Tuple<stdgo._internal.time.Time_duration.Duration, stdgo.Error>) this = new stdgo._internal.internal.fuzz.Fuzz_t_workerserver.T_workerServer(_workerComm, (_m : stdgo.Ref<stdgo._internal.internal.fuzz.Fuzz_t_mutator.T_mutator>), ([for (i in _coverageMask) (i : stdgo.GoUInt8)] : stdgo.Slice<stdgo.GoUInt8>), _0 -> _fuzzFn(_0));
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_workerClient_static_extension) abstract T_workerClient(stdgo._internal.internal.fuzz.Fuzz_t_workerclient.T_workerClient) from stdgo._internal.internal.fuzz.Fuzz_t_workerclient.T_workerClient to stdgo._internal.internal.fuzz.Fuzz_t_workerclient.T_workerClient {
+@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_workerClient_static_extension) @:dox(hide) abstract T_workerClient(stdgo._internal.internal.fuzz.Fuzz_t_workerclient.T_workerClient) from stdgo._internal.internal.fuzz.Fuzz_t_workerclient.T_workerClient to stdgo._internal.internal.fuzz.Fuzz_t_workerclient.T_workerClient {
     public var _workerComm(get, set) : T_workerComm;
     function get__workerComm():T_workerComm return this._workerComm;
     function set__workerComm(v:T_workerComm):T_workerComm {
@@ -878,7 +904,7 @@ _interrupted,
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_contextReader_static_extension) abstract T_contextReader(stdgo._internal.internal.fuzz.Fuzz_t_contextreader.T_contextReader) from stdgo._internal.internal.fuzz.Fuzz_t_contextreader.T_contextReader to stdgo._internal.internal.fuzz.Fuzz_t_contextreader.T_contextReader {
+@:structInit @:using(stdgo.internal.fuzz.Fuzz.T_contextReader_static_extension) @:dox(hide) abstract T_contextReader(stdgo._internal.internal.fuzz.Fuzz_t_contextreader.T_contextReader) from stdgo._internal.internal.fuzz.Fuzz_t_contextreader.T_contextReader to stdgo._internal.internal.fuzz.Fuzz_t_contextreader.T_contextReader {
     public var _ctx(get, set) : stdgo._internal.context.Context_context.Context;
     function get__ctx():stdgo._internal.context.Context_context.Context return this._ctx;
     function set__ctx(v:stdgo._internal.context.Context_context.Context):stdgo._internal.context.Context_context.Context {
@@ -895,18 +921,18 @@ _interrupted,
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-typedef T__struct_0Pointer = stdgo._internal.internal.fuzz.Fuzz_t__struct_0pointer.T__struct_0Pointer;
-class T__struct_0_static_extension {
+@:dox(hide) typedef T__struct_0Pointer = stdgo._internal.internal.fuzz.Fuzz_t__struct_0pointer.T__struct_0Pointer;
+@:dox(hide) class T__struct_0_static_extension {
 
 }
-typedef T__struct_0 = stdgo._internal.internal.fuzz.Fuzz_t__struct_0.T__struct_0;
-typedef T_byteSliceMutator = stdgo._internal.internal.fuzz.Fuzz_t_byteslicemutator.T_byteSliceMutator;
+@:dox(hide) typedef T__struct_0 = stdgo._internal.internal.fuzz.Fuzz_t__struct_0.T__struct_0;
+@:dox(hide) typedef T_byteSliceMutator = stdgo._internal.internal.fuzz.Fuzz_t_byteslicemutator.T_byteSliceMutator;
 typedef CoordinateFuzzingOptsPointer = stdgo._internal.internal.fuzz.Fuzz_coordinatefuzzingoptspointer.CoordinateFuzzingOptsPointer;
 class CoordinateFuzzingOpts_static_extension {
 
 }
-typedef T_crashErrorPointer = stdgo._internal.internal.fuzz.Fuzz_t_crasherrorpointer.T_crashErrorPointer;
-class T_crashError_static_extension {
+@:dox(hide) typedef T_crashErrorPointer = stdgo._internal.internal.fuzz.Fuzz_t_crasherrorpointer.T_crashErrorPointer;
+@:dox(hide) class T_crashError_static_extension {
     static public function crashPath(_e:T_crashError):String {
         final _e = (_e : stdgo.Ref<stdgo._internal.internal.fuzz.Fuzz_t_crasherror.T_crashError>);
         return stdgo._internal.internal.fuzz.Fuzz_t_crasherror_static_extension.T_crashError_static_extension.crashPath(_e);
@@ -920,28 +946,28 @@ class T_crashError_static_extension {
         return stdgo._internal.internal.fuzz.Fuzz_t_crasherror_static_extension.T_crashError_static_extension.error(_e);
     }
 }
-typedef T_corpusPointer = stdgo._internal.internal.fuzz.Fuzz_t_corpuspointer.T_corpusPointer;
-class T_corpus_static_extension {
+@:dox(hide) typedef T_corpusPointer = stdgo._internal.internal.fuzz.Fuzz_t_corpuspointer.T_corpusPointer;
+@:dox(hide) class T_corpus_static_extension {
 
 }
 typedef CorpusEntryPointer = stdgo._internal.internal.fuzz.Fuzz_corpusentrypointer.CorpusEntryPointer;
 class CorpusEntry_static_extension {
 
 }
-typedef T_fuzzInputPointer = stdgo._internal.internal.fuzz.Fuzz_t_fuzzinputpointer.T_fuzzInputPointer;
-class T_fuzzInput_static_extension {
+@:dox(hide) typedef T_fuzzInputPointer = stdgo._internal.internal.fuzz.Fuzz_t_fuzzinputpointer.T_fuzzInputPointer;
+@:dox(hide) class T_fuzzInput_static_extension {
 
 }
-typedef T_fuzzResultPointer = stdgo._internal.internal.fuzz.Fuzz_t_fuzzresultpointer.T_fuzzResultPointer;
-class T_fuzzResult_static_extension {
+@:dox(hide) typedef T_fuzzResultPointer = stdgo._internal.internal.fuzz.Fuzz_t_fuzzresultpointer.T_fuzzResultPointer;
+@:dox(hide) class T_fuzzResult_static_extension {
 
 }
-typedef T_fuzzMinimizeInputPointer = stdgo._internal.internal.fuzz.Fuzz_t_fuzzminimizeinputpointer.T_fuzzMinimizeInputPointer;
-class T_fuzzMinimizeInput_static_extension {
+@:dox(hide) typedef T_fuzzMinimizeInputPointer = stdgo._internal.internal.fuzz.Fuzz_t_fuzzminimizeinputpointer.T_fuzzMinimizeInputPointer;
+@:dox(hide) class T_fuzzMinimizeInput_static_extension {
 
 }
-typedef T_coordinatorPointer = stdgo._internal.internal.fuzz.Fuzz_t_coordinatorpointer.T_coordinatorPointer;
-class T_coordinator_static_extension {
+@:dox(hide) typedef T_coordinatorPointer = stdgo._internal.internal.fuzz.Fuzz_t_coordinatorpointer.T_coordinatorPointer;
+@:dox(hide) class T_coordinator_static_extension {
     static public function _debugLogf(_c:T_coordinator, _format:String, _args:haxe.Rest<stdgo.AnyInterface>):Void {
         final _c = (_c : stdgo.Ref<stdgo._internal.internal.fuzz.Fuzz_t_coordinator.T_coordinator>);
         final _format = (_format : stdgo.GoString);
@@ -1022,8 +1048,8 @@ class MalformedCorpusError_static_extension {
         return stdgo._internal.internal.fuzz.Fuzz_malformedcorpuserror_static_extension.MalformedCorpusError_static_extension.error(_e);
     }
 }
-typedef T_sharedMemPointer = stdgo._internal.internal.fuzz.Fuzz_t_sharedmempointer.T_sharedMemPointer;
-class T_sharedMem_static_extension {
+@:dox(hide) typedef T_sharedMemPointer = stdgo._internal.internal.fuzz.Fuzz_t_sharedmempointer.T_sharedMemPointer;
+@:dox(hide) class T_sharedMem_static_extension {
     static public function close(_m:T_sharedMem):stdgo.Error {
         final _m = (_m : stdgo.Ref<stdgo._internal.internal.fuzz.Fuzz_t_sharedmem.T_sharedMem>);
         return stdgo._internal.internal.fuzz.Fuzz_t_sharedmem_static_extension.T_sharedMem_static_extension.close(_m);
@@ -1051,12 +1077,12 @@ class T_sharedMem_static_extension {
         return stdgo._internal.internal.fuzz.Fuzz_t_sharedmem_static_extension.T_sharedMem_static_extension._header(_m);
     }
 }
-typedef T_sharedMemHeaderPointer = stdgo._internal.internal.fuzz.Fuzz_t_sharedmemheaderpointer.T_sharedMemHeaderPointer;
-class T_sharedMemHeader_static_extension {
+@:dox(hide) typedef T_sharedMemHeaderPointer = stdgo._internal.internal.fuzz.Fuzz_t_sharedmemheaderpointer.T_sharedMemHeaderPointer;
+@:dox(hide) class T_sharedMemHeader_static_extension {
 
 }
-typedef T_mutatorPointer = stdgo._internal.internal.fuzz.Fuzz_t_mutatorpointer.T_mutatorPointer;
-class T_mutator_static_extension {
+@:dox(hide) typedef T_mutatorPointer = stdgo._internal.internal.fuzz.Fuzz_t_mutatorpointer.T_mutatorPointer;
+@:dox(hide) class T_mutator_static_extension {
     static public function _mutateBytes(_m:T_mutator, _ptrB:Array<std.UInt>):Void {
         final _m = (_m : stdgo.Ref<stdgo._internal.internal.fuzz.Fuzz_t_mutator.T_mutator>);
         final _ptrB = (_ptrB : stdgo.Ref<stdgo.Slice<stdgo.GoUInt8>>);
@@ -1101,8 +1127,8 @@ class T_mutator_static_extension {
         return stdgo._internal.internal.fuzz.Fuzz_t_mutator_static_extension.T_mutator_static_extension._rand(_m, _n);
     }
 }
-typedef T_pcgRandPointer = stdgo._internal.internal.fuzz.Fuzz_t_pcgrandpointer.T_pcgRandPointer;
-class T_pcgRand_static_extension {
+@:dox(hide) typedef T_pcgRandPointer = stdgo._internal.internal.fuzz.Fuzz_t_pcgrandpointer.T_pcgRandPointer;
+@:dox(hide) class T_pcgRand_static_extension {
     static public function _bool(_r:T_pcgRand):Bool {
         final _r = (_r : stdgo.Ref<stdgo._internal.internal.fuzz.Fuzz_t_pcgrand.T_pcgRand>);
         return stdgo._internal.internal.fuzz.Fuzz_t_pcgrand_static_extension.T_pcgRand_static_extension._bool(_r);
@@ -1140,8 +1166,8 @@ class T_pcgRand_static_extension {
         stdgo._internal.internal.fuzz.Fuzz_t_pcgrand_static_extension.T_pcgRand_static_extension._step(_r);
     }
 }
-typedef T_noCopyPointer = stdgo._internal.internal.fuzz.Fuzz_t_nocopypointer.T_noCopyPointer;
-class T_noCopy_static_extension {
+@:dox(hide) typedef T_noCopyPointer = stdgo._internal.internal.fuzz.Fuzz_t_nocopypointer.T_noCopyPointer;
+@:dox(hide) class T_noCopy_static_extension {
     static public function _unlock(_:T_noCopy):Void {
         final _ = (_ : stdgo.Ref<stdgo._internal.internal.fuzz.Fuzz_t_nocopy.T_noCopy>);
         stdgo._internal.internal.fuzz.Fuzz_t_nocopy_static_extension.T_noCopy_static_extension._unlock(_);
@@ -1151,8 +1177,8 @@ class T_noCopy_static_extension {
         stdgo._internal.internal.fuzz.Fuzz_t_nocopy_static_extension.T_noCopy_static_extension._lock(_);
     }
 }
-typedef T_queuePointer = stdgo._internal.internal.fuzz.Fuzz_t_queuepointer.T_queuePointer;
-class T_queue_static_extension {
+@:dox(hide) typedef T_queuePointer = stdgo._internal.internal.fuzz.Fuzz_t_queuepointer.T_queuePointer;
+@:dox(hide) class T_queue_static_extension {
     static public function _clear(_q:T_queue):Void {
         final _q = (_q : stdgo.Ref<stdgo._internal.internal.fuzz.Fuzz_t_queue.T_queue>);
         stdgo._internal.internal.fuzz.Fuzz_t_queue_static_extension.T_queue_static_extension._clear(_q);
@@ -1185,12 +1211,12 @@ class T_queue_static_extension {
         return stdgo._internal.internal.fuzz.Fuzz_t_queue_static_extension.T_queue_static_extension._cap(_q);
     }
 }
-typedef T_sharedMemSysPointer = stdgo._internal.internal.fuzz.Fuzz_t_sharedmemsyspointer.T_sharedMemSysPointer;
-class T_sharedMemSys_static_extension {
+@:dox(hide) typedef T_sharedMemSysPointer = stdgo._internal.internal.fuzz.Fuzz_t_sharedmemsyspointer.T_sharedMemSysPointer;
+@:dox(hide) class T_sharedMemSys_static_extension {
 
 }
-typedef T_workerPointer = stdgo._internal.internal.fuzz.Fuzz_t_workerpointer.T_workerPointer;
-class T_worker_static_extension {
+@:dox(hide) typedef T_workerPointer = stdgo._internal.internal.fuzz.Fuzz_t_workerpointer.T_workerPointer;
+@:dox(hide) class T_worker_static_extension {
     static public function _stop(_w:T_worker):stdgo.Error {
         final _w = (_w : stdgo.Ref<stdgo._internal.internal.fuzz.Fuzz_t_worker.T_worker>);
         return stdgo._internal.internal.fuzz.Fuzz_t_worker_static_extension.T_worker_static_extension._stop(_w);
@@ -1223,40 +1249,40 @@ class T_worker_static_extension {
         return stdgo._internal.internal.fuzz.Fuzz_t_worker_static_extension.T_worker_static_extension._cleanup(_w);
     }
 }
-typedef T_callPointer = stdgo._internal.internal.fuzz.Fuzz_t_callpointer.T_callPointer;
-class T_call_static_extension {
+@:dox(hide) typedef T_callPointer = stdgo._internal.internal.fuzz.Fuzz_t_callpointer.T_callPointer;
+@:dox(hide) class T_call_static_extension {
 
 }
-typedef T_minimizeArgsPointer = stdgo._internal.internal.fuzz.Fuzz_t_minimizeargspointer.T_minimizeArgsPointer;
-class T_minimizeArgs_static_extension {
+@:dox(hide) typedef T_minimizeArgsPointer = stdgo._internal.internal.fuzz.Fuzz_t_minimizeargspointer.T_minimizeArgsPointer;
+@:dox(hide) class T_minimizeArgs_static_extension {
 
 }
-typedef T_minimizeResponsePointer = stdgo._internal.internal.fuzz.Fuzz_t_minimizeresponsepointer.T_minimizeResponsePointer;
-class T_minimizeResponse_static_extension {
+@:dox(hide) typedef T_minimizeResponsePointer = stdgo._internal.internal.fuzz.Fuzz_t_minimizeresponsepointer.T_minimizeResponsePointer;
+@:dox(hide) class T_minimizeResponse_static_extension {
 
 }
-typedef T_fuzzArgsPointer = stdgo._internal.internal.fuzz.Fuzz_t_fuzzargspointer.T_fuzzArgsPointer;
-class T_fuzzArgs_static_extension {
+@:dox(hide) typedef T_fuzzArgsPointer = stdgo._internal.internal.fuzz.Fuzz_t_fuzzargspointer.T_fuzzArgsPointer;
+@:dox(hide) class T_fuzzArgs_static_extension {
 
 }
-typedef T_fuzzResponsePointer = stdgo._internal.internal.fuzz.Fuzz_t_fuzzresponsepointer.T_fuzzResponsePointer;
-class T_fuzzResponse_static_extension {
+@:dox(hide) typedef T_fuzzResponsePointer = stdgo._internal.internal.fuzz.Fuzz_t_fuzzresponsepointer.T_fuzzResponsePointer;
+@:dox(hide) class T_fuzzResponse_static_extension {
 
 }
-typedef T_pingArgsPointer = stdgo._internal.internal.fuzz.Fuzz_t_pingargspointer.T_pingArgsPointer;
-class T_pingArgs_static_extension {
+@:dox(hide) typedef T_pingArgsPointer = stdgo._internal.internal.fuzz.Fuzz_t_pingargspointer.T_pingArgsPointer;
+@:dox(hide) class T_pingArgs_static_extension {
 
 }
-typedef T_pingResponsePointer = stdgo._internal.internal.fuzz.Fuzz_t_pingresponsepointer.T_pingResponsePointer;
-class T_pingResponse_static_extension {
+@:dox(hide) typedef T_pingResponsePointer = stdgo._internal.internal.fuzz.Fuzz_t_pingresponsepointer.T_pingResponsePointer;
+@:dox(hide) class T_pingResponse_static_extension {
 
 }
-typedef T_workerCommPointer = stdgo._internal.internal.fuzz.Fuzz_t_workercommpointer.T_workerCommPointer;
-class T_workerComm_static_extension {
+@:dox(hide) typedef T_workerCommPointer = stdgo._internal.internal.fuzz.Fuzz_t_workercommpointer.T_workerCommPointer;
+@:dox(hide) class T_workerComm_static_extension {
 
 }
-typedef T_workerServerPointer = stdgo._internal.internal.fuzz.Fuzz_t_workerserverpointer.T_workerServerPointer;
-class T_workerServer_static_extension {
+@:dox(hide) typedef T_workerServerPointer = stdgo._internal.internal.fuzz.Fuzz_t_workerserverpointer.T_workerServerPointer;
+@:dox(hide) class T_workerServer_static_extension {
     static public function _ping(_ws:T_workerServer, _ctx:stdgo._internal.context.Context_context.Context, _args:T_pingArgs):T_pingResponse {
         final _ws = (_ws : stdgo.Ref<stdgo._internal.internal.fuzz.Fuzz_t_workerserver.T_workerServer>);
         return stdgo._internal.internal.fuzz.Fuzz_t_workerserver_static_extension.T_workerServer_static_extension._ping(_ws, _ctx, _args);
@@ -1283,8 +1309,8 @@ class T_workerServer_static_extension {
         return stdgo._internal.internal.fuzz.Fuzz_t_workerserver_static_extension.T_workerServer_static_extension._serve(_ws, _ctx);
     }
 }
-typedef T_workerClientPointer = stdgo._internal.internal.fuzz.Fuzz_t_workerclientpointer.T_workerClientPointer;
-class T_workerClient_static_extension {
+@:dox(hide) typedef T_workerClientPointer = stdgo._internal.internal.fuzz.Fuzz_t_workerclientpointer.T_workerClientPointer;
+@:dox(hide) class T_workerClient_static_extension {
     static public function _callLocked(_wc:T_workerClient, _ctx:stdgo._internal.context.Context_context.Context, _c:T_call, _resp:stdgo.AnyInterface):stdgo.Error {
         final _wc = (_wc : stdgo.Ref<stdgo._internal.internal.fuzz.Fuzz_t_workerclient.T_workerClient>);
         final _resp = (_resp : stdgo.AnyInterface);
@@ -1313,8 +1339,8 @@ class T_workerClient_static_extension {
         return stdgo._internal.internal.fuzz.Fuzz_t_workerclient_static_extension.T_workerClient_static_extension.close(_wc);
     }
 }
-typedef T_contextReaderPointer = stdgo._internal.internal.fuzz.Fuzz_t_contextreaderpointer.T_contextReaderPointer;
-class T_contextReader_static_extension {
+@:dox(hide) typedef T_contextReaderPointer = stdgo._internal.internal.fuzz.Fuzz_t_contextreaderpointer.T_contextReaderPointer;
+@:dox(hide) class T_contextReader_static_extension {
     static public function read(_cr:T_contextReader, _b:Array<std.UInt>):stdgo.Tuple<StdTypes.Int, stdgo.Error> {
         final _cr = (_cr : stdgo.Ref<stdgo._internal.internal.fuzz.Fuzz_t_contextreader.T_contextReader>);
         final _b = ([for (i in _b) (i : stdgo.GoUInt8)] : stdgo.Slice<stdgo.GoUInt8>);
@@ -1324,12 +1350,12 @@ class T_contextReader_static_extension {
         };
     }
 }
-typedef T__struct_0PointerPointer = stdgo._internal.internal.fuzz.Fuzz_t__struct_0pointerpointer.T__struct_0PointerPointer;
-class T__struct_0Pointer_static_extension {
+@:dox(hide) typedef T__struct_0PointerPointer = stdgo._internal.internal.fuzz.Fuzz_t__struct_0pointerpointer.T__struct_0PointerPointer;
+@:dox(hide) class T__struct_0Pointer_static_extension {
 
 }
-typedef T_byteSliceMutatorPointer = stdgo._internal.internal.fuzz.Fuzz_t_byteslicemutatorpointer.T_byteSliceMutatorPointer;
-class T_byteSliceMutator_static_extension {
+@:dox(hide) typedef T_byteSliceMutatorPointer = stdgo._internal.internal.fuzz.Fuzz_t_byteslicemutatorpointer.T_byteSliceMutatorPointer;
+@:dox(hide) class T_byteSliceMutator_static_extension {
 
 }
 /**
@@ -1404,7 +1430,7 @@ class Fuzz {
         * coordinator process.
     **/
     static public inline function runFuzzWorker(_ctx:stdgo._internal.context.Context_context.Context, _fn:stdgo._internal.internal.fuzz.Fuzz_corpusentry.CorpusEntry -> stdgo.Error):stdgo.Error {
-        final _fn = _fn;
+        final _fn = _0 -> _fn(_0);
         return stdgo._internal.internal.fuzz.Fuzz_runfuzzworker.runFuzzWorker(_ctx, _fn);
     }
 }

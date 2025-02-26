@@ -8,8 +8,10 @@ test.go
 tests.md
 ./main
 ./bin
+bin/*
 ./debug
 ./export
+export/*
 ./repl
 vendor
 .lua
@@ -41,6 +43,7 @@ go4hx
 go2hxdoc
 gobyexample
 golibs
+.haxelib
 gopath
 go
 tinygo
@@ -73,4 +76,6 @@ sort_*.json
 prebuild
 _internal/*
 analysis/tests/unitmod/*
+analysis/tests/gotomod/*
+analysis/tests/pointermod/*
 !tests/stdlogs/*.log

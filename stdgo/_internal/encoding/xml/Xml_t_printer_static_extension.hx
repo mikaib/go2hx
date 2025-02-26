@@ -691,8 +691,8 @@ var _n = __1, _i = __0;
                 {
                     final __tmp__0 = (@:checkr _xmlname ?? throw "null pointer dereference")._xmlns?.__copy__();
                     final __tmp__1 = (@:checkr _xmlname ?? throw "null pointer dereference")._name?.__copy__();
-                    _start.name.space = __tmp__0;
-                    _start.name.local = __tmp__1;
+                    _start.name.space = @:binopAssign __tmp__0;
+                    _start.name.local = @:binopAssign __tmp__1;
                 };
             } else {
                 var _fv = (@:check2r _xmlname._value(_val?.__copy__(), false)?.__copy__() : stdgo._internal.reflect.Reflect_value.Value);
@@ -712,8 +712,8 @@ var _n = __1, _i = __0;
             {
                 final __tmp__0 = (@:checkr _finfo ?? throw "null pointer dereference")._xmlns?.__copy__();
                 final __tmp__1 = (@:checkr _finfo ?? throw "null pointer dereference")._name?.__copy__();
-                _start.name.space = __tmp__0;
-                _start.name.local = __tmp__1;
+                _start.name.space = @:binopAssign __tmp__0;
+                _start.name.local = @:binopAssign __tmp__1;
             };
         };
         if (_start.name.local == ((stdgo.Go.str() : stdgo.GoString))) {
@@ -804,8 +804,8 @@ var _n = __1, _i = __0;
     @:tdfield
     static public function _deleteAttrPrefix( _p:stdgo.Ref<stdgo._internal.encoding.xml.Xml_t_printer.T_printer>, _prefix:stdgo.GoString):Void {
         @:recv var _p:stdgo.Ref<stdgo._internal.encoding.xml.Xml_t_printer.T_printer> = _p;
-        if ((@:checkr _p ?? throw "null pointer dereference")._attrPrefix != null) (@:checkr _p ?? throw "null pointer dereference")._attrPrefix.remove(((@:checkr _p ?? throw "null pointer dereference")._attrNS[_prefix] ?? ("" : stdgo.GoString)));
-        if ((@:checkr _p ?? throw "null pointer dereference")._attrNS != null) (@:checkr _p ?? throw "null pointer dereference")._attrNS.remove(_prefix);
+        if ((@:checkr _p ?? throw "null pointer dereference")._attrPrefix != null) (@:checkr _p ?? throw "null pointer dereference")._attrPrefix.__remove__(((@:checkr _p ?? throw "null pointer dereference")._attrNS[_prefix] ?? ("" : stdgo.GoString)));
+        if ((@:checkr _p ?? throw "null pointer dereference")._attrNS != null) (@:checkr _p ?? throw "null pointer dereference")._attrNS.__remove__(_prefix);
     }
     @:keep
     @:tdfield

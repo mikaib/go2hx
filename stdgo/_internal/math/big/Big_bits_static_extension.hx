@@ -38,8 +38,7 @@ package stdgo._internal.math.big;
     static public function _round( _x:stdgo._internal.math.big.Big_bits.Bits, _prec:stdgo.GoUInt, _mode:stdgo._internal.math.big.Big_roundingmode.RoundingMode):stdgo.Ref<stdgo._internal.math.big.Big_float_.Float_> {
         @:recv var _x:stdgo._internal.math.big.Big_bits.Bits = _x;
         _x = _x._norm();
-        var __0:stdgo.GoInt = (0 : stdgo.GoInt), __1:stdgo.GoInt = (0 : stdgo.GoInt);
-var _max = __1, _min = __0;
+        var _min:stdgo.GoInt = (0 : stdgo.GoInt), _max:stdgo.GoInt = (0 : stdgo.GoInt);
         for (_i => _b in _x) {
             if (((_i == (0 : stdgo.GoInt)) || (_b < _min : Bool) : Bool)) {
                 _min = _b;
@@ -52,9 +51,8 @@ var _max = __1, _min = __0;
         if ((_prec >= _prec0 : Bool)) {
             return _x.float_();
         };
-        var __0:stdgo.GoUInt = (0 : stdgo.GoUInt), __1:stdgo.GoUInt = (0 : stdgo.GoUInt), __2:stdgo.GoUInt = (0 : stdgo.GoUInt);
-var _sbit = __2, _rbit = __1, _bit0 = __0;
-        var _z:stdgo._internal.math.big.Big_bits.Bits = new stdgo._internal.math.big.Big_bits.Bits(0, 0);
+        var _bit0:stdgo.GoUInt = (0 : stdgo.GoUInt), _rbit:stdgo.GoUInt = (0 : stdgo.GoUInt), _sbit:stdgo.GoUInt = (0 : stdgo.GoUInt);
+        var _z:stdgo._internal.math.big.Big_bits.Bits = (new stdgo._internal.math.big.Big_bits.Bits(0, 0) : stdgo._internal.math.big.Big_bits.Bits);
         var _r = (_max - (_prec : stdgo.GoInt) : stdgo.GoInt);
         for (__8 => _b in _x) {
             if (_b == (_r)) {
@@ -95,7 +93,7 @@ var _sbit = __2, _rbit = __1, _bit0 = __0;
             };
             _m[_b] = true;
         };
-        var _z:stdgo._internal.math.big.Big_bits.Bits = new stdgo._internal.math.big.Big_bits.Bits(0, 0);
+        var _z:stdgo._internal.math.big.Big_bits.Bits = (new stdgo._internal.math.big.Big_bits.Bits(0, 0) : stdgo._internal.math.big.Big_bits.Bits);
         for (_b => _set in _m) {
             if (_set) {
                 _z = (_z.__append__(_b));
@@ -108,7 +106,7 @@ var _sbit = __2, _rbit = __1, _bit0 = __0;
     @:tdfield
     static public function _mul( _x:stdgo._internal.math.big.Big_bits.Bits, _y:stdgo._internal.math.big.Big_bits.Bits):stdgo._internal.math.big.Big_bits.Bits {
         @:recv var _x:stdgo._internal.math.big.Big_bits.Bits = _x;
-        var _p:stdgo._internal.math.big.Big_bits.Bits = new stdgo._internal.math.big.Big_bits.Bits(0, 0);
+        var _p:stdgo._internal.math.big.Big_bits.Bits = (new stdgo._internal.math.big.Big_bits.Bits(0, 0) : stdgo._internal.math.big.Big_bits.Bits);
         for (__8 => _x in _x) {
             for (__9 => _y in _y) {
                 _p = (_p.__append__((_x + _y : stdgo.GoInt)));

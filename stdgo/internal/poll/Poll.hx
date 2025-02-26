@@ -29,28 +29,28 @@ private function set_errNotPollable(v:stdgo.Error):stdgo.Error {
         stdgo._internal.internal.poll.Poll_errnotpollable.errNotPollable = (v : stdgo.Error);
         return v;
     }
-var testHookDidWritev(get, set) : stdgo.GoInt -> Void;
-private function get_testHookDidWritev():stdgo.GoInt -> Void return _0 -> stdgo._internal.internal.poll.Poll_testhookdidwritev.testHookDidWritev(_0);
-private function set_testHookDidWritev(v:stdgo.GoInt -> Void):stdgo.GoInt -> Void {
-        stdgo._internal.internal.poll.Poll_testhookdidwritev.testHookDidWritev = v;
+var testHookDidWritev(get, set) : StdTypes.Int -> Void;
+private function get_testHookDidWritev():StdTypes.Int -> Void return _0 -> stdgo._internal.internal.poll.Poll_testhookdidwritev.testHookDidWritev(_0);
+private function set_testHookDidWritev(v:StdTypes.Int -> Void):StdTypes.Int -> Void {
+        stdgo._internal.internal.poll.Poll_testhookdidwritev.testHookDidWritev = _0 -> v((_0 : stdgo.GoInt));
         return v;
     }
-var closeFunc(get, set) : stdgo.GoInt -> stdgo.Error;
-private function get_closeFunc():stdgo.GoInt -> stdgo.Error return _0 -> stdgo._internal.internal.poll.Poll_closefunc.closeFunc(_0);
-private function set_closeFunc(v:stdgo.GoInt -> stdgo.Error):stdgo.GoInt -> stdgo.Error {
-        stdgo._internal.internal.poll.Poll_closefunc.closeFunc = v;
+var closeFunc(get, set) : StdTypes.Int -> stdgo.Error;
+private function get_closeFunc():StdTypes.Int -> stdgo.Error return _0 -> stdgo._internal.internal.poll.Poll_closefunc.closeFunc(_0);
+private function set_closeFunc(v:StdTypes.Int -> stdgo.Error):StdTypes.Int -> stdgo.Error {
+        stdgo._internal.internal.poll.Poll_closefunc.closeFunc = _0 -> v((_0 : stdgo.GoInt));
         return v;
     }
-var acceptFunc(get, set) : stdgo.GoInt -> { var _0 : stdgo.GoInt; var _1 : stdgo._internal.syscall.Syscall_sockaddr.Sockaddr; var _2 : stdgo.Error; };
-private function get_acceptFunc():stdgo.GoInt -> { var _0 : stdgo.GoInt; var _1 : stdgo._internal.syscall.Syscall_sockaddr.Sockaddr; var _2 : stdgo.Error; } return _0 -> stdgo._internal.internal.poll.Poll_acceptfunc.acceptFunc(_0);
-private function set_acceptFunc(v:stdgo.GoInt -> { var _0 : stdgo.GoInt; var _1 : stdgo._internal.syscall.Syscall_sockaddr.Sockaddr; var _2 : stdgo.Error; }):stdgo.GoInt -> { var _0 : stdgo.GoInt; var _1 : stdgo._internal.syscall.Syscall_sockaddr.Sockaddr; var _2 : stdgo.Error; } {
-        stdgo._internal.internal.poll.Poll_acceptfunc.acceptFunc = v;
+var acceptFunc(get, set) : StdTypes.Int -> stdgo.Tuple.Tuple3<StdTypes.Int, stdgo._internal.syscall.Syscall_sockaddr.Sockaddr, stdgo.Error>;
+private function get_acceptFunc():StdTypes.Int -> stdgo.Tuple.Tuple3<StdTypes.Int, stdgo._internal.syscall.Syscall_sockaddr.Sockaddr, stdgo.Error> return _0 -> stdgo._internal.internal.poll.Poll_acceptfunc.acceptFunc(_0);
+private function set_acceptFunc(v:StdTypes.Int -> stdgo.Tuple.Tuple3<StdTypes.Int, stdgo._internal.syscall.Syscall_sockaddr.Sockaddr, stdgo.Error>):StdTypes.Int -> stdgo.Tuple.Tuple3<StdTypes.Int, stdgo._internal.syscall.Syscall_sockaddr.Sockaddr, stdgo.Error> {
+        stdgo._internal.internal.poll.Poll_acceptfunc.acceptFunc = _0 -> v((_0 : stdgo.GoInt));
         return v;
     }
-var consume(get, set) : (stdgo.Ref<stdgo.Slice<stdgo.Slice<stdgo.GoUInt8>>>, stdgo.GoInt64) -> Void;
-private function get_consume():(stdgo.Ref<stdgo.Slice<stdgo.Slice<stdgo.GoUInt8>>>, stdgo.GoInt64) -> Void return (_0, _1) -> stdgo._internal.internal.poll.Poll_consume.consume(_0, _1);
-private function set_consume(v:(stdgo.Ref<stdgo.Slice<stdgo.Slice<stdgo.GoUInt8>>>, stdgo.GoInt64) -> Void):(stdgo.Ref<stdgo.Slice<stdgo.Slice<stdgo.GoUInt8>>>, stdgo.GoInt64) -> Void {
-        stdgo._internal.internal.poll.Poll_consume.consume = v;
+var consume(get, set) : (Array<Array<std.UInt>>, haxe.Int64) -> Void;
+private function get_consume():(Array<Array<std.UInt>>, haxe.Int64) -> Void return (_0, _1) -> stdgo._internal.internal.poll.Poll_consume.consume(_0, _1);
+private function set_consume(v:(Array<Array<std.UInt>>, haxe.Int64) -> Void):(Array<Array<std.UInt>>, haxe.Int64) -> Void {
+        stdgo._internal.internal.poll.Poll_consume.consume = (_0, _1) -> v((_0 : stdgo.Ref<stdgo.Slice<stdgo.Slice<stdgo.GoUInt8>>>), (_1 : stdgo.GoInt64));
         return v;
     }
 @:structInit @:using(stdgo.internal.poll.Poll.XFDMutex_static_extension) abstract XFDMutex(stdgo._internal.internal.poll.Poll_xfdmutex.XFDMutex) from stdgo._internal.internal.poll.Poll_xfdmutex.XFDMutex to stdgo._internal.internal.poll.Poll_xfdmutex.XFDMutex {
@@ -64,7 +64,7 @@ private function set_consume(v:(stdgo.Ref<stdgo.Slice<stdgo.Slice<stdgo.GoUInt8>
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-@:structInit @:using(stdgo.internal.poll.Poll.T_errNetClosing_static_extension) abstract T_errNetClosing(stdgo._internal.internal.poll.Poll_t_errnetclosing.T_errNetClosing) from stdgo._internal.internal.poll.Poll_t_errnetclosing.T_errNetClosing to stdgo._internal.internal.poll.Poll_t_errnetclosing.T_errNetClosing {
+@:structInit @:using(stdgo.internal.poll.Poll.T_errNetClosing_static_extension) @:dox(hide) abstract T_errNetClosing(stdgo._internal.internal.poll.Poll_t_errnetclosing.T_errNetClosing) from stdgo._internal.internal.poll.Poll_t_errnetclosing.T_errNetClosing to stdgo._internal.internal.poll.Poll_t_errnetclosing.T_errNetClosing {
     public function new() this = new stdgo._internal.internal.poll.Poll_t_errnetclosing.T_errNetClosing();
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
@@ -74,7 +74,7 @@ private function set_consume(v:(stdgo.Ref<stdgo.Slice<stdgo.Slice<stdgo.GoUInt8>
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-@:structInit @:using(stdgo.internal.poll.Poll.T_fdMutex_static_extension) abstract T_fdMutex(stdgo._internal.internal.poll.Poll_t_fdmutex.T_fdMutex) from stdgo._internal.internal.poll.Poll_t_fdmutex.T_fdMutex to stdgo._internal.internal.poll.Poll_t_fdmutex.T_fdMutex {
+@:structInit @:using(stdgo.internal.poll.Poll.T_fdMutex_static_extension) @:dox(hide) abstract T_fdMutex(stdgo._internal.internal.poll.Poll_t_fdmutex.T_fdMutex) from stdgo._internal.internal.poll.Poll_t_fdmutex.T_fdMutex to stdgo._internal.internal.poll.Poll_t_fdmutex.T_fdMutex {
     public var _state(get, set) : haxe.UInt64;
     function get__state():haxe.UInt64 return this._state;
     function set__state(v:haxe.UInt64):haxe.UInt64 {
@@ -97,7 +97,7 @@ private function set_consume(v:(stdgo.Ref<stdgo.Slice<stdgo.Slice<stdgo.GoUInt8>
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-@:structInit @:using(stdgo.internal.poll.Poll.T_pollDesc_static_extension) abstract T_pollDesc(stdgo._internal.internal.poll.Poll_t_polldesc.T_pollDesc) from stdgo._internal.internal.poll.Poll_t_polldesc.T_pollDesc to stdgo._internal.internal.poll.Poll_t_polldesc.T_pollDesc {
+@:structInit @:using(stdgo.internal.poll.Poll.T_pollDesc_static_extension) @:dox(hide) abstract T_pollDesc(stdgo._internal.internal.poll.Poll_t_polldesc.T_pollDesc) from stdgo._internal.internal.poll.Poll_t_polldesc.T_pollDesc to stdgo._internal.internal.poll.Poll_t_polldesc.T_pollDesc {
     public var _fd(get, set) : FD;
     function get__fd():FD return this._fd;
     function set__fd(v:FD):FD {
@@ -222,8 +222,8 @@ class XFDMutex_static_extension {
         return stdgo._internal.internal.poll.Poll_xfdmutex_static_extension.XFDMutex_static_extension._decref(__self__);
     }
 }
-typedef T_errNetClosingPointer = stdgo._internal.internal.poll.Poll_t_errnetclosingpointer.T_errNetClosingPointer;
-class T_errNetClosing_static_extension {
+@:dox(hide) typedef T_errNetClosingPointer = stdgo._internal.internal.poll.Poll_t_errnetclosingpointer.T_errNetClosingPointer;
+@:dox(hide) class T_errNetClosing_static_extension {
     static public function temporary(_e:T_errNetClosing):Bool {
         return stdgo._internal.internal.poll.Poll_t_errnetclosing_static_extension.T_errNetClosing_static_extension.temporary(_e);
     }
@@ -249,8 +249,8 @@ class DeadlineExceededError_static_extension {
         return stdgo._internal.internal.poll.Poll_deadlineexceedederror_static_extension.DeadlineExceededError_static_extension.error(_e);
     }
 }
-typedef T_fdMutexPointer = stdgo._internal.internal.poll.Poll_t_fdmutexpointer.T_fdMutexPointer;
-class T_fdMutex_static_extension {
+@:dox(hide) typedef T_fdMutexPointer = stdgo._internal.internal.poll.Poll_t_fdmutexpointer.T_fdMutexPointer;
+@:dox(hide) class T_fdMutex_static_extension {
     static public function _rwunlock(_mu:T_fdMutex, _read:Bool):Bool {
         final _mu = (_mu : stdgo.Ref<stdgo._internal.internal.poll.Poll_t_fdmutex.T_fdMutex>);
         return stdgo._internal.internal.poll.Poll_t_fdmutex_static_extension.T_fdMutex_static_extension._rwunlock(_mu, _read);
@@ -272,8 +272,8 @@ class T_fdMutex_static_extension {
         return stdgo._internal.internal.poll.Poll_t_fdmutex_static_extension.T_fdMutex_static_extension._incref(_mu);
     }
 }
-typedef T_pollDescPointer = stdgo._internal.internal.poll.Poll_t_polldescpointer.T_pollDescPointer;
-class T_pollDesc_static_extension {
+@:dox(hide) typedef T_pollDescPointer = stdgo._internal.internal.poll.Poll_t_polldescpointer.T_pollDescPointer;
+@:dox(hide) class T_pollDesc_static_extension {
     static public function _pollable(_pd:T_pollDesc):Bool {
         final _pd = (_pd : stdgo.Ref<stdgo._internal.internal.poll.Poll_t_polldesc.T_pollDesc>);
         return stdgo._internal.internal.poll.Poll_t_polldesc_static_extension.T_pollDesc_static_extension._pollable(_pd);
@@ -348,12 +348,12 @@ class FD_static_extension {
     }
     static public function rawWrite(_fd:FD, _f:stdgo.GoUIntptr -> Bool):stdgo.Error {
         final _fd = (_fd : stdgo.Ref<stdgo._internal.internal.poll.Poll_fd.FD>);
-        final _f = _f;
+        final _f = _0 -> _f((_0 : stdgo.GoUIntptr));
         return stdgo._internal.internal.poll.Poll_fd_static_extension.FD_static_extension.rawWrite(_fd, _f);
     }
     static public function rawRead(_fd:FD, _f:stdgo.GoUIntptr -> Bool):stdgo.Error {
         final _fd = (_fd : stdgo.Ref<stdgo._internal.internal.poll.Poll_fd.FD>);
-        final _f = _f;
+        final _f = _0 -> _f((_0 : stdgo.GoUIntptr));
         return stdgo._internal.internal.poll.Poll_fd_static_extension.FD_static_extension.rawRead(_fd, _f);
     }
     static public function writeOnce(_fd:FD, _p:Array<std.UInt>):stdgo.Tuple<StdTypes.Int, stdgo.Error> {
@@ -558,7 +558,7 @@ class FD_static_extension {
     }
     static public function rawControl(_fd:FD, _f:stdgo.GoUIntptr -> Void):stdgo.Error {
         final _fd = (_fd : stdgo.Ref<stdgo._internal.internal.poll.Poll_fd.FD>);
-        final _f = _f;
+        final _f = _0 -> _f((_0 : stdgo.GoUIntptr));
         return stdgo._internal.internal.poll.Poll_fd_static_extension.FD_static_extension.rawControl(_fd, _f);
     }
     static public function ftruncate(_fd:FD, _size:haxe.Int64):stdgo.Error {

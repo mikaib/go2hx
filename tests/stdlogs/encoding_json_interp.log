@@ -1,6 +1,8 @@
-[ERROR] (macro) ./stdgo/_internal/math/big/Big_t_nat_static_extension.hx:442: characters 16-25
+[ERROR] (macro) ./stdgo/_internal/mime/multipart/Multipart_fileheader_static_extension.hx:22: characters 9-120
 
- 442 |             _q._divBasic(_u, _v);
-     |                ^^^^^^^^^
-     | stdgo.Slice<stdgo._internal.math.big.Word> has no field _divBasic
+ 22 |         return stdgo._internal.os.Os_open.open((@:checkr _fh ?? throw "null pointer dereference")._tmpfile?.__copy__());
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    | error: stdgo.Ref<stdgo._internal.os.File> should be stdgo._internal.mime.multipart.File
+    | have: { _0: stdgo.Ref<...> }
+    | want: { _0: stdgo._internal.mime.multipart.File }
 

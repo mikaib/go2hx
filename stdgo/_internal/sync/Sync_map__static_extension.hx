@@ -49,18 +49,18 @@ package stdgo._internal.sync;
         @:recv var _m:stdgo.Ref<stdgo._internal.sync.Sync_map_.Map_> = _m;
         var _deleted = false;
         var _read = (@:check2r _m._loadReadOnly()?.__copy__() : stdgo._internal.sync.Sync_t_readonly.T_readOnly);
-        var __tmp__ = (_read._m != null && _read._m.exists(_key) ? { _0 : _read._m[_key], _1 : true } : { _0 : (null : stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry>), _1 : false }), _e:stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry> = __tmp__._0, _ok:Bool = __tmp__._1;
+        var __tmp__ = (_read._m != null && _read._m.__exists__(_key) ? { _0 : _read._m[_key], _1 : true } : { _0 : (null : stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry>), _1 : false }), _e:stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry> = __tmp__._0, _ok:Bool = __tmp__._1;
         if ((!_ok && _read._amended : Bool)) {
             @:check2 (@:checkr _m ?? throw "null pointer dereference")._mu.lock();
             _read = @:check2r _m._loadReadOnly()?.__copy__();
             {
-                var __tmp__ = (_read._m != null && _read._m.exists(_key) ? { _0 : _read._m[_key], _1 : true } : { _0 : (null : stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry>), _1 : false });
+                var __tmp__ = (_read._m != null && _read._m.__exists__(_key) ? { _0 : _read._m[_key], _1 : true } : { _0 : (null : stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry>), _1 : false });
                 _e = @:tmpset0 __tmp__._0;
                 _ok = @:tmpset0 __tmp__._1;
             };
             if ((!_ok && _read._amended : Bool)) {
                 {
-                    var __tmp__ = ((@:checkr _m ?? throw "null pointer dereference")._dirty != null && (@:checkr _m ?? throw "null pointer dereference")._dirty.exists(_key) ? { _0 : (@:checkr _m ?? throw "null pointer dereference")._dirty[_key], _1 : true } : { _0 : (null : stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry>), _1 : false });
+                    var __tmp__ = ((@:checkr _m ?? throw "null pointer dereference")._dirty != null && (@:checkr _m ?? throw "null pointer dereference")._dirty.__exists__(_key) ? { _0 : (@:checkr _m ?? throw "null pointer dereference")._dirty[_key], _1 : true } : { _0 : (null : stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry>), _1 : false });
                     _e = @:tmpset0 __tmp__._0;
                     _ok = @:tmpset0 __tmp__._1;
                 };
@@ -81,15 +81,15 @@ package stdgo._internal.sync;
     }
     @:keep
     @:tdfield
-    static public function compareAndSwap( _m:stdgo.Ref<stdgo._internal.sync.Sync_map_.Map_>, _key:stdgo.AnyInterface, _old:stdgo.AnyInterface, _new:stdgo.AnyInterface):Bool {
+    static public function compareAndSwap( _m:stdgo.Ref<stdgo._internal.sync.Sync_map_.Map_>, _key:stdgo.AnyInterface, _old:stdgo.AnyInterface, _new_:stdgo.AnyInterface):Bool {
         @:recv var _m:stdgo.Ref<stdgo._internal.sync.Sync_map_.Map_> = _m;
         var __deferstack__:Array<{ var ran : Bool; var f : Void -> Void; }> = [];
         try {
             var _read = (@:check2r _m._loadReadOnly()?.__copy__() : stdgo._internal.sync.Sync_t_readonly.T_readOnly);
             {
-                var __tmp__ = (_read._m != null && _read._m.exists(_key) ? { _0 : _read._m[_key], _1 : true } : { _0 : (null : stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry>), _1 : false }), _e:stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry> = __tmp__._0, _ok:Bool = __tmp__._1;
+                var __tmp__ = (_read._m != null && _read._m.__exists__(_key) ? { _0 : _read._m[_key], _1 : true } : { _0 : (null : stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry>), _1 : false }), _e:stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry> = __tmp__._0, _ok:Bool = __tmp__._1;
                 if (_ok) {
-                    return @:check2r _e._tryCompareAndSwap(_old, _new);
+                    return @:check2r _e._tryCompareAndSwap(_old, _new_);
                 } else if (!_read._amended) {
                     return false;
                 };
@@ -102,13 +102,13 @@ package stdgo._internal.sync;
             _read = @:check2r _m._loadReadOnly()?.__copy__();
             var _swapped = (false : Bool);
             {
-                var __tmp__ = (_read._m != null && _read._m.exists(_key) ? { _0 : _read._m[_key], _1 : true } : { _0 : (null : stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry>), _1 : false }), _e:stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry> = __tmp__._0, _ok:Bool = __tmp__._1;
+                var __tmp__ = (_read._m != null && _read._m.__exists__(_key) ? { _0 : _read._m[_key], _1 : true } : { _0 : (null : stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry>), _1 : false }), _e:stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry> = __tmp__._0, _ok:Bool = __tmp__._1;
                 if (_ok) {
-                    _swapped = @:check2r _e._tryCompareAndSwap(_old, _new);
+                    _swapped = @:check2r _e._tryCompareAndSwap(_old, _new_);
                 } else {
-                    var __tmp__ = ((@:checkr _m ?? throw "null pointer dereference")._dirty != null && (@:checkr _m ?? throw "null pointer dereference")._dirty.exists(_key) ? { _0 : (@:checkr _m ?? throw "null pointer dereference")._dirty[_key], _1 : true } : { _0 : (null : stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry>), _1 : false }), _e:stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry> = __tmp__._0, _ok:Bool = __tmp__._1;
+                    var __tmp__ = ((@:checkr _m ?? throw "null pointer dereference")._dirty != null && (@:checkr _m ?? throw "null pointer dereference")._dirty.__exists__(_key) ? { _0 : (@:checkr _m ?? throw "null pointer dereference")._dirty[_key], _1 : true } : { _0 : (null : stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry>), _1 : false }), _e:stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry> = __tmp__._0, _ok:Bool = __tmp__._1;
                     if (_ok) {
-                        _swapped = @:check2r _e._tryCompareAndSwap(_old, _new);
+                        _swapped = @:check2r _e._tryCompareAndSwap(_old, _new_);
                         @:check2r _m._missLocked();
                     };
                 };
@@ -182,7 +182,7 @@ package stdgo._internal.sync;
         var _previous = (null : stdgo.AnyInterface), _loaded = false;
         var _read = (@:check2r _m._loadReadOnly()?.__copy__() : stdgo._internal.sync.Sync_t_readonly.T_readOnly);
         {
-            var __tmp__ = (_read._m != null && _read._m.exists(_key) ? { _0 : _read._m[_key], _1 : true } : { _0 : (null : stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry>), _1 : false }), _e:stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry> = __tmp__._0, _ok:Bool = __tmp__._1;
+            var __tmp__ = (_read._m != null && _read._m.__exists__(_key) ? { _0 : _read._m[_key], _1 : true } : { _0 : (null : stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry>), _1 : false }), _e:stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry> = __tmp__._0, _ok:Bool = __tmp__._1;
             if (_ok) {
                 {
                     var __tmp__ = @:check2r _e._trySwap((stdgo.Go.setRef(_value) : stdgo.Ref<stdgo.AnyInterface>)), _v:stdgo.Ref<stdgo.AnyInterface> = __tmp__._0, _ok:Bool = __tmp__._1;
@@ -208,7 +208,7 @@ package stdgo._internal.sync;
         @:check2 (@:checkr _m ?? throw "null pointer dereference")._mu.lock();
         _read = @:check2r _m._loadReadOnly()?.__copy__();
         {
-            var __tmp__ = (_read._m != null && _read._m.exists(_key) ? { _0 : _read._m[_key], _1 : true } : { _0 : (null : stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry>), _1 : false }), _e:stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry> = __tmp__._0, _ok:Bool = __tmp__._1;
+            var __tmp__ = (_read._m != null && _read._m.__exists__(_key) ? { _0 : _read._m[_key], _1 : true } : { _0 : (null : stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry>), _1 : false }), _e:stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry> = __tmp__._0, _ok:Bool = __tmp__._1;
             if (_ok) {
                 if (@:check2r _e._unexpungeLocked()) {
                     (@:checkr _m ?? throw "null pointer dereference")._dirty[_key] = _e;
@@ -221,7 +221,7 @@ package stdgo._internal.sync;
                     };
                 };
             } else {
-                var __tmp__ = ((@:checkr _m ?? throw "null pointer dereference")._dirty != null && (@:checkr _m ?? throw "null pointer dereference")._dirty.exists(_key) ? { _0 : (@:checkr _m ?? throw "null pointer dereference")._dirty[_key], _1 : true } : { _0 : (null : stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry>), _1 : false }), _e:stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry> = __tmp__._0, _ok:Bool = __tmp__._1;
+                var __tmp__ = ((@:checkr _m ?? throw "null pointer dereference")._dirty != null && (@:checkr _m ?? throw "null pointer dereference")._dirty.__exists__(_key) ? { _0 : (@:checkr _m ?? throw "null pointer dereference")._dirty[_key], _1 : true } : { _0 : (null : stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry>), _1 : false }), _e:stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry> = __tmp__._0, _ok:Bool = __tmp__._1;
                 if (_ok) {
                     {
                         var _v = @:check2r _e._swapLocked((stdgo.Go.setRef(_value) : stdgo.Ref<stdgo.AnyInterface>));
@@ -259,32 +259,32 @@ package stdgo._internal.sync;
         @:recv var _m:stdgo.Ref<stdgo._internal.sync.Sync_map_.Map_> = _m;
         var _value = (null : stdgo.AnyInterface), _loaded = false;
         var _read = (@:check2r _m._loadReadOnly()?.__copy__() : stdgo._internal.sync.Sync_t_readonly.T_readOnly);
-        var __tmp__ = (_read._m != null && _read._m.exists(_key) ? { _0 : _read._m[_key], _1 : true } : { _0 : (null : stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry>), _1 : false }), _e:stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry> = __tmp__._0, _ok:Bool = __tmp__._1;
+        var __tmp__ = (_read._m != null && _read._m.__exists__(_key) ? { _0 : _read._m[_key], _1 : true } : { _0 : (null : stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry>), _1 : false }), _e:stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry> = __tmp__._0, _ok:Bool = __tmp__._1;
         if ((!_ok && _read._amended : Bool)) {
             @:check2 (@:checkr _m ?? throw "null pointer dereference")._mu.lock();
             _read = @:check2r _m._loadReadOnly()?.__copy__();
             {
-                var __tmp__ = (_read._m != null && _read._m.exists(_key) ? { _0 : _read._m[_key], _1 : true } : { _0 : (null : stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry>), _1 : false });
+                var __tmp__ = (_read._m != null && _read._m.__exists__(_key) ? { _0 : _read._m[_key], _1 : true } : { _0 : (null : stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry>), _1 : false });
                 _e = @:tmpset0 __tmp__._0;
                 _ok = @:tmpset0 __tmp__._1;
             };
             if ((!_ok && _read._amended : Bool)) {
                 {
-                    var __tmp__ = ((@:checkr _m ?? throw "null pointer dereference")._dirty != null && (@:checkr _m ?? throw "null pointer dereference")._dirty.exists(_key) ? { _0 : (@:checkr _m ?? throw "null pointer dereference")._dirty[_key], _1 : true } : { _0 : (null : stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry>), _1 : false });
+                    var __tmp__ = ((@:checkr _m ?? throw "null pointer dereference")._dirty != null && (@:checkr _m ?? throw "null pointer dereference")._dirty.__exists__(_key) ? { _0 : (@:checkr _m ?? throw "null pointer dereference")._dirty[_key], _1 : true } : { _0 : (null : stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry>), _1 : false });
                     _e = @:tmpset0 __tmp__._0;
                     _ok = @:tmpset0 __tmp__._1;
                 };
-                if ((@:checkr _m ?? throw "null pointer dereference")._dirty != null) (@:checkr _m ?? throw "null pointer dereference")._dirty.remove(_key);
+                if ((@:checkr _m ?? throw "null pointer dereference")._dirty != null) (@:checkr _m ?? throw "null pointer dereference")._dirty.__remove__(_key);
                 @:check2r _m._missLocked();
             };
             @:check2 (@:checkr _m ?? throw "null pointer dereference")._mu.unlock();
         };
         if (_ok) {
             return {
-                final __tmp__:{ var _0 : stdgo.AnyInterface; var _1 : Bool; } = @:check2r _e._delete();
+                final __tmp__ = @:check2r _e._delete();
                 _value = __tmp__._0;
                 _loaded = __tmp__._1;
-                __tmp__;
+                { _0 : _value, _1 : _loaded };
             };
         };
         return {
@@ -301,7 +301,7 @@ package stdgo._internal.sync;
         var _actual = (null : stdgo.AnyInterface), _loaded = false;
         var _read = (@:check2r _m._loadReadOnly()?.__copy__() : stdgo._internal.sync.Sync_t_readonly.T_readOnly);
         {
-            var __tmp__ = (_read._m != null && _read._m.exists(_key) ? { _0 : _read._m[_key], _1 : true } : { _0 : (null : stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry>), _1 : false }), _e:stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry> = __tmp__._0, _ok:Bool = __tmp__._1;
+            var __tmp__ = (_read._m != null && _read._m.__exists__(_key) ? { _0 : _read._m[_key], _1 : true } : { _0 : (null : stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry>), _1 : false }), _e:stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry> = __tmp__._0, _ok:Bool = __tmp__._1;
             if (_ok) {
                 var __tmp__ = @:check2r _e._tryLoadOrStore(_value), _actual:stdgo.AnyInterface = __tmp__._0, _loaded:Bool = __tmp__._1, _ok:Bool = __tmp__._2;
                 if (_ok) {
@@ -317,7 +317,7 @@ package stdgo._internal.sync;
         @:check2 (@:checkr _m ?? throw "null pointer dereference")._mu.lock();
         _read = @:check2r _m._loadReadOnly()?.__copy__();
         {
-            var __tmp__ = (_read._m != null && _read._m.exists(_key) ? { _0 : _read._m[_key], _1 : true } : { _0 : (null : stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry>), _1 : false }), _e:stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry> = __tmp__._0, _ok:Bool = __tmp__._1;
+            var __tmp__ = (_read._m != null && _read._m.__exists__(_key) ? { _0 : _read._m[_key], _1 : true } : { _0 : (null : stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry>), _1 : false }), _e:stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry> = __tmp__._0, _ok:Bool = __tmp__._1;
             if (_ok) {
                 if (@:check2r _e._unexpungeLocked()) {
                     (@:checkr _m ?? throw "null pointer dereference")._dirty[_key] = _e;
@@ -328,7 +328,7 @@ package stdgo._internal.sync;
                     _loaded = @:tmpset0 __tmp__._1;
                 };
             } else {
-                var __tmp__ = ((@:checkr _m ?? throw "null pointer dereference")._dirty != null && (@:checkr _m ?? throw "null pointer dereference")._dirty.exists(_key) ? { _0 : (@:checkr _m ?? throw "null pointer dereference")._dirty[_key], _1 : true } : { _0 : (null : stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry>), _1 : false }), _e:stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry> = __tmp__._0, _ok:Bool = __tmp__._1;
+                var __tmp__ = ((@:checkr _m ?? throw "null pointer dereference")._dirty != null && (@:checkr _m ?? throw "null pointer dereference")._dirty.__exists__(_key) ? { _0 : (@:checkr _m ?? throw "null pointer dereference")._dirty[_key], _1 : true } : { _0 : (null : stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry>), _1 : false }), _e:stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry> = __tmp__._0, _ok:Bool = __tmp__._1;
                 if (_ok) {
                     {
                         var __tmp__ = @:check2r _e._tryLoadOrStore(_value);
@@ -345,8 +345,8 @@ package stdgo._internal.sync;
                     {
                         final __tmp__0 = _value;
                         final __tmp__1 = false;
-                        _actual = __tmp__0;
-                        _loaded = __tmp__1;
+                        _actual = @:binopAssign __tmp__0;
+                        _loaded = @:binopAssign __tmp__1;
                     };
                 };
             };
@@ -371,18 +371,18 @@ package stdgo._internal.sync;
         @:recv var _m:stdgo.Ref<stdgo._internal.sync.Sync_map_.Map_> = _m;
         var _value = (null : stdgo.AnyInterface), _ok = false;
         var _read = (@:check2r _m._loadReadOnly()?.__copy__() : stdgo._internal.sync.Sync_t_readonly.T_readOnly);
-        var __tmp__ = (_read._m != null && _read._m.exists(_key) ? { _0 : _read._m[_key], _1 : true } : { _0 : (null : stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry>), _1 : false }), _e:stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry> = __tmp__._0, _ok:Bool = __tmp__._1;
+        var __tmp__ = (_read._m != null && _read._m.__exists__(_key) ? { _0 : _read._m[_key], _1 : true } : { _0 : (null : stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry>), _1 : false }), _e:stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry> = __tmp__._0, _ok:Bool = __tmp__._1;
         if ((!_ok && _read._amended : Bool)) {
             @:check2 (@:checkr _m ?? throw "null pointer dereference")._mu.lock();
             _read = @:check2r _m._loadReadOnly()?.__copy__();
             {
-                var __tmp__ = (_read._m != null && _read._m.exists(_key) ? { _0 : _read._m[_key], _1 : true } : { _0 : (null : stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry>), _1 : false });
+                var __tmp__ = (_read._m != null && _read._m.__exists__(_key) ? { _0 : _read._m[_key], _1 : true } : { _0 : (null : stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry>), _1 : false });
                 _e = @:tmpset0 __tmp__._0;
                 _ok = @:tmpset0 __tmp__._1;
             };
             if ((!_ok && _read._amended : Bool)) {
                 {
-                    var __tmp__ = ((@:checkr _m ?? throw "null pointer dereference")._dirty != null && (@:checkr _m ?? throw "null pointer dereference")._dirty.exists(_key) ? { _0 : (@:checkr _m ?? throw "null pointer dereference")._dirty[_key], _1 : true } : { _0 : (null : stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry>), _1 : false });
+                    var __tmp__ = ((@:checkr _m ?? throw "null pointer dereference")._dirty != null && (@:checkr _m ?? throw "null pointer dereference")._dirty.__exists__(_key) ? { _0 : (@:checkr _m ?? throw "null pointer dereference")._dirty[_key], _1 : true } : { _0 : (null : stdgo.Ref<stdgo._internal.sync.Sync_t_entry.T_entry>), _1 : false });
                     _e = @:tmpset0 __tmp__._0;
                     _ok = @:tmpset0 __tmp__._1;
                 };
@@ -399,10 +399,10 @@ package stdgo._internal.sync;
             };
         };
         return {
-            final __tmp__:{ var _0 : stdgo.AnyInterface; var _1 : Bool; } = @:check2r _e._load();
+            final __tmp__ = @:check2r _e._load();
             _value = __tmp__._0;
             _ok = __tmp__._1;
-            __tmp__;
+            { _0 : _value, _1 : _ok };
         };
     }
     @:keep

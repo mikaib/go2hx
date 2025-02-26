@@ -1,0 +1,22 @@
+[
+    {
+        "module": "github.com/dlclark/regexp2",
+        "excludes": [
+            "TestMarshal",
+            "TestUnMarshal",
+            "TestPcre_Basics",
+            "TestIncorrectTimeoutError",
+            "TestStopTimeoutClock"
+        ]
+    },
+    {
+        "module": "github.com/dlclark/regexp2",
+        "excludes": [
+            "TestMarshal",
+            "TestUnMarshal",
+            "TestPcre_Basics",
+            "TestIncorrectTimeoutError",
+            "TestStopTimeoutClock"
+        ]
+    }
+]

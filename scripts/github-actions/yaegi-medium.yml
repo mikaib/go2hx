@@ -1,4 +1,4 @@
-timeout-minutes: 25
+timeout-minutes: 75
 needs: setup
 runs-on: ubuntu-latest
 steps:
@@ -41,8 +41,6 @@ steps:
     run: go run ./scripts/sortTests ci
   - name: Run yaegi medium tests
     run: npx haxe tests/tests.hxml -D yaegi -D ci -D mode=medium -D runnerCount=${{ env.CORES }} -D targets=::target:: #-D hxb
-  - name: Report results
-    run: npx haxe tests/tests.hxml -D yaegi -D ci -D mode=medium -D report -D runnerCount=${{ env.CORES }} -D targets=::target:: #-D hxb
   - name: Remove stdgo folder
     run: rm -r -d stdgo
   - name: Remove _internal folder
@@ -54,3 +52,4 @@ steps:
         add: ./tests
         pull: --rebase --autostash
     continue-on-error: true
+    if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'

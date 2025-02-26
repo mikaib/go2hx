@@ -29,7 +29,7 @@ function _signingParamsForPublicKey(_pub:stdgo.AnyInterface, _requestedSigAlgo:s
                     };
                 };
             } else if (stdgo.Go.typeEquals((__type__ : stdgo._internal.crypto.ed25519.Ed25519_publickey.PublicKey))) {
-                var _pub:stdgo._internal.crypto.ed25519.Ed25519_publickey.PublicKey = __type__ == null ? new stdgo._internal.crypto.ed25519.Ed25519_publickey.PublicKey(0, 0) : __type__.__underlying__() == null ? new stdgo._internal.crypto.ed25519.Ed25519_publickey.PublicKey(0, 0) : __type__ == null ? new stdgo._internal.crypto.ed25519.Ed25519_publickey.PublicKey(0, 0) : __type__.__underlying__().value;
+                var _pub:stdgo._internal.crypto.ed25519.Ed25519_publickey.PublicKey = __type__ == null ? (new stdgo._internal.crypto.ed25519.Ed25519_publickey.PublicKey(0, 0) : stdgo._internal.crypto.ed25519.Ed25519_publickey.PublicKey) : __type__.__underlying__() == null ? (new stdgo._internal.crypto.ed25519.Ed25519_publickey.PublicKey(0, 0) : stdgo._internal.crypto.ed25519.Ed25519_publickey.PublicKey) : __type__ == null ? (new stdgo._internal.crypto.ed25519.Ed25519_publickey.PublicKey(0, 0) : stdgo._internal.crypto.ed25519.Ed25519_publickey.PublicKey) : __type__.__underlying__().value;
                 _pubType = (4 : stdgo._internal.crypto.x509.X509_publickeyalgorithm.PublicKeyAlgorithm);
                 _sigAlgo.algorithm = stdgo._internal.crypto.x509.X509__oidsignatureed25519._oidSignatureEd25519;
             } else {
@@ -53,8 +53,8 @@ function _signingParamsForPublicKey(_pub:stdgo.AnyInterface, _requestedSigAlgo:s
                 {
                     final __tmp__0 = _details._oid;
                     final __tmp__1 = _details._hash;
-                    _sigAlgo.algorithm = __tmp__0;
-                    _hashFunc = __tmp__1;
+                    _sigAlgo.algorithm = @:binopAssign __tmp__0;
+                    _hashFunc = @:binopAssign __tmp__1;
                 };
                 if (((_hashFunc == (0u32 : stdgo._internal.crypto.Crypto_hash.Hash)) && (_pubType != (4 : stdgo._internal.crypto.x509.X509_publickeyalgorithm.PublicKeyAlgorithm)) : Bool)) {
                     _err = stdgo._internal.errors.Errors_new_.new_(("x509: cannot sign with hash function requested" : stdgo.GoString));

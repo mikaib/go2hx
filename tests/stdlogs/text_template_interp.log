@@ -1,6 +1,24 @@
-[ERROR] (macro) ./stdgo/_internal/text/template/Template_template_static_extension.hx:12: characters 104-149
+[ERROR] ./stdgo/_internal/sync/atomic_/Atomic__int32_static_extension.hx:5: characters 133-138
 
- 12 |             if ((((_old != null && ((_old : Dynamic).__nil__ == null || !(_old : Dynamic).__nil__)) && stdgo._internal.text.template.Template__parse._parse.isEmptyTree(stdgo.Go.asInterface((@:checkr _tree ?? throw "null pointer dereference").root)) : Bool) && ((@:checkr _old ?? throw "null pointer dereference").tree != null && (((@:checkr _old ?? throw "null pointer dereference").tree : Dynamic).__nil__ == null || !((@:checkr _old ?? throw "null pointer dereference").tree : Dynamic).__nil__)) : Bool)) {
-    |                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    | Type not found : stdgo._internal.text.template.Template__parse
+ 5 |     static public function add( _x:stdgo.Ref<stdgo._internal.sync.atomic_.Atomic__int32.Int32>, _delta:stdgo.GoInt32):stdgo.GoInt32 throw "Int32:sync.atomic_.add is not yet implemented";
+   |                                                                                                                                     ^^^^^
+   | Uncaught exception Int32:sync.atomic_.add is not yet implemented
+
+    ->  ./stdgo/_internal/sync/Sync_rwmutex_static_extension.hx:149: characters 23-111
+
+    149 |         if ((@:check2 (@:checkr _rw ?? throw "null pointer dereference")._readerCount.add((1 : stdgo.GoInt32)) < (0 : stdgo.GoInt32) : Bool)) {
+        |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        | Called from here
+
+    ->  ./stdgo/_internal/text/template/Template_template_static_extension.hx:24: characters 18-92
+
+     24 |         @:check2 (@:checkr _t ?? throw "null pointer dereference")._common._muFuncs.rLock();
+        |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        | Called from here
+
+    ->  ./stdgo/_internal/text/template/Template__tval.hx:88: characters 33-147
+
+     88 |         var __tmp__ = @:check2r stdgo._internal.text.template.Template_new_.new_(("x" : stdgo.GoString)).parse(("test template" : stdgo.GoString));
+        |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        | Called from here
 

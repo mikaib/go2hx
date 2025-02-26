@@ -17,21 +17,29 @@ private function set_commandLine(v:FlagSet):FlagSet {
 var usage(get, set) : () -> Void;
 private function get_usage():() -> Void return () -> stdgo._internal.flag.Flag_usage.usage();
 private function set_usage(v:() -> Void):() -> Void {
-        stdgo._internal.flag.Flag_usage.usage = v;
+        stdgo._internal.flag.Flag_usage.usage = () -> v();
         return v;
     }
 var defaultUsage(get, set) : () -> Void;
 private function get_defaultUsage():() -> Void return () -> stdgo._internal.flag.Flag_defaultusage.defaultUsage();
 private function set_defaultUsage(v:() -> Void):() -> Void {
-        stdgo._internal.flag.Flag_defaultusage.defaultUsage = v;
+        stdgo._internal.flag.Flag_defaultusage.defaultUsage = () -> v();
         return v;
     }
-class T_boolFlag_static_extension {
+@:dox(hide) class T_boolFlag_static_extension {
     static public function isBoolFlag(t:stdgo._internal.flag.Flag_t_boolflag.T_boolFlag):Bool {
         return stdgo._internal.flag.Flag_t_boolflag_static_extension.T_boolFlag_static_extension.isBoolFlag(t);
     }
 }
-typedef T_boolFlag = stdgo._internal.flag.Flag_t_boolflag.T_boolFlag;
+@:interface @:dox(hide) @:forward abstract T_boolFlag(stdgo._internal.flag.Flag_t_boolflag.T_boolFlag) from stdgo._internal.flag.Flag_t_boolflag.T_boolFlag to stdgo._internal.flag.Flag_t_boolflag.T_boolFlag {
+    @:from
+    static function fromHaxeInterface(x:{ function isBoolFlag():Bool; function set(_0:String):stdgo.Error; function string():String; }):T_boolFlag {
+        var __f__:Void -> stdgo.AnyInterface = null;
+        final y:T_boolFlag = { isBoolFlag : () -> x.isBoolFlag(), set : _0 -> x.set(_0), string : () -> x.string(), __underlying__ : () -> __f__() };
+        __f__ = () -> stdgo.Go.toInterface(y);
+        return y;
+    }
+}
 class Value_static_extension {
     static public function set(t:stdgo._internal.flag.Flag_value.Value, _0:String):stdgo.Error {
         final _0 = (_0 : stdgo.GoString);
@@ -41,14 +49,30 @@ class Value_static_extension {
         return stdgo._internal.flag.Flag_value_static_extension.Value_static_extension.string(t);
     }
 }
-typedef Value = stdgo._internal.flag.Flag_value.Value;
+@:interface @:forward abstract Value(stdgo._internal.flag.Flag_value.Value) from stdgo._internal.flag.Flag_value.Value to stdgo._internal.flag.Flag_value.Value {
+    @:from
+    static function fromHaxeInterface(x:{ function string():String; function set(_0:String):stdgo.Error; }):Value {
+        var __f__:Void -> stdgo.AnyInterface = null;
+        final y:Value = { string : () -> x.string(), set : _0 -> x.set(_0), __underlying__ : () -> __f__() };
+        __f__ = () -> stdgo.Go.toInterface(y);
+        return y;
+    }
+}
 class Getter_static_extension {
     static public function get(t:stdgo._internal.flag.Flag_getter.Getter):stdgo.AnyInterface {
         return stdgo._internal.flag.Flag_getter_static_extension.Getter_static_extension.get(t);
     }
 }
-typedef Getter = stdgo._internal.flag.Flag_getter.Getter;
-@:structInit @:using(stdgo.flag.Flag.T_textValue_static_extension) abstract T_textValue(stdgo._internal.flag.Flag_t_textvalue.T_textValue) from stdgo._internal.flag.Flag_t_textvalue.T_textValue to stdgo._internal.flag.Flag_t_textvalue.T_textValue {
+@:interface @:forward abstract Getter(stdgo._internal.flag.Flag_getter.Getter) from stdgo._internal.flag.Flag_getter.Getter to stdgo._internal.flag.Flag_getter.Getter {
+    @:from
+    static function fromHaxeInterface(x:{ function get():stdgo.AnyInterface; function set(_0:String):stdgo.Error; function string():String; }):Getter {
+        var __f__:Void -> stdgo.AnyInterface = null;
+        final y:Getter = { get : () -> x.get(), set : _0 -> x.set(_0), string : () -> x.string(), __underlying__ : () -> __f__() };
+        __f__ = () -> stdgo.Go.toInterface(y);
+        return y;
+    }
+}
+@:structInit @:using(stdgo.flag.Flag.T_textValue_static_extension) @:dox(hide) abstract T_textValue(stdgo._internal.flag.Flag_t_textvalue.T_textValue) from stdgo._internal.flag.Flag_t_textvalue.T_textValue to stdgo._internal.flag.Flag_t_textvalue.T_textValue {
     public var _p(get, set) : stdgo._internal.encoding.Encoding_textunmarshaler.TextUnmarshaler;
     function get__p():stdgo._internal.encoding.Encoding_textunmarshaler.TextUnmarshaler return this._p;
     function set__p(v:stdgo._internal.encoding.Encoding_textunmarshaler.TextUnmarshaler):stdgo._internal.encoding.Encoding_textunmarshaler.TextUnmarshaler {
@@ -63,7 +87,7 @@ typedef Getter = stdgo._internal.flag.Flag_getter.Getter;
     public var usage(get, set) : () -> Void;
     function get_usage():() -> Void return () -> this.usage();
     function set_usage(v:() -> Void):() -> Void {
-        this.usage = v;
+        this.usage = () -> v();
         return v;
     }
     public var _name(get, set) : String;
@@ -78,16 +102,40 @@ typedef Getter = stdgo._internal.flag.Flag_getter.Getter;
         this._parsed = v;
         return v;
     }
-    public var _actual(get, set) : stdgo.GoMap<stdgo.GoString, stdgo.Ref<stdgo._internal.flag.Flag_flag.Flag>>;
-    function get__actual():stdgo.GoMap<stdgo.GoString, stdgo.Ref<stdgo._internal.flag.Flag_flag.Flag>> return this._actual;
-    function set__actual(v:stdgo.GoMap<stdgo.GoString, stdgo.Ref<stdgo._internal.flag.Flag_flag.Flag>>):stdgo.GoMap<stdgo.GoString, stdgo.Ref<stdgo._internal.flag.Flag_flag.Flag>> {
-        this._actual = (v : stdgo.GoMap<stdgo.GoString, stdgo.Ref<stdgo._internal.flag.Flag_flag.Flag>>);
+    public var _actual(get, set) : Map<String, Flag_>;
+    function get__actual():Map<String, Flag_> return {
+        final __obj__:Map<String, Flag_> = [];
+        for (key => value in this._actual) {
+            __obj__[key] = value;
+        };
+        __obj__;
+    };
+    function set__actual(v:Map<String, Flag_>):Map<String, Flag_> {
+        this._actual = {
+            final __obj__ = new stdgo.GoMap<stdgo.GoString, stdgo.Ref<stdgo._internal.flag.Flag_flag.Flag>>();
+            for (key => value in v) {
+                __obj__[(key : stdgo.GoString)] = (value : stdgo.Ref<stdgo._internal.flag.Flag_flag.Flag>);
+            };
+            __obj__;
+        };
         return v;
     }
-    public var _formal(get, set) : stdgo.GoMap<stdgo.GoString, stdgo.Ref<stdgo._internal.flag.Flag_flag.Flag>>;
-    function get__formal():stdgo.GoMap<stdgo.GoString, stdgo.Ref<stdgo._internal.flag.Flag_flag.Flag>> return this._formal;
-    function set__formal(v:stdgo.GoMap<stdgo.GoString, stdgo.Ref<stdgo._internal.flag.Flag_flag.Flag>>):stdgo.GoMap<stdgo.GoString, stdgo.Ref<stdgo._internal.flag.Flag_flag.Flag>> {
-        this._formal = (v : stdgo.GoMap<stdgo.GoString, stdgo.Ref<stdgo._internal.flag.Flag_flag.Flag>>);
+    public var _formal(get, set) : Map<String, Flag_>;
+    function get__formal():Map<String, Flag_> return {
+        final __obj__:Map<String, Flag_> = [];
+        for (key => value in this._formal) {
+            __obj__[key] = value;
+        };
+        __obj__;
+    };
+    function set__formal(v:Map<String, Flag_>):Map<String, Flag_> {
+        this._formal = {
+            final __obj__ = new stdgo.GoMap<stdgo.GoString, stdgo.Ref<stdgo._internal.flag.Flag_flag.Flag>>();
+            for (key => value in v) {
+                __obj__[(key : stdgo.GoString)] = (value : stdgo.Ref<stdgo._internal.flag.Flag_flag.Flag>);
+            };
+            __obj__;
+        };
         return v;
     }
     public var _args(get, set) : Array<String>;
@@ -108,13 +156,43 @@ typedef Getter = stdgo._internal.flag.Flag_getter.Getter;
         this._output = v;
         return v;
     }
-    public var _undef(get, set) : stdgo.GoMap<stdgo.GoString, stdgo.GoString>;
-    function get__undef():stdgo.GoMap<stdgo.GoString, stdgo.GoString> return this._undef;
-    function set__undef(v:stdgo.GoMap<stdgo.GoString, stdgo.GoString>):stdgo.GoMap<stdgo.GoString, stdgo.GoString> {
-        this._undef = (v : stdgo.GoMap<stdgo.GoString, stdgo.GoString>);
+    public var _undef(get, set) : Map<String, String>;
+    function get__undef():Map<String, String> return {
+        final __obj__:Map<String, String> = [];
+        for (key => value in this._undef) {
+            __obj__[key] = value;
+        };
+        __obj__;
+    };
+    function set__undef(v:Map<String, String>):Map<String, String> {
+        this._undef = {
+            final __obj__ = new stdgo.GoMap<stdgo.GoString, stdgo.GoString>();
+            for (key => value in v) {
+                __obj__[(key : stdgo.GoString)] = (value : stdgo.GoString);
+            };
+            __obj__;
+        };
         return v;
     }
-    public function new(?usage:() -> Void, ?_name:String, ?_parsed:Bool, ?_actual:stdgo.GoMap<stdgo.GoString, stdgo.Ref<stdgo._internal.flag.Flag_flag.Flag>>, ?_formal:stdgo.GoMap<stdgo.GoString, stdgo.Ref<stdgo._internal.flag.Flag_flag.Flag>>, ?_args:Array<String>, ?_errorHandling:ErrorHandling, ?_output:stdgo._internal.io.Io_writer.Writer, ?_undef:stdgo.GoMap<stdgo.GoString, stdgo.GoString>) this = new stdgo._internal.flag.Flag_flagset.FlagSet(usage, (_name : stdgo.GoString), _parsed, (_actual : stdgo.GoMap<stdgo.GoString, stdgo.Ref<stdgo._internal.flag.Flag_flag.Flag>>), (_formal : stdgo.GoMap<stdgo.GoString, stdgo.Ref<stdgo._internal.flag.Flag_flag.Flag>>), ([for (i in _args) (i : stdgo.GoString)] : stdgo.Slice<stdgo.GoString>), _errorHandling, _output, (_undef : stdgo.GoMap<stdgo.GoString, stdgo.GoString>));
+    public function new(?usage:() -> Void, ?_name:String, ?_parsed:Bool, ?_actual:Map<String, Flag_>, ?_formal:Map<String, Flag_>, ?_args:Array<String>, ?_errorHandling:ErrorHandling, ?_output:stdgo._internal.io.Io_writer.Writer, ?_undef:Map<String, String>) this = new stdgo._internal.flag.Flag_flagset.FlagSet(() -> usage(), (_name : stdgo.GoString), _parsed, {
+        final __obj__ = new stdgo.GoMap<stdgo.GoString, stdgo.Ref<stdgo._internal.flag.Flag_flag.Flag>>();
+        for (key => value in _actual) {
+            __obj__[(key : stdgo.GoString)] = (value : stdgo.Ref<stdgo._internal.flag.Flag_flag.Flag>);
+        };
+        __obj__;
+    }, {
+        final __obj__ = new stdgo.GoMap<stdgo.GoString, stdgo.Ref<stdgo._internal.flag.Flag_flag.Flag>>();
+        for (key => value in _formal) {
+            __obj__[(key : stdgo.GoString)] = (value : stdgo.Ref<stdgo._internal.flag.Flag_flag.Flag>);
+        };
+        __obj__;
+    }, ([for (i in _args) (i : stdgo.GoString)] : stdgo.Slice<stdgo.GoString>), _errorHandling, _output, {
+        final __obj__ = new stdgo.GoMap<stdgo.GoString, stdgo.GoString>();
+        for (key => value in _undef) {
+            __obj__[(key : stdgo.GoString)] = (value : stdgo.GoString);
+        };
+        __obj__;
+    });
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
@@ -147,19 +225,19 @@ typedef Getter = stdgo._internal.flag.Flag_getter.Getter;
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-typedef T_boolValue = stdgo._internal.flag.Flag_t_boolvalue.T_boolValue;
-typedef T_intValue = stdgo._internal.flag.Flag_t_intvalue.T_intValue;
-typedef T_int64Value = stdgo._internal.flag.Flag_t_int64value.T_int64Value;
-typedef T_uintValue = stdgo._internal.flag.Flag_t_uintvalue.T_uintValue;
-typedef T_uint64Value = stdgo._internal.flag.Flag_t_uint64value.T_uint64Value;
-typedef T_stringValue = stdgo._internal.flag.Flag_t_stringvalue.T_stringValue;
-typedef T_float64Value = stdgo._internal.flag.Flag_t_float64value.T_float64Value;
-typedef T_durationValue = stdgo._internal.flag.Flag_t_durationvalue.T_durationValue;
-typedef T_funcValue = stdgo._internal.flag.Flag_t_funcvalue.T_funcValue;
-typedef T_boolFuncValue = stdgo._internal.flag.Flag_t_boolfuncvalue.T_boolFuncValue;
+@:dox(hide) typedef T_boolValue = stdgo._internal.flag.Flag_t_boolvalue.T_boolValue;
+@:dox(hide) typedef T_intValue = stdgo._internal.flag.Flag_t_intvalue.T_intValue;
+@:dox(hide) typedef T_int64Value = stdgo._internal.flag.Flag_t_int64value.T_int64Value;
+@:dox(hide) typedef T_uintValue = stdgo._internal.flag.Flag_t_uintvalue.T_uintValue;
+@:dox(hide) typedef T_uint64Value = stdgo._internal.flag.Flag_t_uint64value.T_uint64Value;
+@:dox(hide) typedef T_stringValue = stdgo._internal.flag.Flag_t_stringvalue.T_stringValue;
+@:dox(hide) typedef T_float64Value = stdgo._internal.flag.Flag_t_float64value.T_float64Value;
+@:dox(hide) typedef T_durationValue = stdgo._internal.flag.Flag_t_durationvalue.T_durationValue;
+@:dox(hide) typedef T_funcValue = stdgo._internal.flag.Flag_t_funcvalue.T_funcValue;
+@:dox(hide) typedef T_boolFuncValue = stdgo._internal.flag.Flag_t_boolfuncvalue.T_boolFuncValue;
 typedef ErrorHandling = stdgo._internal.flag.Flag_errorhandling.ErrorHandling;
-typedef T_textValuePointer = stdgo._internal.flag.Flag_t_textvaluepointer.T_textValuePointer;
-class T_textValue_static_extension {
+@:dox(hide) typedef T_textValuePointer = stdgo._internal.flag.Flag_t_textvaluepointer.T_textValuePointer;
+@:dox(hide) class T_textValue_static_extension {
     static public function string(_v:T_textValue):String {
         return stdgo._internal.flag.Flag_t_textvalue_static_extension.T_textValue_static_extension.string(_v);
     }
@@ -214,18 +292,18 @@ class FlagSet_static_extension {
         final _usage = (_usage : stdgo.GoString);
         stdgo._internal.flag.Flag_flagset_static_extension.FlagSet_static_extension.var_(_f, _value, _name, _usage);
     }
-    static public function boolFunc(_f:FlagSet, _name:String, _usage:String, _fn:stdgo.GoString -> stdgo.Error):Void {
+    static public function boolFunc(_f:FlagSet, _name:String, _usage:String, _fn:String -> stdgo.Error):Void {
         final _f = (_f : stdgo.Ref<stdgo._internal.flag.Flag_flagset.FlagSet>);
         final _name = (_name : stdgo.GoString);
         final _usage = (_usage : stdgo.GoString);
-        final _fn = _fn;
+        final _fn = _0 -> _fn((_0 : stdgo.GoString));
         stdgo._internal.flag.Flag_flagset_static_extension.FlagSet_static_extension.boolFunc(_f, _name, _usage, _fn);
     }
-    static public function func(_f:FlagSet, _name:String, _usage:String, _fn:stdgo.GoString -> stdgo.Error):Void {
+    static public function func(_f:FlagSet, _name:String, _usage:String, _fn:String -> stdgo.Error):Void {
         final _f = (_f : stdgo.Ref<stdgo._internal.flag.Flag_flagset.FlagSet>);
         final _name = (_name : stdgo.GoString);
         final _usage = (_usage : stdgo.GoString);
-        final _fn = _fn;
+        final _fn = _0 -> _fn((_0 : stdgo.GoString));
         stdgo._internal.flag.Flag_flagset_static_extension.FlagSet_static_extension.func(_f, _name, _usage, _fn);
     }
     static public function textVar(_f:FlagSet, _p:stdgo._internal.encoding.Encoding_textunmarshaler.TextUnmarshaler, _name:String, _value:stdgo._internal.encoding.Encoding_textmarshaler.TextMarshaler, _usage:String):Void {
@@ -384,14 +462,14 @@ class FlagSet_static_extension {
         final _name = (_name : stdgo.GoString);
         return stdgo._internal.flag.Flag_flagset_static_extension.FlagSet_static_extension.lookup(_f, _name);
     }
-    static public function visit(_f:FlagSet, _fn:stdgo.Ref<stdgo._internal.flag.Flag_flag.Flag> -> Void):Void {
+    static public function visit(_f:FlagSet, _fn:Flag_ -> Void):Void {
         final _f = (_f : stdgo.Ref<stdgo._internal.flag.Flag_flagset.FlagSet>);
-        final _fn = _fn;
+        final _fn = _0 -> _fn((_0 : stdgo.Ref<stdgo._internal.flag.Flag_flag.Flag>));
         stdgo._internal.flag.Flag_flagset_static_extension.FlagSet_static_extension.visit(_f, _fn);
     }
-    static public function visitAll(_f:FlagSet, _fn:stdgo.Ref<stdgo._internal.flag.Flag_flag.Flag> -> Void):Void {
+    static public function visitAll(_f:FlagSet, _fn:Flag_ -> Void):Void {
         final _f = (_f : stdgo.Ref<stdgo._internal.flag.Flag_flagset.FlagSet>);
-        final _fn = _fn;
+        final _fn = _0 -> _fn((_0 : stdgo.Ref<stdgo._internal.flag.Flag_flag.Flag>));
         stdgo._internal.flag.Flag_flagset_static_extension.FlagSet_static_extension.visitAll(_f, _fn);
     }
     static public function setOutput(_f:FlagSet, _output:stdgo._internal.io.Io_writer.Writer):Void {
@@ -415,8 +493,8 @@ typedef FlagPointer = stdgo._internal.flag.Flag_flagpointer.FlagPointer;
 class Flag_static_extension {
 
 }
-typedef T_boolValuePointer = stdgo._internal.flag.Flag_t_boolvaluepointer.T_boolValuePointer;
-class T_boolValue_static_extension {
+@:dox(hide) typedef T_boolValuePointer = stdgo._internal.flag.Flag_t_boolvaluepointer.T_boolValuePointer;
+@:dox(hide) class T_boolValue_static_extension {
     static public function isBoolFlag(_b:stdgo.Pointer<T_boolValue>):Bool {
         return stdgo._internal.flag.Flag_t_boolvalue_static_extension.T_boolValue_static_extension.isBoolFlag(_b);
     }
@@ -431,8 +509,8 @@ class T_boolValue_static_extension {
         return stdgo._internal.flag.Flag_t_boolvalue_static_extension.T_boolValue_static_extension.set(_b, _s);
     }
 }
-typedef T_intValuePointer = stdgo._internal.flag.Flag_t_intvaluepointer.T_intValuePointer;
-class T_intValue_static_extension {
+@:dox(hide) typedef T_intValuePointer = stdgo._internal.flag.Flag_t_intvaluepointer.T_intValuePointer;
+@:dox(hide) class T_intValue_static_extension {
     static public function string(_i:stdgo.Pointer<T_intValue>):String {
         return stdgo._internal.flag.Flag_t_intvalue_static_extension.T_intValue_static_extension.string(_i);
     }
@@ -444,8 +522,8 @@ class T_intValue_static_extension {
         return stdgo._internal.flag.Flag_t_intvalue_static_extension.T_intValue_static_extension.set(_i, _s);
     }
 }
-typedef T_int64ValuePointer = stdgo._internal.flag.Flag_t_int64valuepointer.T_int64ValuePointer;
-class T_int64Value_static_extension {
+@:dox(hide) typedef T_int64ValuePointer = stdgo._internal.flag.Flag_t_int64valuepointer.T_int64ValuePointer;
+@:dox(hide) class T_int64Value_static_extension {
     static public function string(_i:stdgo.Pointer<T_int64Value>):String {
         return stdgo._internal.flag.Flag_t_int64value_static_extension.T_int64Value_static_extension.string(_i);
     }
@@ -457,8 +535,8 @@ class T_int64Value_static_extension {
         return stdgo._internal.flag.Flag_t_int64value_static_extension.T_int64Value_static_extension.set(_i, _s);
     }
 }
-typedef T_uintValuePointer = stdgo._internal.flag.Flag_t_uintvaluepointer.T_uintValuePointer;
-class T_uintValue_static_extension {
+@:dox(hide) typedef T_uintValuePointer = stdgo._internal.flag.Flag_t_uintvaluepointer.T_uintValuePointer;
+@:dox(hide) class T_uintValue_static_extension {
     static public function string(_i:stdgo.Pointer<T_uintValue>):String {
         return stdgo._internal.flag.Flag_t_uintvalue_static_extension.T_uintValue_static_extension.string(_i);
     }
@@ -470,8 +548,8 @@ class T_uintValue_static_extension {
         return stdgo._internal.flag.Flag_t_uintvalue_static_extension.T_uintValue_static_extension.set(_i, _s);
     }
 }
-typedef T_uint64ValuePointer = stdgo._internal.flag.Flag_t_uint64valuepointer.T_uint64ValuePointer;
-class T_uint64Value_static_extension {
+@:dox(hide) typedef T_uint64ValuePointer = stdgo._internal.flag.Flag_t_uint64valuepointer.T_uint64ValuePointer;
+@:dox(hide) class T_uint64Value_static_extension {
     static public function string(_i:stdgo.Pointer<T_uint64Value>):String {
         return stdgo._internal.flag.Flag_t_uint64value_static_extension.T_uint64Value_static_extension.string(_i);
     }
@@ -483,8 +561,8 @@ class T_uint64Value_static_extension {
         return stdgo._internal.flag.Flag_t_uint64value_static_extension.T_uint64Value_static_extension.set(_i, _s);
     }
 }
-typedef T_stringValuePointer = stdgo._internal.flag.Flag_t_stringvaluepointer.T_stringValuePointer;
-class T_stringValue_static_extension {
+@:dox(hide) typedef T_stringValuePointer = stdgo._internal.flag.Flag_t_stringvaluepointer.T_stringValuePointer;
+@:dox(hide) class T_stringValue_static_extension {
     static public function string(_s:stdgo.Pointer<T_stringValue>):String {
         return stdgo._internal.flag.Flag_t_stringvalue_static_extension.T_stringValue_static_extension.string(_s);
     }
@@ -496,8 +574,8 @@ class T_stringValue_static_extension {
         return stdgo._internal.flag.Flag_t_stringvalue_static_extension.T_stringValue_static_extension.set(_s, _val);
     }
 }
-typedef T_float64ValuePointer = stdgo._internal.flag.Flag_t_float64valuepointer.T_float64ValuePointer;
-class T_float64Value_static_extension {
+@:dox(hide) typedef T_float64ValuePointer = stdgo._internal.flag.Flag_t_float64valuepointer.T_float64ValuePointer;
+@:dox(hide) class T_float64Value_static_extension {
     static public function string(_f:stdgo.Pointer<T_float64Value>):String {
         return stdgo._internal.flag.Flag_t_float64value_static_extension.T_float64Value_static_extension.string(_f);
     }
@@ -509,8 +587,8 @@ class T_float64Value_static_extension {
         return stdgo._internal.flag.Flag_t_float64value_static_extension.T_float64Value_static_extension.set(_f, _s);
     }
 }
-typedef T_durationValuePointer = stdgo._internal.flag.Flag_t_durationvaluepointer.T_durationValuePointer;
-class T_durationValue_static_extension {
+@:dox(hide) typedef T_durationValuePointer = stdgo._internal.flag.Flag_t_durationvaluepointer.T_durationValuePointer;
+@:dox(hide) class T_durationValue_static_extension {
     static public function string(_d:stdgo.Pointer<T_durationValue>):String {
         return stdgo._internal.flag.Flag_t_durationvalue_static_extension.T_durationValue_static_extension.string(_d);
     }
@@ -522,8 +600,8 @@ class T_durationValue_static_extension {
         return stdgo._internal.flag.Flag_t_durationvalue_static_extension.T_durationValue_static_extension.set(_d, _s);
     }
 }
-typedef T_funcValuePointer = stdgo._internal.flag.Flag_t_funcvaluepointer.T_funcValuePointer;
-class T_funcValue_static_extension {
+@:dox(hide) typedef T_funcValuePointer = stdgo._internal.flag.Flag_t_funcvaluepointer.T_funcValuePointer;
+@:dox(hide) class T_funcValue_static_extension {
     static public function string(_f:T_funcValue):String {
         return stdgo._internal.flag.Flag_t_funcvalue_static_extension.T_funcValue_static_extension.string(_f);
     }
@@ -532,8 +610,8 @@ class T_funcValue_static_extension {
         return stdgo._internal.flag.Flag_t_funcvalue_static_extension.T_funcValue_static_extension.set(_f, _s);
     }
 }
-typedef T_boolFuncValuePointer = stdgo._internal.flag.Flag_t_boolfuncvaluepointer.T_boolFuncValuePointer;
-class T_boolFuncValue_static_extension {
+@:dox(hide) typedef T_boolFuncValuePointer = stdgo._internal.flag.Flag_t_boolfuncvaluepointer.T_boolFuncValuePointer;
+@:dox(hide) class T_boolFuncValue_static_extension {
     static public function isBoolFlag(_f:T_boolFuncValue):Bool {
         return stdgo._internal.flag.Flag_t_boolfuncvalue_static_extension.T_boolFuncValue_static_extension.isBoolFlag(_f);
     }
@@ -636,23 +714,23 @@ class Flag {
         * exit the program.
     **/
     static public inline function resetForTesting(_usage:() -> Void):Void {
-        final _usage = _usage;
+        final _usage = () -> _usage();
         stdgo._internal.flag.Flag_resetfortesting.resetForTesting(_usage);
     }
     /**
         * VisitAll visits the command-line flags in lexicographical order, calling
         * fn for each. It visits all flags, even those not set.
     **/
-    static public inline function visitAll(_fn:stdgo.Ref<stdgo._internal.flag.Flag_flag.Flag> -> Void):Void {
-        final _fn = _fn;
+    static public inline function visitAll(_fn:Flag_ -> Void):Void {
+        final _fn = _0 -> _fn((_0 : stdgo.Ref<stdgo._internal.flag.Flag_flag.Flag>));
         stdgo._internal.flag.Flag_visitall.visitAll(_fn);
     }
     /**
         * Visit visits the command-line flags in lexicographical order, calling fn
         * for each. It visits only those flags that have been set.
     **/
-    static public inline function visit(_fn:stdgo.Ref<stdgo._internal.flag.Flag_flag.Flag> -> Void):Void {
-        final _fn = _fn;
+    static public inline function visit(_fn:Flag_ -> Void):Void {
+        final _fn = _0 -> _fn((_0 : stdgo.Ref<stdgo._internal.flag.Flag_flag.Flag>));
         stdgo._internal.flag.Flag_visit.visit(_fn);
     }
     /**
@@ -918,10 +996,10 @@ class Flag {
         * Each time the flag is seen, fn is called with the value of the flag.
         * If fn returns a non-nil error, it will be treated as a flag value parsing error.
     **/
-    static public inline function func(_name:String, _usage:String, _fn:stdgo.GoString -> stdgo.Error):Void {
+    static public inline function func(_name:String, _usage:String, _fn:String -> stdgo.Error):Void {
         final _name = (_name : stdgo.GoString);
         final _usage = (_usage : stdgo.GoString);
-        final _fn = _fn;
+        final _fn = _0 -> _fn((_0 : stdgo.GoString));
         stdgo._internal.flag.Flag_func.func(_name, _usage, _fn);
     }
     /**
@@ -929,10 +1007,10 @@ class Flag {
         * Each time the flag is seen, fn is called with the value of the flag.
         * If fn returns a non-nil error, it will be treated as a flag value parsing error.
     **/
-    static public inline function boolFunc(_name:String, _usage:String, _fn:stdgo.GoString -> stdgo.Error):Void {
+    static public inline function boolFunc(_name:String, _usage:String, _fn:String -> stdgo.Error):Void {
         final _name = (_name : stdgo.GoString);
         final _usage = (_usage : stdgo.GoString);
-        final _fn = _fn;
+        final _fn = _0 -> _fn((_0 : stdgo.GoString));
         stdgo._internal.flag.Flag_boolfunc.boolFunc(_name, _usage, _fn);
     }
     /**

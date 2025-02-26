@@ -88,6 +88,7 @@ function main() {
 	if (!dryRun) {
 		Main.setup(new Main.InstanceData(), Std.parseInt(runnerCount)); // amount of processes to spawn
 		Main.onComplete = complete;
+		Main.onUnknownExit = close;
 		final timer = new haxe.Timer(100);
 		timer.run = update;
 	}
@@ -99,8 +100,19 @@ private function runReport() {
 	final output:Array<String> = exists ? Json.parse(File.getContent('tests/$testName.json')) : [];
 	if (!exists)
 		throw testName + " not set";
-	final testsJson = Json.parse(File.getContent('tests/sort_$type.json'));
-	var paths:Array<String> = Reflect.field(testsJson, sortMode).map(s -> s.split("\n")[0]);
+	var paths:Array<String> = if (type != "unit") {
+		final testsJson = Json.parse(File.getContent('tests/sort_$type.json'));
+		Reflect.field(testsJson, sortMode).map(s -> s.split("\n")[0]);
+	}else{
+		final dir = "./tests/unit/";
+		for (path in FileSystem.readDirectory(dir)) {
+			path = dir + path;
+			if (FileSystem.isDirectory(path) || path.extension() != "go")
+				continue;
+			tests.push(path);
+		}
+		tests;
+	}
 	var tests:Array<String> = paths.map(s -> toName(s));
 	tests = tests.map(s -> sanatize(s));
 	for (i in 0...output.length) {
@@ -134,7 +146,7 @@ private function runReport() {
 		mdContent.add(File.getContent(paths[i]));
 		mdContent.add('\n```\n');
 	}
-
+	Sys.println('tests/$testName.md');
 	File.saveContent('tests/$testName.md', mdContent.toString());
 }
 

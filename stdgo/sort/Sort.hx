@@ -14,25 +14,33 @@ class Interface_static_extension {
         return stdgo._internal.sort.Sort_interface_static_extension.Interface_static_extension.len(t);
     }
 }
-typedef Interface = stdgo._internal.sort.Sort_interface.Interface;
-@:structInit @:using(stdgo.sort.Sort.T_lessSwap_static_extension) abstract T_lessSwap(stdgo._internal.sort.Sort_t_lessswap.T_lessSwap) from stdgo._internal.sort.Sort_t_lessswap.T_lessSwap to stdgo._internal.sort.Sort_t_lessswap.T_lessSwap {
-    public var less(get, set) : (stdgo.GoInt, stdgo.GoInt) -> Bool;
-    function get_less():(stdgo.GoInt, stdgo.GoInt) -> Bool return (_0, _1) -> this.less(_0, _1);
-    function set_less(v:(stdgo.GoInt, stdgo.GoInt) -> Bool):(stdgo.GoInt, stdgo.GoInt) -> Bool {
-        this.less = v;
+@:interface @:forward abstract Interface(stdgo._internal.sort.Sort_interface.Interface) from stdgo._internal.sort.Sort_interface.Interface to stdgo._internal.sort.Sort_interface.Interface {
+    @:from
+    static function fromHaxeInterface(x:{ function len():StdTypes.Int; function less(_i:StdTypes.Int, _j:StdTypes.Int):Bool; function swap(_i:StdTypes.Int, _j:StdTypes.Int):Void; }):Interface {
+        var __f__:Void -> stdgo.AnyInterface = null;
+        final y:Interface = { len : () -> x.len(), less : (_0, _1) -> x.less(_0, _1), swap : (_0, _1) -> x.swap(_0, _1), __underlying__ : () -> __f__() };
+        __f__ = () -> stdgo.Go.toInterface(y);
+        return y;
+    }
+}
+@:structInit @:using(stdgo.sort.Sort.T_lessSwap_static_extension) @:dox(hide) abstract T_lessSwap(stdgo._internal.sort.Sort_t_lessswap.T_lessSwap) from stdgo._internal.sort.Sort_t_lessswap.T_lessSwap to stdgo._internal.sort.Sort_t_lessswap.T_lessSwap {
+    public var less(get, set) : (StdTypes.Int, StdTypes.Int) -> Bool;
+    function get_less():(StdTypes.Int, StdTypes.Int) -> Bool return (_0, _1) -> this.less(_0, _1);
+    function set_less(v:(StdTypes.Int, StdTypes.Int) -> Bool):(StdTypes.Int, StdTypes.Int) -> Bool {
+        this.less = (_0, _1) -> v((_0 : stdgo.GoInt), (_1 : stdgo.GoInt));
         return v;
     }
-    public var swap(get, set) : (stdgo.GoInt, stdgo.GoInt) -> Void;
-    function get_swap():(stdgo.GoInt, stdgo.GoInt) -> Void return (_0, _1) -> this.swap(_0, _1);
-    function set_swap(v:(stdgo.GoInt, stdgo.GoInt) -> Void):(stdgo.GoInt, stdgo.GoInt) -> Void {
-        this.swap = v;
+    public var swap(get, set) : (StdTypes.Int, StdTypes.Int) -> Void;
+    function get_swap():(StdTypes.Int, StdTypes.Int) -> Void return (_0, _1) -> this.swap(_0, _1);
+    function set_swap(v:(StdTypes.Int, StdTypes.Int) -> Void):(StdTypes.Int, StdTypes.Int) -> Void {
+        this.swap = (_0, _1) -> v((_0 : stdgo.GoInt), (_1 : stdgo.GoInt));
         return v;
     }
-    public function new(?less:(stdgo.GoInt, stdgo.GoInt) -> Bool, ?swap:(stdgo.GoInt, stdgo.GoInt) -> Void) this = new stdgo._internal.sort.Sort_t_lessswap.T_lessSwap(less, swap);
+    public function new(?less:(StdTypes.Int, StdTypes.Int) -> Bool, ?swap:(StdTypes.Int, StdTypes.Int) -> Void) this = new stdgo._internal.sort.Sort_t_lessswap.T_lessSwap((_0, _1) -> less((_0 : stdgo.GoInt), (_1 : stdgo.GoInt)), (_0, _1) -> swap((_0 : stdgo.GoInt), (_1 : stdgo.GoInt)));
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-@:structInit @:using(stdgo.sort.Sort.T_reverse_static_extension) abstract T_reverse(stdgo._internal.sort.Sort_t_reverse.T_reverse) from stdgo._internal.sort.Sort_t_reverse.T_reverse to stdgo._internal.sort.Sort_t_reverse.T_reverse {
+@:structInit @:using(stdgo.sort.Sort.T_reverse_static_extension) @:dox(hide) abstract T_reverse(stdgo._internal.sort.Sort_t_reverse.T_reverse) from stdgo._internal.sort.Sort_t_reverse.T_reverse to stdgo._internal.sort.Sort_t_reverse.T_reverse {
     public var interface_(get, set) : Interface;
     function get_interface_():Interface return this.interface_;
     function set_interface_(v:Interface):Interface {
@@ -43,17 +51,17 @@ typedef Interface = stdgo._internal.sort.Sort_interface.Interface;
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-typedef T_sortedHint = stdgo._internal.sort.Sort_t_sortedhint.T_sortedHint;
-typedef T_xorshift = stdgo._internal.sort.Sort_t_xorshift.T_xorshift;
+@:dox(hide) typedef T_sortedHint = stdgo._internal.sort.Sort_t_sortedhint.T_sortedHint;
+@:dox(hide) typedef T_xorshift = stdgo._internal.sort.Sort_t_xorshift.T_xorshift;
 typedef IntSlice = stdgo._internal.sort.Sort_intslice.IntSlice;
 typedef Float64Slice = stdgo._internal.sort.Sort_float64slice.Float64Slice;
 typedef StringSlice = stdgo._internal.sort.Sort_stringslice.StringSlice;
-typedef T_lessSwapPointer = stdgo._internal.sort.Sort_t_lessswappointer.T_lessSwapPointer;
-class T_lessSwap_static_extension {
+@:dox(hide) typedef T_lessSwapPointer = stdgo._internal.sort.Sort_t_lessswappointer.T_lessSwapPointer;
+@:dox(hide) class T_lessSwap_static_extension {
 
 }
-typedef T_reversePointer = stdgo._internal.sort.Sort_t_reversepointer.T_reversePointer;
-class T_reverse_static_extension {
+@:dox(hide) typedef T_reversePointer = stdgo._internal.sort.Sort_t_reversepointer.T_reversePointer;
+@:dox(hide) class T_reverse_static_extension {
     static public function less(_r:T_reverse, _i:StdTypes.Int, _j:StdTypes.Int):Bool {
         final _i = (_i : stdgo.GoInt);
         final _j = (_j : stdgo.GoInt);
@@ -68,12 +76,12 @@ class T_reverse_static_extension {
         return stdgo._internal.sort.Sort_t_reverse_static_extension.T_reverse_static_extension.len(__self__);
     }
 }
-typedef T_sortedHintPointer = stdgo._internal.sort.Sort_t_sortedhintpointer.T_sortedHintPointer;
-class T_sortedHint_static_extension {
+@:dox(hide) typedef T_sortedHintPointer = stdgo._internal.sort.Sort_t_sortedhintpointer.T_sortedHintPointer;
+@:dox(hide) class T_sortedHint_static_extension {
 
 }
-typedef T_xorshiftPointer = stdgo._internal.sort.Sort_t_xorshiftpointer.T_xorshiftPointer;
-class T_xorshift_static_extension {
+@:dox(hide) typedef T_xorshiftPointer = stdgo._internal.sort.Sort_t_xorshiftpointer.T_xorshiftPointer;
+@:dox(hide) class T_xorshift_static_extension {
     static public function next(_r:stdgo.Pointer<T_xorshift>):haxe.UInt64 {
         return stdgo._internal.sort.Sort_t_xorshift_static_extension.T_xorshift_static_extension.next(_r);
     }
@@ -210,9 +218,9 @@ class Sort {
         * 		fmt.Printf("Your number is %d.\n", answer)
         * 	}
     **/
-    static public inline function search(_n:StdTypes.Int, _f:stdgo.GoInt -> Bool):StdTypes.Int {
+    static public inline function search(_n:StdTypes.Int, _f:StdTypes.Int -> Bool):StdTypes.Int {
         final _n = (_n : stdgo.GoInt);
-        final _f = _f;
+        final _f = _0 -> _f((_0 : stdgo.GoInt));
         return stdgo._internal.sort.Sort_search.search(_n, _f);
     }
     /**
@@ -241,9 +249,9 @@ class Sort {
         * 	    fmt.Printf("%s not found, would insert at %d", target, i)
         * 	}
     **/
-    static public inline function find(_n:StdTypes.Int, _cmp:stdgo.GoInt -> stdgo.GoInt):stdgo.Tuple<StdTypes.Int, Bool> {
+    static public inline function find(_n:StdTypes.Int, _cmp:StdTypes.Int -> StdTypes.Int):stdgo.Tuple<StdTypes.Int, Bool> {
         final _n = (_n : stdgo.GoInt);
-        final _cmp = _cmp;
+        final _cmp = _0 -> _cmp((_0 : stdgo.GoInt));
         return {
             final obj = stdgo._internal.sort.Sort_find.find(_n, _cmp);
             { _0 : obj._0, _1 : obj._1 };
@@ -293,9 +301,9 @@ class Sort {
         * The less function must satisfy the same requirements as
         * the Interface type's Less method.
     **/
-    static public inline function slice(_x:stdgo.AnyInterface, _less:(stdgo.GoInt, stdgo.GoInt) -> Bool):Void {
+    static public inline function slice(_x:stdgo.AnyInterface, _less:(StdTypes.Int, StdTypes.Int) -> Bool):Void {
         final _x = (_x : stdgo.AnyInterface);
-        final _less = _less;
+        final _less = (_0, _1) -> _less((_0 : stdgo.GoInt), (_1 : stdgo.GoInt));
         stdgo._internal.sort.Sort_slice.slice(_x, _less);
     }
     /**
@@ -306,18 +314,18 @@ class Sort {
         * The less function must satisfy the same requirements as
         * the Interface type's Less method.
     **/
-    static public inline function sliceStable(_x:stdgo.AnyInterface, _less:(stdgo.GoInt, stdgo.GoInt) -> Bool):Void {
+    static public inline function sliceStable(_x:stdgo.AnyInterface, _less:(StdTypes.Int, StdTypes.Int) -> Bool):Void {
         final _x = (_x : stdgo.AnyInterface);
-        final _less = _less;
+        final _less = (_0, _1) -> _less((_0 : stdgo.GoInt), (_1 : stdgo.GoInt));
         stdgo._internal.sort.Sort_slicestable.sliceStable(_x, _less);
     }
     /**
         * SliceIsSorted reports whether the slice x is sorted according to the provided less function.
         * It panics if x is not a slice.
     **/
-    static public inline function sliceIsSorted(_x:stdgo.AnyInterface, _less:(stdgo.GoInt, stdgo.GoInt) -> Bool):Bool {
+    static public inline function sliceIsSorted(_x:stdgo.AnyInterface, _less:(StdTypes.Int, StdTypes.Int) -> Bool):Bool {
         final _x = (_x : stdgo.AnyInterface);
-        final _less = _less;
+        final _less = (_0, _1) -> _less((_0 : stdgo.GoInt), (_1 : stdgo.GoInt));
         return stdgo._internal.sort.Sort_sliceissorted.sliceIsSorted(_x, _less);
     }
     /**

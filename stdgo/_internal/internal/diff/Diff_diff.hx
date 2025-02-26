@@ -1,16 +1,15 @@
 package stdgo._internal.internal.diff;
-function diff(_oldName:stdgo.GoString, _old:stdgo.Slice<stdgo.GoUInt8>, _newName:stdgo.GoString, _new:stdgo.Slice<stdgo.GoUInt8>):stdgo.Slice<stdgo.GoUInt8> {
-        if (stdgo._internal.bytes.Bytes_equal.equal(_old, _new)) {
+function diff(_oldName:stdgo.GoString, _old:stdgo.Slice<stdgo.GoUInt8>, _newName:stdgo.GoString, _new_:stdgo.Slice<stdgo.GoUInt8>):stdgo.Slice<stdgo.GoUInt8> {
+        if (stdgo._internal.bytes.Bytes_equal.equal(_old, _new_)) {
             return (null : stdgo.Slice<stdgo.GoUInt8>);
         };
         var _x = stdgo._internal.internal.diff.Diff__lines._lines(_old);
-        var _y = stdgo._internal.internal.diff.Diff__lines._lines(_new);
+        var _y = stdgo._internal.internal.diff.Diff__lines._lines(_new_);
         var _out:stdgo._internal.bytes.Bytes_buffer.Buffer = ({} : stdgo._internal.bytes.Bytes_buffer.Buffer);
         stdgo._internal.fmt.Fmt_fprintf.fprintf(stdgo.Go.asInterface((stdgo.Go.setRef(_out) : stdgo.Ref<stdgo._internal.bytes.Bytes_buffer.Buffer>)), ("diff %s %s\n" : stdgo.GoString), stdgo.Go.toInterface(_oldName), stdgo.Go.toInterface(_newName));
         stdgo._internal.fmt.Fmt_fprintf.fprintf(stdgo.Go.asInterface((stdgo.Go.setRef(_out) : stdgo.Ref<stdgo._internal.bytes.Bytes_buffer.Buffer>)), ("--- %s\n" : stdgo.GoString), stdgo.Go.toInterface(_oldName));
         stdgo._internal.fmt.Fmt_fprintf.fprintf(stdgo.Go.asInterface((stdgo.Go.setRef(_out) : stdgo.Ref<stdgo._internal.bytes.Bytes_buffer.Buffer>)), ("+++ %s\n" : stdgo.GoString), stdgo.Go.toInterface(_newName));
-        var __0:stdgo._internal.internal.diff.Diff_t_pair.T_pair = ({} : stdgo._internal.internal.diff.Diff_t_pair.T_pair), __1:stdgo._internal.internal.diff.Diff_t_pair.T_pair = ({} : stdgo._internal.internal.diff.Diff_t_pair.T_pair), __2:stdgo._internal.internal.diff.Diff_t_pair.T_pair = ({} : stdgo._internal.internal.diff.Diff_t_pair.T_pair), __3:stdgo.Slice<stdgo.GoString> = (null : stdgo.Slice<stdgo.GoString>);
-var _ctext = __3, _count = __2, _chunk = __1, _done = __0;
+        var _done:stdgo._internal.internal.diff.Diff_t_pair.T_pair = ({} : stdgo._internal.internal.diff.Diff_t_pair.T_pair), _chunk:stdgo._internal.internal.diff.Diff_t_pair.T_pair = ({} : stdgo._internal.internal.diff.Diff_t_pair.T_pair), _count:stdgo._internal.internal.diff.Diff_t_pair.T_pair = ({} : stdgo._internal.internal.diff.Diff_t_pair.T_pair), _ctext:stdgo.Slice<stdgo.GoString> = (null : stdgo.Slice<stdgo.GoString>);
         for (__0 => _m in stdgo._internal.internal.diff.Diff__tgs._tgs(_x, _y)) {
             if ((_m._x < _done._x : Bool)) {
                 continue;

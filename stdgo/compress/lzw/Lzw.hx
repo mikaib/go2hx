@@ -1,12 +1,20 @@
 package stdgo.compress.lzw;
 final lSB : Order = stdgo._internal.compress.lzw.Lzw_lsb.lSB;
 final mSB = stdgo._internal.compress.lzw.Lzw_msb.mSB;
-class T_writer_static_extension {
+@:dox(hide) class T_writer_static_extension {
     static public function flush(t:stdgo._internal.compress.lzw.Lzw_t_writer.T_writer):stdgo.Error {
         return stdgo._internal.compress.lzw.Lzw_t_writer_static_extension.T_writer_static_extension.flush(t);
     }
 }
-typedef T_writer = stdgo._internal.compress.lzw.Lzw_t_writer.T_writer;
+@:interface @:dox(hide) @:forward abstract T_writer(stdgo._internal.compress.lzw.Lzw_t_writer.T_writer) from stdgo._internal.compress.lzw.Lzw_t_writer.T_writer to stdgo._internal.compress.lzw.Lzw_t_writer.T_writer {
+    @:from
+    static function fromHaxeInterface(x:{ function flush():stdgo.Error; function writeByte(_0:std.UInt):stdgo.Error; }):T_writer {
+        var __f__:Void -> stdgo.AnyInterface = null;
+        final y:T_writer = { flush : () -> x.flush(), writeByte : _0 -> x.writeByte(_0), __underlying__ : () -> __f__() };
+        __f__ = () -> stdgo.Go.toInterface(y);
+        return y;
+    }
+}
 @:structInit @:using(stdgo.compress.lzw.Lzw.Reader_static_extension) abstract Reader(stdgo._internal.compress.lzw.Lzw_reader.Reader) from stdgo._internal.compress.lzw.Lzw_reader.Reader to stdgo._internal.compress.lzw.Lzw_reader.Reader {
     public var _r(get, set) : stdgo._internal.io.Io_bytereader.ByteReader;
     function get__r():stdgo._internal.io.Io_bytereader.ByteReader return this._r;
@@ -32,10 +40,10 @@ typedef T_writer = stdgo._internal.compress.lzw.Lzw_t_writer.T_writer;
         this._width = (v : stdgo.GoUInt);
         return v;
     }
-    public var _read(get, set) : stdgo.Ref<stdgo._internal.compress.lzw.Lzw_reader.Reader> -> { var _0 : stdgo.GoUInt16; var _1 : stdgo.Error; };
-    function get__read():stdgo.Ref<stdgo._internal.compress.lzw.Lzw_reader.Reader> -> { var _0 : stdgo.GoUInt16; var _1 : stdgo.Error; } return _0 -> this._read(_0);
-    function set__read(v:stdgo.Ref<stdgo._internal.compress.lzw.Lzw_reader.Reader> -> { var _0 : stdgo.GoUInt16; var _1 : stdgo.Error; }):stdgo.Ref<stdgo._internal.compress.lzw.Lzw_reader.Reader> -> { var _0 : stdgo.GoUInt16; var _1 : stdgo.Error; } {
-        this._read = v;
+    public var _read(get, set) : Reader -> stdgo.Tuple<std.UInt, stdgo.Error>;
+    function get__read():Reader -> stdgo.Tuple<std.UInt, stdgo.Error> return _0 -> this._read(_0);
+    function set__read(v:Reader -> stdgo.Tuple<std.UInt, stdgo.Error>):Reader -> stdgo.Tuple<std.UInt, stdgo.Error> {
+        this._read = _0 -> v((_0 : stdgo.Ref<stdgo._internal.compress.lzw.Lzw_reader.Reader>));
         return v;
     }
     public var _litWidth(get, set) : StdTypes.Int;
@@ -110,12 +118,12 @@ typedef T_writer = stdgo._internal.compress.lzw.Lzw_t_writer.T_writer;
         this._toRead = ([for (i in v) (i : stdgo.GoUInt8)] : stdgo.Slice<stdgo.GoUInt8>);
         return v;
     }
-    public function new(?_r:stdgo._internal.io.Io_bytereader.ByteReader, ?_bits:std.UInt, ?_nBits:std.UInt, ?_width:std.UInt, ?_read:stdgo.Ref<stdgo._internal.compress.lzw.Lzw_reader.Reader> -> { var _0 : stdgo.GoUInt16; var _1 : stdgo.Error; }, ?_litWidth:StdTypes.Int, ?_err:stdgo.Error, ?_clear:std.UInt, ?_eof:std.UInt, ?_hi:std.UInt, ?_overflow:std.UInt, ?_last:std.UInt, ?_suffix:haxe.ds.Vector<std.UInt>, ?_prefix:haxe.ds.Vector<std.UInt>, ?_output:haxe.ds.Vector<std.UInt>, ?_o:StdTypes.Int, ?_toRead:Array<std.UInt>) this = new stdgo._internal.compress.lzw.Lzw_reader.Reader(
+    public function new(?_r:stdgo._internal.io.Io_bytereader.ByteReader, ?_bits:std.UInt, ?_nBits:std.UInt, ?_width:std.UInt, ?_read:Reader -> stdgo.Tuple<std.UInt, stdgo.Error>, ?_litWidth:StdTypes.Int, ?_err:stdgo.Error, ?_clear:std.UInt, ?_eof:std.UInt, ?_hi:std.UInt, ?_overflow:std.UInt, ?_last:std.UInt, ?_suffix:haxe.ds.Vector<std.UInt>, ?_prefix:haxe.ds.Vector<std.UInt>, ?_output:haxe.ds.Vector<std.UInt>, ?_o:StdTypes.Int, ?_toRead:Array<std.UInt>) this = new stdgo._internal.compress.lzw.Lzw_reader.Reader(
 _r,
 (_bits : stdgo.GoUInt32),
 (_nBits : stdgo.GoUInt),
 (_width : stdgo.GoUInt),
-_read,
+_0 -> _read((_0 : stdgo.Ref<stdgo._internal.compress.lzw.Lzw_reader.Reader>)),
 (_litWidth : stdgo.GoInt),
 (_err : stdgo.Error),
 (_clear : stdgo.GoUInt16),
@@ -144,10 +152,10 @@ _read,
         this._order = v;
         return v;
     }
-    public var _write(get, set) : (stdgo.Ref<stdgo._internal.compress.lzw.Lzw_writer.Writer>, stdgo.GoUInt32) -> stdgo.Error;
-    function get__write():(stdgo.Ref<stdgo._internal.compress.lzw.Lzw_writer.Writer>, stdgo.GoUInt32) -> stdgo.Error return (_0, _1) -> this._write(_0, _1);
-    function set__write(v:(stdgo.Ref<stdgo._internal.compress.lzw.Lzw_writer.Writer>, stdgo.GoUInt32) -> stdgo.Error):(stdgo.Ref<stdgo._internal.compress.lzw.Lzw_writer.Writer>, stdgo.GoUInt32) -> stdgo.Error {
-        this._write = v;
+    public var _write(get, set) : (Writer, std.UInt) -> stdgo.Error;
+    function get__write():(Writer, std.UInt) -> stdgo.Error return (_0, _1) -> this._write(_0, _1);
+    function set__write(v:(Writer, std.UInt) -> stdgo.Error):(Writer, std.UInt) -> stdgo.Error {
+        this._write = (_0, _1) -> v((_0 : stdgo.Ref<stdgo._internal.compress.lzw.Lzw_writer.Writer>), (_1 : stdgo.GoUInt32));
         return v;
     }
     public var _bits(get, set) : std.UInt;
@@ -204,10 +212,10 @@ _read,
         this._table = ([for (i in v) (i : stdgo.GoUInt32)] : stdgo.GoArray<stdgo.GoUInt32>);
         return v;
     }
-    public function new(?_w:T_writer, ?_order:Order, ?_write:(stdgo.Ref<stdgo._internal.compress.lzw.Lzw_writer.Writer>, stdgo.GoUInt32) -> stdgo.Error, ?_bits:std.UInt, ?_nBits:std.UInt, ?_width:std.UInt, ?_litWidth:std.UInt, ?_hi:std.UInt, ?_overflow:std.UInt, ?_savedCode:std.UInt, ?_err:stdgo.Error, ?_table:haxe.ds.Vector<std.UInt>) this = new stdgo._internal.compress.lzw.Lzw_writer.Writer(
+    public function new(?_w:T_writer, ?_order:Order, ?_write:(Writer, std.UInt) -> stdgo.Error, ?_bits:std.UInt, ?_nBits:std.UInt, ?_width:std.UInt, ?_litWidth:std.UInt, ?_hi:std.UInt, ?_overflow:std.UInt, ?_savedCode:std.UInt, ?_err:stdgo.Error, ?_table:haxe.ds.Vector<std.UInt>) this = new stdgo._internal.compress.lzw.Lzw_writer.Writer(
 _w,
 _order,
-_write,
+(_0, _1) -> _write((_0 : stdgo.Ref<stdgo._internal.compress.lzw.Lzw_writer.Writer>), (_1 : stdgo.GoUInt32)),
 (_bits : stdgo.GoUInt32),
 (_nBits : stdgo.GoUInt),
 (_width : stdgo.GoUInt),

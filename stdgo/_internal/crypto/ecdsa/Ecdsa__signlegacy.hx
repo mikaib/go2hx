@@ -11,8 +11,7 @@ function _signLegacy(_priv:stdgo.Ref<stdgo._internal.crypto.ecdsa.Ecdsa_privatek
                 __tmp__;
             };
         };
-        var __0:stdgo.Ref<stdgo._internal.math.big.Big_int_.Int_> = (null : stdgo.Ref<stdgo._internal.math.big.Big_int_.Int_>), __1:stdgo.Ref<stdgo._internal.math.big.Big_int_.Int_> = (null : stdgo.Ref<stdgo._internal.math.big.Big_int_.Int_>), __2:stdgo.Ref<stdgo._internal.math.big.Big_int_.Int_> = (null : stdgo.Ref<stdgo._internal.math.big.Big_int_.Int_>), __3:stdgo.Ref<stdgo._internal.math.big.Big_int_.Int_> = (null : stdgo.Ref<stdgo._internal.math.big.Big_int_.Int_>);
-var _s = __3, _r = __2, _kInv = __1, _k = __0;
+        var _k:stdgo.Ref<stdgo._internal.math.big.Big_int_.Int_> = (null : stdgo.Ref<stdgo._internal.math.big.Big_int_.Int_>), _kInv:stdgo.Ref<stdgo._internal.math.big.Big_int_.Int_> = (null : stdgo.Ref<stdgo._internal.math.big.Big_int_.Int_>), _r:stdgo.Ref<stdgo._internal.math.big.Big_int_.Int_> = (null : stdgo.Ref<stdgo._internal.math.big.Big_int_.Int_>), _s:stdgo.Ref<stdgo._internal.math.big.Big_int_.Int_> = (null : stdgo.Ref<stdgo._internal.math.big.Big_int_.Int_>);
         while (true) {
             while (true) {
                 {
@@ -48,9 +47,9 @@ var _s = __3, _r = __2, _kInv = __1, _k = __0;
             };
         };
         return {
-            final __tmp__:{ var _0 : stdgo.Slice<stdgo.GoUInt8>; var _1 : stdgo.Error; } = stdgo._internal.crypto.ecdsa.Ecdsa__encodesignature._encodeSignature(@:check2r _r.bytes(), @:check2r _s.bytes());
+            final __tmp__ = stdgo._internal.crypto.ecdsa.Ecdsa__encodesignature._encodeSignature(@:check2r _r.bytes(), @:check2r _s.bytes());
             _sig = __tmp__._0;
             _err = __tmp__._1;
-            __tmp__;
+            { _0 : _sig, _1 : _err };
         };
     }

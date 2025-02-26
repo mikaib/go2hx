@@ -1,6 +1,6 @@
-[ERROR] (macro) ./stdgo/_internal/text/template/Template_template_static_extension.hx:12: characters 104-149
-
- 12 |             if ((((_old != null && ((_old : Dynamic).__nil__ == null || !(_old : Dynamic).__nil__)) && stdgo._internal.text.template.Template__parse._parse.isEmptyTree(stdgo.Go.asInterface((@:checkr _tree ?? throw "null pointer dereference").root)) : Bool) && ((@:checkr _old ?? throw "null pointer dereference").tree != null && (((@:checkr _old ?? throw "null pointer dereference").tree : Dynamic).__nil__ == null || !((@:checkr _old ?? throw "null pointer dereference").tree : Dynamic).__nil__)) : Bool)) {
-    |                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    | Type not found : stdgo._internal.text.template.Template__parse
-
+Uncaught exception: Int32:sync.atomic_.add is not yet implemented
+Called from stdgo._internal.sync.atomic_.$Int32_static_extension.add(stdgo/_internal/sync/atomic_/Atomic__int32_static_extension.hx:5)
+Called from stdgo._internal.sync.$RWMutex_static_extension.rLock(stdgo/_internal/sync/Sync_rwmutex_static_extension.hx:149)
+Called from stdgo._internal.text.template.$Template_static_extension.parse(stdgo/_internal/text/template/Template_template_static_extension.hx:24)
+Called from fun$17180(stdgo/_internal/text/template/Template__tval.hx:88)
+Called from .init(stdgo/_internal/text/template/Template__tval.hx:2)

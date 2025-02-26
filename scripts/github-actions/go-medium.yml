@@ -1,4 +1,4 @@
-timeout-minutes: 25
+timeout-minutes: 75
 needs: setup
 strategy:
   fail-fast: false
@@ -52,8 +52,6 @@ steps:
   # run go medium tests
   - name: Run go medium tests
     run: npx haxe tests/tests.hxml -D go -D ci -D mode=medium -D runnerCount=${{ env.CORES }} -D nologs -D targets=::target:: #-D hxb
-  - name: Report results
-    run: npx haxe tests/tests.hxml -D go -D ci -D mode=medium -D report -D runnerCount=${{ env.CORES }} -D nologs -D targets=::target:: #-D hxb
   - name: Remove stdgo folder
     run: rm -r -d stdgo
   - name: Remove _internal folder
@@ -64,4 +62,5 @@ steps:
         message: go medium tests update ::target::
         add: ./tests
         pull: --rebase --autostash
+    if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
     continue-on-error: true

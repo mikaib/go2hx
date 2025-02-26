@@ -41,8 +41,7 @@ package stdgo._internal.internal.coverage.cformat;
                 var _ffile = ((stdgo.Go.str() : stdgo.GoString)?.__copy__() : stdgo.GoString);
                 var _flit = (false : Bool);
                 var _fline:stdgo.GoUInt32 = (0 : stdgo.GoUInt32);
-                var __0:stdgo.GoUInt64 = (0 : stdgo.GoUInt64), __1:stdgo.GoUInt64 = (0 : stdgo.GoUInt64);
-var _tstmts = __1, _cstmts = __0;
+                var _cstmts:stdgo.GoUInt64 = (0 : stdgo.GoUInt64), _tstmts:stdgo.GoUInt64 = (0 : stdgo.GoUInt64);
                 var _captureFuncStart = (function(_u:stdgo._internal.internal.coverage.cformat.Cformat_t_extcu.T_extcu):Void {
                     _fname = (@:checkr _p ?? throw "null pointer dereference")._funcs[(_u._fnfid : stdgo.GoInt)]._fname?.__copy__();
                     _ffile = (@:checkr _p ?? throw "null pointer dereference")._funcs[(_u._fnfid : stdgo.GoInt)]._file?.__copy__();
@@ -208,16 +207,15 @@ var _tstmts = __1, _cstmts = __0;
             return (null : stdgo.Error);
         } : (stdgo.GoUInt64, stdgo.GoUInt64) -> stdgo.Error);
         stdgo._internal.sort.Sort_strings.strings(_pkgs);
-        var __0:stdgo.GoUInt64 = (0 : stdgo.GoUInt64), __1:stdgo.GoUInt64 = (0 : stdgo.GoUInt64);
-var _coveredStmts = __1, _totalStmts = __0;
+        var _totalStmts:stdgo.GoUInt64 = (0 : stdgo.GoUInt64), _coveredStmts:stdgo.GoUInt64 = (0 : stdgo.GoUInt64);
         for (__0 => _importpath in _pkgs) {
             var _p = ((@:checkr _fm ?? throw "null pointer dereference")._pm[_importpath] ?? (null : stdgo.Ref<stdgo._internal.internal.coverage.cformat.Cformat_t_pstate.T_pstate>));
             if (!_aggregate) {
                 {
                     final __tmp__0 = (0i64 : stdgo.GoUInt64);
                     final __tmp__1 = (0i64 : stdgo.GoUInt64);
-                    _totalStmts = __tmp__0;
-                    _coveredStmts = __tmp__1;
+                    _totalStmts = @:binopAssign __tmp__0;
+                    _coveredStmts = @:binopAssign __tmp__1;
                 };
             };
             for (_unit => _count in (@:checkr _p ?? throw "null pointer dereference")._unitTable) {
@@ -298,7 +296,7 @@ var _coveredStmts = __1, _totalStmts = __0;
             throw stdgo.Go.toInterface(("AddUnit invoked before SetPackage" : stdgo.GoString));
         };
         var _fkey = ({ _file : _file?.__copy__(), _fname : _fname?.__copy__(), _lit : _isfnlit } : stdgo._internal.internal.coverage.cformat.Cformat_t_fnfile.T_fnfile);
-        var __tmp__ = ((@:checkr (@:checkr _fm ?? throw "null pointer dereference")._p ?? throw "null pointer dereference")._funcTable != null && (@:checkr (@:checkr _fm ?? throw "null pointer dereference")._p ?? throw "null pointer dereference")._funcTable.exists(_fkey?.__copy__()) ? { _0 : (@:checkr (@:checkr _fm ?? throw "null pointer dereference")._p ?? throw "null pointer dereference")._funcTable[_fkey?.__copy__()], _1 : true } : { _0 : (0 : stdgo.GoUInt32), _1 : false }), _idx:stdgo.GoUInt32 = __tmp__._0, _ok:Bool = __tmp__._1;
+        var __tmp__ = ((@:checkr (@:checkr _fm ?? throw "null pointer dereference")._p ?? throw "null pointer dereference")._funcTable != null && (@:checkr (@:checkr _fm ?? throw "null pointer dereference")._p ?? throw "null pointer dereference")._funcTable.__exists__(_fkey?.__copy__()) ? { _0 : (@:checkr (@:checkr _fm ?? throw "null pointer dereference")._p ?? throw "null pointer dereference")._funcTable[_fkey?.__copy__()], _1 : true } : { _0 : (0 : stdgo.GoUInt32), _1 : false }), _idx:stdgo.GoUInt32 = __tmp__._0, _ok:Bool = __tmp__._1;
         if (!_ok) {
             _idx = ((@:checkr (@:checkr _fm ?? throw "null pointer dereference")._p ?? throw "null pointer dereference")._funcs.length : stdgo.GoUInt32);
             (@:checkr (@:checkr _fm ?? throw "null pointer dereference")._p ?? throw "null pointer dereference")._funcs = ((@:checkr (@:checkr _fm ?? throw "null pointer dereference")._p ?? throw "null pointer dereference")._funcs.__append__(_fkey?.__copy__()));
@@ -327,7 +325,7 @@ var _coveredStmts = __1, _totalStmts = __0;
             return;
         };
         (@:checkr _fm ?? throw "null pointer dereference")._pkg = _importpath?.__copy__();
-        var __tmp__ = ((@:checkr _fm ?? throw "null pointer dereference")._pm != null && (@:checkr _fm ?? throw "null pointer dereference")._pm.exists(_importpath?.__copy__()) ? { _0 : (@:checkr _fm ?? throw "null pointer dereference")._pm[_importpath?.__copy__()], _1 : true } : { _0 : (null : stdgo.Ref<stdgo._internal.internal.coverage.cformat.Cformat_t_pstate.T_pstate>), _1 : false }), _ps:stdgo.Ref<stdgo._internal.internal.coverage.cformat.Cformat_t_pstate.T_pstate> = __tmp__._0, _ok:Bool = __tmp__._1;
+        var __tmp__ = ((@:checkr _fm ?? throw "null pointer dereference")._pm != null && (@:checkr _fm ?? throw "null pointer dereference")._pm.__exists__(_importpath?.__copy__()) ? { _0 : (@:checkr _fm ?? throw "null pointer dereference")._pm[_importpath?.__copy__()], _1 : true } : { _0 : (null : stdgo.Ref<stdgo._internal.internal.coverage.cformat.Cformat_t_pstate.T_pstate>), _1 : false }), _ps:stdgo.Ref<stdgo._internal.internal.coverage.cformat.Cformat_t_pstate.T_pstate> = __tmp__._0, _ok:Bool = __tmp__._1;
         if (!_ok) {
             _ps = (stdgo.Go.setRef(({} : stdgo._internal.internal.coverage.cformat.Cformat_t_pstate.T_pstate)) : stdgo.Ref<stdgo._internal.internal.coverage.cformat.Cformat_t_pstate.T_pstate>);
             (@:checkr _fm ?? throw "null pointer dereference")._pm[_importpath] = _ps;

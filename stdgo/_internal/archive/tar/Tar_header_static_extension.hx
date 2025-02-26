@@ -18,8 +18,7 @@ package stdgo._internal.archive.tar;
             {};
             x;
         } : stdgo.GoMap<stdgo.GoString, stdgo.GoString>) : stdgo.GoMap<stdgo.GoString, stdgo.GoString>);
-        var __0:stdgo.GoString = ("" : stdgo.GoString), __1:stdgo.GoString = ("" : stdgo.GoString), __2:stdgo.GoString = ("" : stdgo.GoString);
-var _whyNoGNU = __2, _whyNoPAX = __1, _whyNoUSTAR = __0;
+        var _whyNoUSTAR:stdgo.GoString = ("" : stdgo.GoString), _whyNoPAX:stdgo.GoString = ("" : stdgo.GoString), _whyNoGNU:stdgo.GoString = ("" : stdgo.GoString);
         var _preferPAX:Bool = false;
         var _verifyString = (function(_s:stdgo.GoString, _size:stdgo.GoInt, _name:stdgo.GoString, _paxKey:stdgo.GoString):Void {
             var _tooLong = ((_s.length) > _size : Bool);
@@ -45,7 +44,7 @@ var _whyNoGNU = __2, _whyNoPAX = __1, _whyNoUSTAR = __0;
                 };
             };
             {
-                var __tmp__ = (_h.pAXRecords != null && _h.pAXRecords.exists(_paxKey?.__copy__()) ? { _0 : _h.pAXRecords[_paxKey?.__copy__()], _1 : true } : { _0 : ("" : stdgo.GoString), _1 : false }), _v:stdgo.GoString = __tmp__._0, _ok:Bool = __tmp__._1;
+                var __tmp__ = (_h.pAXRecords != null && _h.pAXRecords.__exists__(_paxKey?.__copy__()) ? { _0 : _h.pAXRecords[_paxKey?.__copy__()], _1 : true } : { _0 : ("" : stdgo.GoString), _1 : false }), _v:stdgo.GoString = __tmp__._0, _ok:Bool = __tmp__._1;
                 if ((_ok && (_v == _s) : Bool)) {
                     _paxHdrs[_paxKey] = _v?.__copy__();
                 };
@@ -67,7 +66,7 @@ var _whyNoGNU = __2, _whyNoPAX = __1, _whyNoUSTAR = __0;
                 };
             };
             {
-                var __tmp__ = (_h.pAXRecords != null && _h.pAXRecords.exists(_paxKey?.__copy__()) ? { _0 : _h.pAXRecords[_paxKey?.__copy__()], _1 : true } : { _0 : ("" : stdgo.GoString), _1 : false }), _v:stdgo.GoString = __tmp__._0, _ok:Bool = __tmp__._1;
+                var __tmp__ = (_h.pAXRecords != null && _h.pAXRecords.__exists__(_paxKey?.__copy__()) ? { _0 : _h.pAXRecords[_paxKey?.__copy__()], _1 : true } : { _0 : ("" : stdgo.GoString), _1 : false }), _v:stdgo.GoString = __tmp__._0, _ok:Bool = __tmp__._1;
                 if ((_ok && (_v == stdgo._internal.strconv.Strconv_formatint.formatInt(_n, (10 : stdgo.GoInt))) : Bool)) {
                     _paxHdrs[_paxKey] = _v?.__copy__();
                 };
@@ -98,7 +97,7 @@ var _whyNoGNU = __2, _whyNoPAX = __1, _whyNoUSTAR = __0;
                 };
             };
             {
-                var __tmp__ = (_h.pAXRecords != null && _h.pAXRecords.exists(_paxKey?.__copy__()) ? { _0 : _h.pAXRecords[_paxKey?.__copy__()], _1 : true } : { _0 : ("" : stdgo.GoString), _1 : false }), _v:stdgo.GoString = __tmp__._0, _ok:Bool = __tmp__._1;
+                var __tmp__ = (_h.pAXRecords != null && _h.pAXRecords.__exists__(_paxKey?.__copy__()) ? { _0 : _h.pAXRecords[_paxKey?.__copy__()], _1 : true } : { _0 : ("" : stdgo.GoString), _1 : false }), _v:stdgo.GoString = __tmp__._0, _ok:Bool = __tmp__._1;
                 if ((_ok && (_v == stdgo._internal.archive.tar.Tar__formatpaxtime._formatPAXTime(_ts?.__copy__())) : Bool)) {
                     _paxHdrs[_paxKey] = _v?.__copy__();
                 };
@@ -121,8 +120,7 @@ var _whyNoGNU = __2, _whyNoPAX = __1, _whyNoUSTAR = __0;
         _verifyTime(_h.modTime?.__copy__(), (@:check2r _v7._modTime().length), ("ModTime" : stdgo.GoString), ("mtime" : stdgo.GoString));
         _verifyTime(_h.accessTime?.__copy__(), (@:check2r _gnu._accessTime().length), ("AccessTime" : stdgo.GoString), ("atime" : stdgo.GoString));
         _verifyTime(_h.changeTime?.__copy__(), (@:check2r _gnu._changeTime().length), ("ChangeTime" : stdgo.GoString), ("ctime" : stdgo.GoString));
-        var __0:stdgo.GoString = ("" : stdgo.GoString), __1:stdgo.GoString = ("" : stdgo.GoString);
-var _whyOnlyGNU = __1, _whyOnlyPAX = __0;
+        var _whyOnlyPAX:stdgo.GoString = ("" : stdgo.GoString), _whyOnlyGNU:stdgo.GoString = ("" : stdgo.GoString);
         {
             final __value__ = _h.typeflag;
             if (__value__ == ((48 : stdgo.GoUInt8)) || __value__ == ((51 : stdgo.GoUInt8)) || __value__ == ((52 : stdgo.GoUInt8)) || __value__ == ((54 : stdgo.GoUInt8)) || __value__ == ((83 : stdgo.GoUInt8))) {
@@ -177,7 +175,7 @@ var _whyOnlyGNU = __1, _whyOnlyPAX = __0;
         if (((_h.pAXRecords.length) > (0 : stdgo.GoInt) : Bool)) {
             for (_k => _v in _h.pAXRecords) {
                 {
-                    var __tmp__ = (_paxHdrs != null && _paxHdrs.exists(_k?.__copy__()) ? { _0 : _paxHdrs[_k?.__copy__()], _1 : true } : { _0 : ("" : stdgo.GoString), _1 : false }), __1:stdgo.GoString = __tmp__._0, _exists:Bool = __tmp__._1;
+                    var __tmp__ = (_paxHdrs != null && _paxHdrs.__exists__(_k?.__copy__()) ? { _0 : _paxHdrs[_k?.__copy__()], _1 : true } : { _0 : ("" : stdgo.GoString), _1 : false }), __1:stdgo.GoString = __tmp__._0, _exists:Bool = __tmp__._1;
                     if (_exists) {
                         continue;
                     } else if (_h.typeflag == ((103 : stdgo.GoUInt8))) {

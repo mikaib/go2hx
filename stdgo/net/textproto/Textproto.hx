@@ -28,7 +28,7 @@ package stdgo.net.textproto;
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-@:structInit @:using(stdgo.net.textproto.Textproto.T_sequencer_static_extension) abstract T_sequencer(stdgo._internal.net.textproto.Textproto_t_sequencer.T_sequencer) from stdgo._internal.net.textproto.Textproto_t_sequencer.T_sequencer to stdgo._internal.net.textproto.Textproto_t_sequencer.T_sequencer {
+@:structInit @:using(stdgo.net.textproto.Textproto.T_sequencer_static_extension) @:dox(hide) abstract T_sequencer(stdgo._internal.net.textproto.Textproto_t_sequencer.T_sequencer) from stdgo._internal.net.textproto.Textproto_t_sequencer.T_sequencer to stdgo._internal.net.textproto.Textproto_t_sequencer.T_sequencer {
     public var _mu(get, set) : stdgo._internal.sync.Sync_mutex.Mutex;
     function get__mu():stdgo._internal.sync.Sync_mutex.Mutex return this._mu;
     function set__mu(v:stdgo._internal.sync.Sync_mutex.Mutex):stdgo._internal.sync.Sync_mutex.Mutex {
@@ -41,13 +41,31 @@ package stdgo.net.textproto;
         this._id = (v : stdgo.GoUInt);
         return v;
     }
-    public var _wait(get, set) : stdgo.GoMap<stdgo.GoUInt, stdgo.Chan<{ }>>;
-    function get__wait():stdgo.GoMap<stdgo.GoUInt, stdgo.Chan<{ }>> return this._wait;
-    function set__wait(v:stdgo.GoMap<stdgo.GoUInt, stdgo.Chan<{ }>>):stdgo.GoMap<stdgo.GoUInt, stdgo.Chan<{ }>> {
-        this._wait = (v : stdgo.GoMap<stdgo.GoUInt, stdgo.Chan<{ }>>);
+    public var _wait(get, set) : Map<std.UInt, stdgo.Chan<{ }>>;
+    function get__wait():Map<std.UInt, stdgo.Chan<{ }>> return {
+        final __obj__:Map<std.UInt, stdgo.Chan<{ }>> = [];
+        for (key => value in this._wait) {
+            __obj__[key] = value;
+        };
+        __obj__;
+    };
+    function set__wait(v:Map<std.UInt, stdgo.Chan<{ }>>):Map<std.UInt, stdgo.Chan<{ }>> {
+        this._wait = {
+            final __obj__ = new stdgo.GoMap<stdgo.GoUInt, stdgo.Chan<{ }>>();
+            for (key => value in v) {
+                __obj__[(key : stdgo.GoUInt)] = (value : stdgo.Chan<{ }>);
+            };
+            __obj__;
+        };
         return v;
     }
-    public function new(?_mu:stdgo._internal.sync.Sync_mutex.Mutex, ?_id:std.UInt, ?_wait:stdgo.GoMap<stdgo.GoUInt, stdgo.Chan<{ }>>) this = new stdgo._internal.net.textproto.Textproto_t_sequencer.T_sequencer(_mu, (_id : stdgo.GoUInt), (_wait : stdgo.GoMap<stdgo.GoUInt, stdgo.Chan<{ }>>));
+    public function new(?_mu:stdgo._internal.sync.Sync_mutex.Mutex, ?_id:std.UInt, ?_wait:Map<std.UInt, stdgo.Chan<{ }>>) this = new stdgo._internal.net.textproto.Textproto_t_sequencer.T_sequencer(_mu, (_id : stdgo.GoUInt), {
+        final __obj__ = new stdgo.GoMap<stdgo.GoUInt, stdgo.Chan<{ }>>();
+        for (key => value in _wait) {
+            __obj__[(key : stdgo.GoUInt)] = (value : stdgo.Chan<{ }>);
+        };
+        __obj__;
+    });
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
@@ -74,7 +92,7 @@ package stdgo.net.textproto;
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-@:structInit @:using(stdgo.net.textproto.Textproto.T_dotReader_static_extension) abstract T_dotReader(stdgo._internal.net.textproto.Textproto_t_dotreader.T_dotReader) from stdgo._internal.net.textproto.Textproto_t_dotreader.T_dotReader to stdgo._internal.net.textproto.Textproto_t_dotreader.T_dotReader {
+@:structInit @:using(stdgo.net.textproto.Textproto.T_dotReader_static_extension) @:dox(hide) abstract T_dotReader(stdgo._internal.net.textproto.Textproto_t_dotreader.T_dotReader) from stdgo._internal.net.textproto.Textproto_t_dotreader.T_dotReader to stdgo._internal.net.textproto.Textproto_t_dotreader.T_dotReader {
     public var _r(get, set) : Reader;
     function get__r():Reader return this._r;
     function set__r(v:Reader):Reader {
@@ -154,7 +172,7 @@ package stdgo.net.textproto;
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-@:structInit @:using(stdgo.net.textproto.Textproto.T_dotWriter_static_extension) abstract T_dotWriter(stdgo._internal.net.textproto.Textproto_t_dotwriter.T_dotWriter) from stdgo._internal.net.textproto.Textproto_t_dotwriter.T_dotWriter to stdgo._internal.net.textproto.Textproto_t_dotwriter.T_dotWriter {
+@:structInit @:using(stdgo.net.textproto.Textproto.T_dotWriter_static_extension) @:dox(hide) abstract T_dotWriter(stdgo._internal.net.textproto.Textproto_t_dotwriter.T_dotWriter) from stdgo._internal.net.textproto.Textproto_t_dotwriter.T_dotWriter to stdgo._internal.net.textproto.Textproto_t_dotwriter.T_dotWriter {
     public var _w(get, set) : Writer;
     function get__w():Writer return this._w;
     function set__w(v:Writer):Writer {
@@ -171,11 +189,11 @@ package stdgo.net.textproto;
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-typedef T__struct_0Pointer = stdgo._internal.net.textproto.Textproto_t__struct_0pointer.T__struct_0Pointer;
-class T__struct_0_static_extension {
+@:dox(hide) typedef T__struct_0Pointer = stdgo._internal.net.textproto.Textproto_t__struct_0pointer.T__struct_0Pointer;
+@:dox(hide) class T__struct_0_static_extension {
 
 }
-typedef T__struct_0 = stdgo._internal.net.textproto.Textproto_t__struct_0.T__struct_0;
+@:dox(hide) typedef T__struct_0 = stdgo._internal.net.textproto.Textproto_t__struct_0.T__struct_0;
 typedef MIMEHeader = stdgo._internal.net.textproto.Textproto_mimeheader.MIMEHeader;
 typedef ProtocolError = stdgo._internal.net.textproto.Textproto_protocolerror.ProtocolError;
 typedef PipelinePointer = stdgo._internal.net.textproto.Textproto_pipelinepointer.PipelinePointer;
@@ -205,8 +223,8 @@ class Pipeline_static_extension {
         return stdgo._internal.net.textproto.Textproto_pipeline_static_extension.Pipeline_static_extension.next(_p);
     }
 }
-typedef T_sequencerPointer = stdgo._internal.net.textproto.Textproto_t_sequencerpointer.T_sequencerPointer;
-class T_sequencer_static_extension {
+@:dox(hide) typedef T_sequencerPointer = stdgo._internal.net.textproto.Textproto_t_sequencerpointer.T_sequencerPointer;
+@:dox(hide) class T_sequencer_static_extension {
     static public function end(_s:T_sequencer, _id:std.UInt):Void {
         final _s = (_s : stdgo.Ref<stdgo._internal.net.textproto.Textproto_t_sequencer.T_sequencer>);
         final _id = (_id : stdgo.GoUInt);
@@ -281,9 +299,9 @@ class Reader_static_extension {
         final _r = (_r : stdgo.Ref<stdgo._internal.net.textproto.Textproto_reader.Reader>);
         return stdgo._internal.net.textproto.Textproto_reader_static_extension.Reader_static_extension._skipSpace(_r);
     }
-    static public function _readContinuedLineSlice(_r:Reader, _validateFirstLine:stdgo.Slice<stdgo.GoUInt8> -> stdgo.Error):stdgo.Tuple<Array<std.UInt>, stdgo.Error> {
+    static public function _readContinuedLineSlice(_r:Reader, _validateFirstLine:Array<std.UInt> -> stdgo.Error):stdgo.Tuple<Array<std.UInt>, stdgo.Error> {
         final _r = (_r : stdgo.Ref<stdgo._internal.net.textproto.Textproto_reader.Reader>);
-        final _validateFirstLine = _validateFirstLine;
+        final _validateFirstLine = _0 -> _validateFirstLine(([for (i in _0) (i : stdgo.GoUInt8)] : stdgo.Slice<stdgo.GoUInt8>));
         return {
             final obj = stdgo._internal.net.textproto.Textproto_reader_static_extension.Reader_static_extension._readContinuedLineSlice(_r, _validateFirstLine);
             { _0 : [for (i in obj._0) i], _1 : obj._1 };
@@ -325,8 +343,8 @@ class Reader_static_extension {
         };
     }
 }
-typedef T_dotReaderPointer = stdgo._internal.net.textproto.Textproto_t_dotreaderpointer.T_dotReaderPointer;
-class T_dotReader_static_extension {
+@:dox(hide) typedef T_dotReaderPointer = stdgo._internal.net.textproto.Textproto_t_dotreaderpointer.T_dotReaderPointer;
+@:dox(hide) class T_dotReader_static_extension {
     static public function read(_d:T_dotReader, _b:Array<std.UInt>):stdgo.Tuple<StdTypes.Int, stdgo.Error> {
         final _d = (_d : stdgo.Ref<stdgo._internal.net.textproto.Textproto_t_dotreader.T_dotReader>);
         final _b = ([for (i in _b) (i : stdgo.GoUInt8)] : stdgo.Slice<stdgo.GoUInt8>);
@@ -369,8 +387,8 @@ class Conn_static_extension {
             { _0 : [for (i in obj._0) i], _1 : obj._1 };
         };
     }
-    public static function _readContinuedLineSlice(__self__:stdgo._internal.net.textproto.Textproto_conn.Conn, _0:stdgo.Slice<stdgo.GoUInt8> -> stdgo.Error):stdgo.Tuple<Array<std.UInt>, stdgo.Error> {
-        final _0 = _0;
+    public static function _readContinuedLineSlice(__self__:stdgo._internal.net.textproto.Textproto_conn.Conn, _0:Array<std.UInt> -> stdgo.Error):stdgo.Tuple<Array<std.UInt>, stdgo.Error> {
+        final _0 = _0 -> _0(([for (i in _0) (i : stdgo.GoUInt8)] : stdgo.Slice<stdgo.GoUInt8>));
         return {
             final obj = stdgo._internal.net.textproto.Textproto_conn_static_extension.Conn_static_extension._readContinuedLineSlice(__self__, _0);
             { _0 : [for (i in obj._0) i], _1 : obj._1 };
@@ -485,8 +503,8 @@ class Writer_static_extension {
         return stdgo._internal.net.textproto.Textproto_writer_static_extension.Writer_static_extension.printfLine(_w, _format, ...[for (i in _args) i]);
     }
 }
-typedef T_dotWriterPointer = stdgo._internal.net.textproto.Textproto_t_dotwriterpointer.T_dotWriterPointer;
-class T_dotWriter_static_extension {
+@:dox(hide) typedef T_dotWriterPointer = stdgo._internal.net.textproto.Textproto_t_dotwriterpointer.T_dotWriterPointer;
+@:dox(hide) class T_dotWriter_static_extension {
     static public function close(_d:T_dotWriter):stdgo.Error {
         final _d = (_d : stdgo.Ref<stdgo._internal.net.textproto.Textproto_t_dotwriter.T_dotWriter>);
         return stdgo._internal.net.textproto.Textproto_t_dotwriter_static_extension.T_dotWriter_static_extension.close(_d);
@@ -500,8 +518,8 @@ class T_dotWriter_static_extension {
         };
     }
 }
-typedef T__struct_0PointerPointer = stdgo._internal.net.textproto.Textproto_t__struct_0pointerpointer.T__struct_0PointerPointer;
-class T__struct_0Pointer_static_extension {
+@:dox(hide) typedef T__struct_0PointerPointer = stdgo._internal.net.textproto.Textproto_t__struct_0pointerpointer.T__struct_0PointerPointer;
+@:dox(hide) class T__struct_0Pointer_static_extension {
 
 }
 typedef MIMEHeaderPointer = stdgo._internal.net.textproto.Textproto_mimeheaderpointer.MIMEHeaderPointer;

@@ -18,10 +18,22 @@ final filterClose = stdgo._internal.net.internal.socktest.Socktest_filterclose.f
         this._fmu = v;
         return v;
     }
-    public var _fltab(get, set) : stdgo.GoMap<stdgo._internal.net.internal.socktest.Socktest_filtertype.FilterType, stdgo._internal.net.internal.socktest.Socktest_filter.Filter>;
-    function get__fltab():stdgo.GoMap<stdgo._internal.net.internal.socktest.Socktest_filtertype.FilterType, stdgo._internal.net.internal.socktest.Socktest_filter.Filter> return this._fltab;
-    function set__fltab(v:stdgo.GoMap<stdgo._internal.net.internal.socktest.Socktest_filtertype.FilterType, stdgo._internal.net.internal.socktest.Socktest_filter.Filter>):stdgo.GoMap<stdgo._internal.net.internal.socktest.Socktest_filtertype.FilterType, stdgo._internal.net.internal.socktest.Socktest_filter.Filter> {
-        this._fltab = (v : stdgo.GoMap<stdgo._internal.net.internal.socktest.Socktest_filtertype.FilterType, stdgo._internal.net.internal.socktest.Socktest_filter.Filter>);
+    public var _fltab(get, set) : Map<FilterType, Filter>;
+    function get__fltab():Map<FilterType, Filter> return {
+        final __obj__:Map<FilterType, Filter> = [];
+        for (key => value in this._fltab) {
+            __obj__[key] = value;
+        };
+        __obj__;
+    };
+    function set__fltab(v:Map<FilterType, Filter>):Map<FilterType, Filter> {
+        this._fltab = {
+            final __obj__ = new stdgo.GoMap<stdgo._internal.net.internal.socktest.Socktest_filtertype.FilterType, stdgo._internal.net.internal.socktest.Socktest_filter.Filter>();
+            for (key => value in v) {
+                __obj__[key] = value;
+            };
+            __obj__;
+        };
         return v;
     }
     public var _smu(get, set) : stdgo._internal.sync.Sync_rwmutex.RWMutex;
@@ -42,7 +54,13 @@ final filterClose = stdgo._internal.net.internal.socktest.Socktest_filterclose.f
         this._stats = v;
         return v;
     }
-    public function new(?_once:stdgo._internal.sync.Sync_once.Once, ?_fmu:stdgo._internal.sync.Sync_rwmutex.RWMutex, ?_fltab:stdgo.GoMap<stdgo._internal.net.internal.socktest.Socktest_filtertype.FilterType, stdgo._internal.net.internal.socktest.Socktest_filter.Filter>, ?_smu:stdgo._internal.sync.Sync_rwmutex.RWMutex, ?_sotab:Sockets, ?_stats:T_stats) this = new stdgo._internal.net.internal.socktest.Socktest_switch.Switch(_once, _fmu, (_fltab : stdgo.GoMap<stdgo._internal.net.internal.socktest.Socktest_filtertype.FilterType, stdgo._internal.net.internal.socktest.Socktest_filter.Filter>), _smu, _sotab, _stats);
+    public function new(?_once:stdgo._internal.sync.Sync_once.Once, ?_fmu:stdgo._internal.sync.Sync_rwmutex.RWMutex, ?_fltab:Map<FilterType, Filter>, ?_smu:stdgo._internal.sync.Sync_rwmutex.RWMutex, ?_sotab:Sockets, ?_stats:T_stats) this = new stdgo._internal.net.internal.socktest.Socktest_switch.Switch(_once, _fmu, {
+        final __obj__ = new stdgo.GoMap<stdgo._internal.net.internal.socktest.Socktest_filtertype.FilterType, stdgo._internal.net.internal.socktest.Socktest_filter.Filter>();
+        for (key => value in _fltab) {
+            __obj__[key] = value;
+        };
+        __obj__;
+    }, _smu, _sotab, _stats);
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
@@ -166,7 +184,7 @@ final filterClose = stdgo._internal.net.internal.socktest.Socktest_filterclose.f
     public function __copy__() return this.__copy__();
 }
 typedef Cookie = stdgo._internal.net.internal.socktest.Socktest_cookie.Cookie;
-typedef T_stats = stdgo._internal.net.internal.socktest.Socktest_t_stats.T_stats;
+@:dox(hide) typedef T_stats = stdgo._internal.net.internal.socktest.Socktest_t_stats.T_stats;
 typedef FilterType = stdgo._internal.net.internal.socktest.Socktest_filtertype.FilterType;
 typedef Filter = stdgo._internal.net.internal.socktest.Socktest_filter.Filter;
 typedef AfterFilter = stdgo._internal.net.internal.socktest.Socktest_afterfilter.AfterFilter;
@@ -271,8 +289,8 @@ class Cookie_static_extension {
         return stdgo._internal.net.internal.socktest.Socktest_cookie_static_extension.Cookie_static_extension.family(_c);
     }
 }
-typedef T_statsPointer = stdgo._internal.net.internal.socktest.Socktest_t_statspointer.T_statsPointer;
-class T_stats_static_extension {
+@:dox(hide) typedef T_statsPointer = stdgo._internal.net.internal.socktest.Socktest_t_statspointer.T_statsPointer;
+@:dox(hide) class T_stats_static_extension {
     static public function _getLocked(_st:T_stats, _c:Cookie):Stat {
         return stdgo._internal.net.internal.socktest.Socktest_t_stats_static_extension.T_stats_static_extension._getLocked(_st, _c);
     }

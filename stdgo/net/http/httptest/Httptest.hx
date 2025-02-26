@@ -1,11 +1,19 @@
 package stdgo.net.http.httptest;
 final defaultRemoteAddr : String = stdgo._internal.net.http.httptest.Httptest_defaultremoteaddr.defaultRemoteAddr;
-class T_closeIdleTransport_static_extension {
+@:dox(hide) class T_closeIdleTransport_static_extension {
     static public function closeIdleConnections(t:stdgo._internal.net.http.httptest.Httptest_t_closeidletransport.T_closeIdleTransport):Void {
         stdgo._internal.net.http.httptest.Httptest_t_closeidletransport_static_extension.T_closeIdleTransport_static_extension.closeIdleConnections(t);
     }
 }
-typedef T_closeIdleTransport = stdgo._internal.net.http.httptest.Httptest_t_closeidletransport.T_closeIdleTransport;
+@:interface @:dox(hide) @:forward abstract T_closeIdleTransport(stdgo._internal.net.http.httptest.Httptest_t_closeidletransport.T_closeIdleTransport) from stdgo._internal.net.http.httptest.Httptest_t_closeidletransport.T_closeIdleTransport to stdgo._internal.net.http.httptest.Httptest_t_closeidletransport.T_closeIdleTransport {
+    @:from
+    static function fromHaxeInterface(x:{ function closeIdleConnections():Void; }):T_closeIdleTransport {
+        var __f__:Void -> stdgo.AnyInterface = null;
+        final y:T_closeIdleTransport = { closeIdleConnections : () -> x.closeIdleConnections(), __underlying__ : () -> __f__() };
+        __f__ = () -> stdgo.Go.toInterface(y);
+        return y;
+    }
+}
 @:structInit @:using(stdgo.net.http.httptest.Httptest.ResponseRecorder_static_extension) abstract ResponseRecorder(stdgo._internal.net.http.httptest.Httptest_responserecorder.ResponseRecorder) from stdgo._internal.net.http.httptest.Httptest_responserecorder.ResponseRecorder to stdgo._internal.net.http.httptest.Httptest_responserecorder.ResponseRecorder {
     public var code(get, set) : StdTypes.Int;
     function get_code():StdTypes.Int return this.code;
@@ -108,10 +116,22 @@ typedef T_closeIdleTransport = stdgo._internal.net.http.httptest.Httptest_t_clos
         this._closed = v;
         return v;
     }
-    public var _conns(get, set) : stdgo.GoMap<stdgo._internal.net.Net_conn.Conn, stdgo._internal.net.http.Http_connstate.ConnState>;
-    function get__conns():stdgo.GoMap<stdgo._internal.net.Net_conn.Conn, stdgo._internal.net.http.Http_connstate.ConnState> return this._conns;
-    function set__conns(v:stdgo.GoMap<stdgo._internal.net.Net_conn.Conn, stdgo._internal.net.http.Http_connstate.ConnState>):stdgo.GoMap<stdgo._internal.net.Net_conn.Conn, stdgo._internal.net.http.Http_connstate.ConnState> {
-        this._conns = (v : stdgo.GoMap<stdgo._internal.net.Net_conn.Conn, stdgo._internal.net.http.Http_connstate.ConnState>);
+    public var _conns(get, set) : Map<stdgo._internal.net.Net_conn.Conn, stdgo._internal.net.http.Http_connstate.ConnState>;
+    function get__conns():Map<stdgo._internal.net.Net_conn.Conn, stdgo._internal.net.http.Http_connstate.ConnState> return {
+        final __obj__:Map<stdgo._internal.net.Net_conn.Conn, stdgo._internal.net.http.Http_connstate.ConnState> = [];
+        for (key => value in this._conns) {
+            __obj__[key] = value;
+        };
+        __obj__;
+    };
+    function set__conns(v:Map<stdgo._internal.net.Net_conn.Conn, stdgo._internal.net.http.Http_connstate.ConnState>):Map<stdgo._internal.net.Net_conn.Conn, stdgo._internal.net.http.Http_connstate.ConnState> {
+        this._conns = {
+            final __obj__ = new stdgo.GoMap<stdgo._internal.net.Net_conn.Conn, stdgo._internal.net.http.Http_connstate.ConnState>();
+            for (key => value in v) {
+                __obj__[key] = value;
+            };
+            __obj__;
+        };
         return v;
     }
     public var _client(get, set) : stdgo._internal.net.http.Http_client.Client;
@@ -120,7 +140,7 @@ typedef T_closeIdleTransport = stdgo._internal.net.http.httptest.Httptest_t_clos
         this._client = (v : stdgo.Ref<stdgo._internal.net.http.Http_client.Client>);
         return v;
     }
-    public function new(?uRL:String, ?listener:stdgo._internal.net.Net_listener.Listener, ?enableHTTP2:Bool, ?tLS:stdgo._internal.crypto.tls.Tls_config.Config, ?config:stdgo._internal.net.http.Http_server.Server, ?_certificate:stdgo._internal.crypto.x509.X509_certificate.Certificate, ?_wg:stdgo._internal.sync.Sync_waitgroup.WaitGroup, ?_mu:stdgo._internal.sync.Sync_mutex.Mutex, ?_closed:Bool, ?_conns:stdgo.GoMap<stdgo._internal.net.Net_conn.Conn, stdgo._internal.net.http.Http_connstate.ConnState>, ?_client:stdgo._internal.net.http.Http_client.Client) this = new stdgo._internal.net.http.httptest.Httptest_server.Server(
+    public function new(?uRL:String, ?listener:stdgo._internal.net.Net_listener.Listener, ?enableHTTP2:Bool, ?tLS:stdgo._internal.crypto.tls.Tls_config.Config, ?config:stdgo._internal.net.http.Http_server.Server, ?_certificate:stdgo._internal.crypto.x509.X509_certificate.Certificate, ?_wg:stdgo._internal.sync.Sync_waitgroup.WaitGroup, ?_mu:stdgo._internal.sync.Sync_mutex.Mutex, ?_closed:Bool, ?_conns:Map<stdgo._internal.net.Net_conn.Conn, stdgo._internal.net.http.Http_connstate.ConnState>, ?_client:stdgo._internal.net.http.Http_client.Client) this = new stdgo._internal.net.http.httptest.Httptest_server.Server(
 (uRL : stdgo.GoString),
 listener,
 enableHTTP2,
@@ -130,16 +150,22 @@ enableHTTP2,
 _wg,
 _mu,
 _closed,
-(_conns : stdgo.GoMap<stdgo._internal.net.Net_conn.Conn, stdgo._internal.net.http.Http_connstate.ConnState>),
+{
+        final __obj__ = new stdgo.GoMap<stdgo._internal.net.Net_conn.Conn, stdgo._internal.net.http.Http_connstate.ConnState>();
+        for (key => value in _conns) {
+            __obj__[key] = value;
+        };
+        __obj__;
+    },
 (_client : stdgo.Ref<stdgo._internal.net.http.Http_client.Client>));
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-typedef T__struct_0Pointer = stdgo._internal.net.http.httptest.Httptest_t__struct_0pointer.T__struct_0Pointer;
-class T__struct_0_static_extension {
+@:dox(hide) typedef T__struct_0Pointer = stdgo._internal.net.http.httptest.Httptest_t__struct_0pointer.T__struct_0Pointer;
+@:dox(hide) class T__struct_0_static_extension {
 
 }
-typedef T__struct_0 = stdgo._internal.net.http.httptest.Httptest_t__struct_0.T__struct_0;
+@:dox(hide) typedef T__struct_0 = stdgo._internal.net.http.httptest.Httptest_t__struct_0.T__struct_0;
 typedef ResponseRecorderPointer = stdgo._internal.net.http.httptest.Httptest_responserecorderpointer.ResponseRecorderPointer;
 class ResponseRecorder_static_extension {
     static public function result(_rw:ResponseRecorder):stdgo._internal.net.http.Http_response.Response {
@@ -230,8 +256,8 @@ class Server_static_extension {
         stdgo._internal.net.http.httptest.Httptest_server_static_extension.Server_static_extension.start(_s);
     }
 }
-typedef T__struct_0PointerPointer = stdgo._internal.net.http.httptest.Httptest_t__struct_0pointerpointer.T__struct_0PointerPointer;
-class T__struct_0Pointer_static_extension {
+@:dox(hide) typedef T__struct_0PointerPointer = stdgo._internal.net.http.httptest.Httptest_t__struct_0pointerpointer.T__struct_0PointerPointer;
+@:dox(hide) class T__struct_0Pointer_static_extension {
 
 }
 /**

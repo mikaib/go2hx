@@ -1,16 +1,32 @@
 package stdgo.net.url;
-class T__interface_0_static_extension {
+@:dox(hide) class T__interface_0_static_extension {
     static public function timeout(t:stdgo._internal.net.url.Url_t__interface_0.T__interface_0):Bool {
         return stdgo._internal.net.url.Url_t__interface_0_static_extension.T__interface_0_static_extension.timeout(t);
     }
 }
-typedef T__interface_0 = stdgo._internal.net.url.Url_t__interface_0.T__interface_0;
-class T__interface_1_static_extension {
+@:interface @:dox(hide) @:forward abstract T__interface_0(stdgo._internal.net.url.Url_t__interface_0.T__interface_0) from stdgo._internal.net.url.Url_t__interface_0.T__interface_0 to stdgo._internal.net.url.Url_t__interface_0.T__interface_0 {
+    @:from
+    static function fromHaxeInterface(x:{ function timeout():Bool; }):T__interface_0 {
+        var __f__:Void -> stdgo.AnyInterface = null;
+        final y:T__interface_0 = { timeout : () -> x.timeout(), __underlying__ : () -> __f__() };
+        __f__ = () -> stdgo.Go.toInterface(y);
+        return y;
+    }
+}
+@:dox(hide) class T__interface_1_static_extension {
     static public function temporary(t:stdgo._internal.net.url.Url_t__interface_1.T__interface_1):Bool {
         return stdgo._internal.net.url.Url_t__interface_1_static_extension.T__interface_1_static_extension.temporary(t);
     }
 }
-typedef T__interface_1 = stdgo._internal.net.url.Url_t__interface_1.T__interface_1;
+@:interface @:dox(hide) @:forward abstract T__interface_1(stdgo._internal.net.url.Url_t__interface_1.T__interface_1) from stdgo._internal.net.url.Url_t__interface_1.T__interface_1 to stdgo._internal.net.url.Url_t__interface_1.T__interface_1 {
+    @:from
+    static function fromHaxeInterface(x:{ function temporary():Bool; }):T__interface_1 {
+        var __f__:Void -> stdgo.AnyInterface = null;
+        final y:T__interface_1 = { temporary : () -> x.temporary(), __underlying__ : () -> __f__() };
+        __f__ = () -> stdgo.Go.toInterface(y);
+        return y;
+    }
+}
 @:structInit @:using(stdgo.net.url.Url.Error_static_extension) abstract Error(stdgo._internal.net.url.Url_error.Error) from stdgo._internal.net.url.Url_error.Error to stdgo._internal.net.url.Url_error.Error {
     public var op(get, set) : String;
     function get_op():String return this.op;
@@ -139,7 +155,7 @@ forceQuery,
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-typedef T_encoding = stdgo._internal.net.url.Url_t_encoding.T_encoding;
+@:dox(hide) typedef T_encoding = stdgo._internal.net.url.Url_t_encoding.T_encoding;
 typedef EscapeError = stdgo._internal.net.url.Url_escapeerror.EscapeError;
 typedef InvalidHostError = stdgo._internal.net.url.Url_invalidhosterror.InvalidHostError;
 typedef Values = stdgo._internal.net.url.Url_values.Values;
@@ -258,8 +274,8 @@ class Userinfo_static_extension {
         return stdgo._internal.net.url.Url_userinfo_static_extension.Userinfo_static_extension.username(_u);
     }
 }
-typedef T_encodingPointer = stdgo._internal.net.url.Url_t_encodingpointer.T_encodingPointer;
-class T_encoding_static_extension {
+@:dox(hide) typedef T_encodingPointer = stdgo._internal.net.url.Url_t_encodingpointer.T_encodingPointer;
+@:dox(hide) class T_encoding_static_extension {
 
 }
 typedef EscapeErrorPointer = stdgo._internal.net.url.Url_escapeerrorpointer.EscapeErrorPointer;

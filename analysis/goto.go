@@ -184,7 +184,8 @@ func (fs *funcScope) markJumps(stmt ast.Stmt, scopeIndex int) []ast.Stmt {
 			assignStmt.Rhs[0] = fs.changeVars(assignStmt.Rhs[0])
 			for i, clause := range stmt.Body.List {
 				clause := clause.(*ast.CaseClause)
-				defineIdent := ast.NewIdent(assignName + "_" + fmt.Sprint(clause.Colon))
+				defineIdent := ast.NewIdent(assignName + "_" + fmt.Sprint(counter))
+				counter++
 				for i := range clause.Body {
 					clause.Body[i] = fs.changeVarsStmtSimple(clause.Body[i], assignName, defineIdent.Name)
 				}
@@ -706,12 +707,15 @@ func assign(ident *ast.Ident, value ast.Expr) ast.Stmt {
 	return &ast.AssignStmt{Lhs: []ast.Expr{ident}, Tok: token.ASSIGN, Rhs: []ast.Expr{value}}
 }
 
+var counter = 0
+
 func (fs *funcScope) tempVarWithTypeExpr(ident *ast.Ident, t ast.Expr) *ast.Ident {
 	nameObj := ident.Obj
 	if data, ok := fs.tempVars[nameObj]; ok {
 		return data.Ident
 	}
-	ident.Name = ident.Name + "_" + fmt.Sprint(nameObj.Pos())
+	ident.Name = ident.Name + "_" + fmt.Sprint(counter)
+	counter++
 	fs.tempVars[nameObj] = tempVarData{Ident: ident, Type: t}
 	return ident
 }
@@ -757,6 +761,7 @@ func (fs *funcScope) typeToExpr(t types.Type) ast.Expr {
 }
 
 func ParseLocalGotos(file *ast.File, checker *types.Checker, fset *token.FileSet) {
+	counter = 0
 	// select functions that have gotos in them
 	decls := []*ast.FuncDecl{}
 	for _, decl := range file.Decls {
@@ -845,6 +850,7 @@ func ParseLocalGotos(file *ast.File, checker *types.Checker, fset *token.FileSet
 		}
 		_ = switchStmt
 		secondPass := true
+		// debug comment
 		commentBool := false
 		if secondPass {
 			if commentBool {
@@ -960,7 +966,7 @@ type CaseData struct {
 
 func addToBlock(list []ast.Stmt, jumpPos int, jumps map[int][]ast.Stmt) []ast.Stmt {
 	newStmts := []ast.Stmt{}
-	addToBlock := true
+	addToBlockBool := true
 	for _, stmt := range list {
 		pos, labelBool := findGoto(stmt)
 		if pos != -1 && labelBool {
@@ -971,17 +977,19 @@ func addToBlock(list []ast.Stmt, jumpPos int, jumps map[int][]ast.Stmt) []ast.St
 		if jumpPos != -1 {
 			jumps[jumpPos] = append(jumps[jumpPos], stmt)
 		}
-		if addToBlock {
+		// addToBlockBool false prevents anything else after from being added to the block
+		if addToBlockBool {
 			newStmts = append(newStmts, stmt)
 		}
 		switch stmt.(type) {
 		case *ast.IfStmt, *ast.SwitchStmt:
 			jumpPos = -1
-			addToBlock = false
+			//addToBlockBool = false
 		}
+		// no label found and pos to goto found
 		if pos != -1 && !labelBool {
 			jumpPos = -1
-			addToBlock = false
+			addToBlockBool = false
 		}
 	}
 	return newStmts

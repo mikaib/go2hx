@@ -5,7 +5,7 @@ private function set_legacyHeapAllocated(v:Bool):Bool {
         stdgo._internal.internal.profile.Profile_legacyheapallocated.legacyHeapAllocated = v;
         return v;
     }
-class T_message_static_extension {
+@:dox(hide) class T_message_static_extension {
     static public function _encode(t:stdgo._internal.internal.profile.Profile_t_message.T_message, _0:T_buffer):Void {
         final _0 = (_0 : stdgo.Ref<stdgo._internal.internal.profile.Profile_t_buffer.T_buffer>);
         stdgo._internal.internal.profile.Profile_t_message_static_extension.T_message_static_extension._encode(t, _0);
@@ -14,61 +14,195 @@ class T_message_static_extension {
         return [for (i in stdgo._internal.internal.profile.Profile_t_message_static_extension.T_message_static_extension._decoder(t)) i];
     }
 }
-typedef T_message = stdgo._internal.internal.profile.Profile_t_message.T_message;
-@:structInit @:using(stdgo.internal.profile.Profile.T_profileMerger_static_extension) abstract T_profileMerger(stdgo._internal.internal.profile.Profile_t_profilemerger.T_profileMerger) from stdgo._internal.internal.profile.Profile_t_profilemerger.T_profileMerger to stdgo._internal.internal.profile.Profile_t_profilemerger.T_profileMerger {
+@:interface @:dox(hide) @:forward abstract T_message(stdgo._internal.internal.profile.Profile_t_message.T_message) from stdgo._internal.internal.profile.Profile_t_message.T_message to stdgo._internal.internal.profile.Profile_t_message.T_message {
+    @:from
+    static function fromHaxeInterface(x:{ function _decoder():Array<T_decoder>; function _encode(_0:T_buffer):Void; }):T_message {
+        var __f__:Void -> stdgo.AnyInterface = null;
+        final y:T_message = { _decoder : () -> x._decoder(), _encode : _0 -> x._encode(_0), __underlying__ : () -> __f__() };
+        __f__ = () -> stdgo.Go.toInterface(y);
+        return y;
+    }
+}
+@:structInit @:using(stdgo.internal.profile.Profile.T_profileMerger_static_extension) @:dox(hide) abstract T_profileMerger(stdgo._internal.internal.profile.Profile_t_profilemerger.T_profileMerger) from stdgo._internal.internal.profile.Profile_t_profilemerger.T_profileMerger to stdgo._internal.internal.profile.Profile_t_profilemerger.T_profileMerger {
     public var _p(get, set) : Profile_;
     function get__p():Profile_ return this._p;
     function set__p(v:Profile_):Profile_ {
         this._p = (v : stdgo.Ref<stdgo._internal.internal.profile.Profile_profile.Profile>);
         return v;
     }
-    public var _locationsByID(get, set) : stdgo.GoMap<stdgo.GoUInt64, stdgo.Ref<stdgo._internal.internal.profile.Profile_location.Location>>;
-    function get__locationsByID():stdgo.GoMap<stdgo.GoUInt64, stdgo.Ref<stdgo._internal.internal.profile.Profile_location.Location>> return this._locationsByID;
-    function set__locationsByID(v:stdgo.GoMap<stdgo.GoUInt64, stdgo.Ref<stdgo._internal.internal.profile.Profile_location.Location>>):stdgo.GoMap<stdgo.GoUInt64, stdgo.Ref<stdgo._internal.internal.profile.Profile_location.Location>> {
-        this._locationsByID = (v : stdgo.GoMap<stdgo.GoUInt64, stdgo.Ref<stdgo._internal.internal.profile.Profile_location.Location>>);
+    public var _locationsByID(get, set) : Map<haxe.UInt64, Location>;
+    function get__locationsByID():Map<haxe.UInt64, Location> return {
+        final __obj__:Map<haxe.UInt64, Location> = [];
+        for (key => value in this._locationsByID) {
+            __obj__[key] = value;
+        };
+        __obj__;
+    };
+    function set__locationsByID(v:Map<haxe.UInt64, Location>):Map<haxe.UInt64, Location> {
+        this._locationsByID = {
+            final __obj__ = new stdgo.GoMap<stdgo.GoUInt64, stdgo.Ref<stdgo._internal.internal.profile.Profile_location.Location>>();
+            for (key => value in v) {
+                __obj__[(key : stdgo.GoUInt64)] = (value : stdgo.Ref<stdgo._internal.internal.profile.Profile_location.Location>);
+            };
+            __obj__;
+        };
         return v;
     }
-    public var _functionsByID(get, set) : stdgo.GoMap<stdgo.GoUInt64, stdgo.Ref<stdgo._internal.internal.profile.Profile_function.Function>>;
-    function get__functionsByID():stdgo.GoMap<stdgo.GoUInt64, stdgo.Ref<stdgo._internal.internal.profile.Profile_function.Function>> return this._functionsByID;
-    function set__functionsByID(v:stdgo.GoMap<stdgo.GoUInt64, stdgo.Ref<stdgo._internal.internal.profile.Profile_function.Function>>):stdgo.GoMap<stdgo.GoUInt64, stdgo.Ref<stdgo._internal.internal.profile.Profile_function.Function>> {
-        this._functionsByID = (v : stdgo.GoMap<stdgo.GoUInt64, stdgo.Ref<stdgo._internal.internal.profile.Profile_function.Function>>);
+    public var _functionsByID(get, set) : Map<haxe.UInt64, Function>;
+    function get__functionsByID():Map<haxe.UInt64, Function> return {
+        final __obj__:Map<haxe.UInt64, Function> = [];
+        for (key => value in this._functionsByID) {
+            __obj__[key] = value;
+        };
+        __obj__;
+    };
+    function set__functionsByID(v:Map<haxe.UInt64, Function>):Map<haxe.UInt64, Function> {
+        this._functionsByID = {
+            final __obj__ = new stdgo.GoMap<stdgo.GoUInt64, stdgo.Ref<stdgo._internal.internal.profile.Profile_function.Function>>();
+            for (key => value in v) {
+                __obj__[(key : stdgo.GoUInt64)] = (value : stdgo.Ref<stdgo._internal.internal.profile.Profile_function.Function>);
+            };
+            __obj__;
+        };
         return v;
     }
-    public var _mappingsByID(get, set) : stdgo.GoMap<stdgo.GoUInt64, stdgo._internal.internal.profile.Profile_t_mapinfo.T_mapInfo>;
-    function get__mappingsByID():stdgo.GoMap<stdgo.GoUInt64, stdgo._internal.internal.profile.Profile_t_mapinfo.T_mapInfo> return this._mappingsByID;
-    function set__mappingsByID(v:stdgo.GoMap<stdgo.GoUInt64, stdgo._internal.internal.profile.Profile_t_mapinfo.T_mapInfo>):stdgo.GoMap<stdgo.GoUInt64, stdgo._internal.internal.profile.Profile_t_mapinfo.T_mapInfo> {
-        this._mappingsByID = (v : stdgo.GoMap<stdgo.GoUInt64, stdgo._internal.internal.profile.Profile_t_mapinfo.T_mapInfo>);
+    public var _mappingsByID(get, set) : Map<haxe.UInt64, T_mapInfo>;
+    function get__mappingsByID():Map<haxe.UInt64, T_mapInfo> return {
+        final __obj__:Map<haxe.UInt64, T_mapInfo> = [];
+        for (key => value in this._mappingsByID) {
+            __obj__[key] = value;
+        };
+        __obj__;
+    };
+    function set__mappingsByID(v:Map<haxe.UInt64, T_mapInfo>):Map<haxe.UInt64, T_mapInfo> {
+        this._mappingsByID = {
+            final __obj__ = new stdgo.GoMap<stdgo.GoUInt64, stdgo._internal.internal.profile.Profile_t_mapinfo.T_mapInfo>();
+            for (key => value in v) {
+                __obj__[(key : stdgo.GoUInt64)] = value;
+            };
+            __obj__;
+        };
         return v;
     }
-    public var _samples(get, set) : stdgo.GoMap<stdgo._internal.internal.profile.Profile_t_samplekey.T_sampleKey, stdgo.Ref<stdgo._internal.internal.profile.Profile_sample.Sample>>;
-    function get__samples():stdgo.GoMap<stdgo._internal.internal.profile.Profile_t_samplekey.T_sampleKey, stdgo.Ref<stdgo._internal.internal.profile.Profile_sample.Sample>> return this._samples;
-    function set__samples(v:stdgo.GoMap<stdgo._internal.internal.profile.Profile_t_samplekey.T_sampleKey, stdgo.Ref<stdgo._internal.internal.profile.Profile_sample.Sample>>):stdgo.GoMap<stdgo._internal.internal.profile.Profile_t_samplekey.T_sampleKey, stdgo.Ref<stdgo._internal.internal.profile.Profile_sample.Sample>> {
-        this._samples = (v : stdgo.GoMap<stdgo._internal.internal.profile.Profile_t_samplekey.T_sampleKey, stdgo.Ref<stdgo._internal.internal.profile.Profile_sample.Sample>>);
+    public var _samples(get, set) : Map<T_sampleKey, Sample>;
+    function get__samples():Map<T_sampleKey, Sample> return {
+        final __obj__:Map<T_sampleKey, Sample> = [];
+        for (key => value in this._samples) {
+            __obj__[key] = value;
+        };
+        __obj__;
+    };
+    function set__samples(v:Map<T_sampleKey, Sample>):Map<T_sampleKey, Sample> {
+        this._samples = {
+            final __obj__ = new stdgo.GoMap<stdgo._internal.internal.profile.Profile_t_samplekey.T_sampleKey, stdgo.Ref<stdgo._internal.internal.profile.Profile_sample.Sample>>();
+            for (key => value in v) {
+                __obj__[key] = (value : stdgo.Ref<stdgo._internal.internal.profile.Profile_sample.Sample>);
+            };
+            __obj__;
+        };
         return v;
     }
-    public var _locations(get, set) : stdgo.GoMap<stdgo._internal.internal.profile.Profile_t_locationkey.T_locationKey, stdgo.Ref<stdgo._internal.internal.profile.Profile_location.Location>>;
-    function get__locations():stdgo.GoMap<stdgo._internal.internal.profile.Profile_t_locationkey.T_locationKey, stdgo.Ref<stdgo._internal.internal.profile.Profile_location.Location>> return this._locations;
-    function set__locations(v:stdgo.GoMap<stdgo._internal.internal.profile.Profile_t_locationkey.T_locationKey, stdgo.Ref<stdgo._internal.internal.profile.Profile_location.Location>>):stdgo.GoMap<stdgo._internal.internal.profile.Profile_t_locationkey.T_locationKey, stdgo.Ref<stdgo._internal.internal.profile.Profile_location.Location>> {
-        this._locations = (v : stdgo.GoMap<stdgo._internal.internal.profile.Profile_t_locationkey.T_locationKey, stdgo.Ref<stdgo._internal.internal.profile.Profile_location.Location>>);
+    public var _locations(get, set) : Map<T_locationKey, Location>;
+    function get__locations():Map<T_locationKey, Location> return {
+        final __obj__:Map<T_locationKey, Location> = [];
+        for (key => value in this._locations) {
+            __obj__[key] = value;
+        };
+        __obj__;
+    };
+    function set__locations(v:Map<T_locationKey, Location>):Map<T_locationKey, Location> {
+        this._locations = {
+            final __obj__ = new stdgo.GoMap<stdgo._internal.internal.profile.Profile_t_locationkey.T_locationKey, stdgo.Ref<stdgo._internal.internal.profile.Profile_location.Location>>();
+            for (key => value in v) {
+                __obj__[key] = (value : stdgo.Ref<stdgo._internal.internal.profile.Profile_location.Location>);
+            };
+            __obj__;
+        };
         return v;
     }
-    public var _functions(get, set) : stdgo.GoMap<stdgo._internal.internal.profile.Profile_t_functionkey.T_functionKey, stdgo.Ref<stdgo._internal.internal.profile.Profile_function.Function>>;
-    function get__functions():stdgo.GoMap<stdgo._internal.internal.profile.Profile_t_functionkey.T_functionKey, stdgo.Ref<stdgo._internal.internal.profile.Profile_function.Function>> return this._functions;
-    function set__functions(v:stdgo.GoMap<stdgo._internal.internal.profile.Profile_t_functionkey.T_functionKey, stdgo.Ref<stdgo._internal.internal.profile.Profile_function.Function>>):stdgo.GoMap<stdgo._internal.internal.profile.Profile_t_functionkey.T_functionKey, stdgo.Ref<stdgo._internal.internal.profile.Profile_function.Function>> {
-        this._functions = (v : stdgo.GoMap<stdgo._internal.internal.profile.Profile_t_functionkey.T_functionKey, stdgo.Ref<stdgo._internal.internal.profile.Profile_function.Function>>);
+    public var _functions(get, set) : Map<T_functionKey, Function>;
+    function get__functions():Map<T_functionKey, Function> return {
+        final __obj__:Map<T_functionKey, Function> = [];
+        for (key => value in this._functions) {
+            __obj__[key] = value;
+        };
+        __obj__;
+    };
+    function set__functions(v:Map<T_functionKey, Function>):Map<T_functionKey, Function> {
+        this._functions = {
+            final __obj__ = new stdgo.GoMap<stdgo._internal.internal.profile.Profile_t_functionkey.T_functionKey, stdgo.Ref<stdgo._internal.internal.profile.Profile_function.Function>>();
+            for (key => value in v) {
+                __obj__[key] = (value : stdgo.Ref<stdgo._internal.internal.profile.Profile_function.Function>);
+            };
+            __obj__;
+        };
         return v;
     }
-    public var _mappings(get, set) : stdgo.GoMap<stdgo._internal.internal.profile.Profile_t_mappingkey.T_mappingKey, stdgo.Ref<stdgo._internal.internal.profile.Profile_mapping.Mapping>>;
-    function get__mappings():stdgo.GoMap<stdgo._internal.internal.profile.Profile_t_mappingkey.T_mappingKey, stdgo.Ref<stdgo._internal.internal.profile.Profile_mapping.Mapping>> return this._mappings;
-    function set__mappings(v:stdgo.GoMap<stdgo._internal.internal.profile.Profile_t_mappingkey.T_mappingKey, stdgo.Ref<stdgo._internal.internal.profile.Profile_mapping.Mapping>>):stdgo.GoMap<stdgo._internal.internal.profile.Profile_t_mappingkey.T_mappingKey, stdgo.Ref<stdgo._internal.internal.profile.Profile_mapping.Mapping>> {
-        this._mappings = (v : stdgo.GoMap<stdgo._internal.internal.profile.Profile_t_mappingkey.T_mappingKey, stdgo.Ref<stdgo._internal.internal.profile.Profile_mapping.Mapping>>);
+    public var _mappings(get, set) : Map<T_mappingKey, Mapping>;
+    function get__mappings():Map<T_mappingKey, Mapping> return {
+        final __obj__:Map<T_mappingKey, Mapping> = [];
+        for (key => value in this._mappings) {
+            __obj__[key] = value;
+        };
+        __obj__;
+    };
+    function set__mappings(v:Map<T_mappingKey, Mapping>):Map<T_mappingKey, Mapping> {
+        this._mappings = {
+            final __obj__ = new stdgo.GoMap<stdgo._internal.internal.profile.Profile_t_mappingkey.T_mappingKey, stdgo.Ref<stdgo._internal.internal.profile.Profile_mapping.Mapping>>();
+            for (key => value in v) {
+                __obj__[key] = (value : stdgo.Ref<stdgo._internal.internal.profile.Profile_mapping.Mapping>);
+            };
+            __obj__;
+        };
         return v;
     }
-    public function new(?_p:Profile_, ?_locationsByID:stdgo.GoMap<stdgo.GoUInt64, stdgo.Ref<stdgo._internal.internal.profile.Profile_location.Location>>, ?_functionsByID:stdgo.GoMap<stdgo.GoUInt64, stdgo.Ref<stdgo._internal.internal.profile.Profile_function.Function>>, ?_mappingsByID:stdgo.GoMap<stdgo.GoUInt64, stdgo._internal.internal.profile.Profile_t_mapinfo.T_mapInfo>, ?_samples:stdgo.GoMap<stdgo._internal.internal.profile.Profile_t_samplekey.T_sampleKey, stdgo.Ref<stdgo._internal.internal.profile.Profile_sample.Sample>>, ?_locations:stdgo.GoMap<stdgo._internal.internal.profile.Profile_t_locationkey.T_locationKey, stdgo.Ref<stdgo._internal.internal.profile.Profile_location.Location>>, ?_functions:stdgo.GoMap<stdgo._internal.internal.profile.Profile_t_functionkey.T_functionKey, stdgo.Ref<stdgo._internal.internal.profile.Profile_function.Function>>, ?_mappings:stdgo.GoMap<stdgo._internal.internal.profile.Profile_t_mappingkey.T_mappingKey, stdgo.Ref<stdgo._internal.internal.profile.Profile_mapping.Mapping>>) this = new stdgo._internal.internal.profile.Profile_t_profilemerger.T_profileMerger((_p : stdgo.Ref<stdgo._internal.internal.profile.Profile_profile.Profile>), (_locationsByID : stdgo.GoMap<stdgo.GoUInt64, stdgo.Ref<stdgo._internal.internal.profile.Profile_location.Location>>), (_functionsByID : stdgo.GoMap<stdgo.GoUInt64, stdgo.Ref<stdgo._internal.internal.profile.Profile_function.Function>>), (_mappingsByID : stdgo.GoMap<stdgo.GoUInt64, stdgo._internal.internal.profile.Profile_t_mapinfo.T_mapInfo>), (_samples : stdgo.GoMap<stdgo._internal.internal.profile.Profile_t_samplekey.T_sampleKey, stdgo.Ref<stdgo._internal.internal.profile.Profile_sample.Sample>>), (_locations : stdgo.GoMap<stdgo._internal.internal.profile.Profile_t_locationkey.T_locationKey, stdgo.Ref<stdgo._internal.internal.profile.Profile_location.Location>>), (_functions : stdgo.GoMap<stdgo._internal.internal.profile.Profile_t_functionkey.T_functionKey, stdgo.Ref<stdgo._internal.internal.profile.Profile_function.Function>>), (_mappings : stdgo.GoMap<stdgo._internal.internal.profile.Profile_t_mappingkey.T_mappingKey, stdgo.Ref<stdgo._internal.internal.profile.Profile_mapping.Mapping>>));
+    public function new(?_p:Profile_, ?_locationsByID:Map<haxe.UInt64, Location>, ?_functionsByID:Map<haxe.UInt64, Function>, ?_mappingsByID:Map<haxe.UInt64, T_mapInfo>, ?_samples:Map<T_sampleKey, Sample>, ?_locations:Map<T_locationKey, Location>, ?_functions:Map<T_functionKey, Function>, ?_mappings:Map<T_mappingKey, Mapping>) this = new stdgo._internal.internal.profile.Profile_t_profilemerger.T_profileMerger((_p : stdgo.Ref<stdgo._internal.internal.profile.Profile_profile.Profile>), {
+        final __obj__ = new stdgo.GoMap<stdgo.GoUInt64, stdgo.Ref<stdgo._internal.internal.profile.Profile_location.Location>>();
+        for (key => value in _locationsByID) {
+            __obj__[(key : stdgo.GoUInt64)] = (value : stdgo.Ref<stdgo._internal.internal.profile.Profile_location.Location>);
+        };
+        __obj__;
+    }, {
+        final __obj__ = new stdgo.GoMap<stdgo.GoUInt64, stdgo.Ref<stdgo._internal.internal.profile.Profile_function.Function>>();
+        for (key => value in _functionsByID) {
+            __obj__[(key : stdgo.GoUInt64)] = (value : stdgo.Ref<stdgo._internal.internal.profile.Profile_function.Function>);
+        };
+        __obj__;
+    }, {
+        final __obj__ = new stdgo.GoMap<stdgo.GoUInt64, stdgo._internal.internal.profile.Profile_t_mapinfo.T_mapInfo>();
+        for (key => value in _mappingsByID) {
+            __obj__[(key : stdgo.GoUInt64)] = value;
+        };
+        __obj__;
+    }, {
+        final __obj__ = new stdgo.GoMap<stdgo._internal.internal.profile.Profile_t_samplekey.T_sampleKey, stdgo.Ref<stdgo._internal.internal.profile.Profile_sample.Sample>>();
+        for (key => value in _samples) {
+            __obj__[key] = (value : stdgo.Ref<stdgo._internal.internal.profile.Profile_sample.Sample>);
+        };
+        __obj__;
+    }, {
+        final __obj__ = new stdgo.GoMap<stdgo._internal.internal.profile.Profile_t_locationkey.T_locationKey, stdgo.Ref<stdgo._internal.internal.profile.Profile_location.Location>>();
+        for (key => value in _locations) {
+            __obj__[key] = (value : stdgo.Ref<stdgo._internal.internal.profile.Profile_location.Location>);
+        };
+        __obj__;
+    }, {
+        final __obj__ = new stdgo.GoMap<stdgo._internal.internal.profile.Profile_t_functionkey.T_functionKey, stdgo.Ref<stdgo._internal.internal.profile.Profile_function.Function>>();
+        for (key => value in _functions) {
+            __obj__[key] = (value : stdgo.Ref<stdgo._internal.internal.profile.Profile_function.Function>);
+        };
+        __obj__;
+    }, {
+        final __obj__ = new stdgo.GoMap<stdgo._internal.internal.profile.Profile_t_mappingkey.T_mappingKey, stdgo.Ref<stdgo._internal.internal.profile.Profile_mapping.Mapping>>();
+        for (key => value in _mappings) {
+            __obj__[key] = (value : stdgo.Ref<stdgo._internal.internal.profile.Profile_mapping.Mapping>);
+        };
+        __obj__;
+    });
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-@:structInit @:using(stdgo.internal.profile.Profile.T_mapInfo_static_extension) abstract T_mapInfo(stdgo._internal.internal.profile.Profile_t_mapinfo.T_mapInfo) from stdgo._internal.internal.profile.Profile_t_mapinfo.T_mapInfo to stdgo._internal.internal.profile.Profile_t_mapinfo.T_mapInfo {
+@:structInit @:using(stdgo.internal.profile.Profile.T_mapInfo_static_extension) @:dox(hide) abstract T_mapInfo(stdgo._internal.internal.profile.Profile_t_mapinfo.T_mapInfo) from stdgo._internal.internal.profile.Profile_t_mapinfo.T_mapInfo to stdgo._internal.internal.profile.Profile_t_mapinfo.T_mapInfo {
     public var _m(get, set) : Mapping;
     function get__m():Mapping return this._m;
     function set__m(v:Mapping):Mapping {
@@ -85,7 +219,7 @@ typedef T_message = stdgo._internal.internal.profile.Profile_t_message.T_message
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-@:structInit @:using(stdgo.internal.profile.Profile.T_sampleKey_static_extension) abstract T_sampleKey(stdgo._internal.internal.profile.Profile_t_samplekey.T_sampleKey) from stdgo._internal.internal.profile.Profile_t_samplekey.T_sampleKey to stdgo._internal.internal.profile.Profile_t_samplekey.T_sampleKey {
+@:structInit @:using(stdgo.internal.profile.Profile.T_sampleKey_static_extension) @:dox(hide) abstract T_sampleKey(stdgo._internal.internal.profile.Profile_t_samplekey.T_sampleKey) from stdgo._internal.internal.profile.Profile_t_samplekey.T_sampleKey to stdgo._internal.internal.profile.Profile_t_samplekey.T_sampleKey {
     public var _locations(get, set) : String;
     function get__locations():String return this._locations;
     function set__locations(v:String):String {
@@ -108,7 +242,7 @@ typedef T_message = stdgo._internal.internal.profile.Profile_t_message.T_message
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-@:structInit @:using(stdgo.internal.profile.Profile.T_locationKey_static_extension) abstract T_locationKey(stdgo._internal.internal.profile.Profile_t_locationkey.T_locationKey) from stdgo._internal.internal.profile.Profile_t_locationkey.T_locationKey to stdgo._internal.internal.profile.Profile_t_locationkey.T_locationKey {
+@:structInit @:using(stdgo.internal.profile.Profile.T_locationKey_static_extension) @:dox(hide) abstract T_locationKey(stdgo._internal.internal.profile.Profile_t_locationkey.T_locationKey) from stdgo._internal.internal.profile.Profile_t_locationkey.T_locationKey to stdgo._internal.internal.profile.Profile_t_locationkey.T_locationKey {
     public var _addr(get, set) : haxe.UInt64;
     function get__addr():haxe.UInt64 return this._addr;
     function set__addr(v:haxe.UInt64):haxe.UInt64 {
@@ -137,7 +271,7 @@ typedef T_message = stdgo._internal.internal.profile.Profile_t_message.T_message
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-@:structInit @:using(stdgo.internal.profile.Profile.T_mappingKey_static_extension) abstract T_mappingKey(stdgo._internal.internal.profile.Profile_t_mappingkey.T_mappingKey) from stdgo._internal.internal.profile.Profile_t_mappingkey.T_mappingKey to stdgo._internal.internal.profile.Profile_t_mappingkey.T_mappingKey {
+@:structInit @:using(stdgo.internal.profile.Profile.T_mappingKey_static_extension) @:dox(hide) abstract T_mappingKey(stdgo._internal.internal.profile.Profile_t_mappingkey.T_mappingKey) from stdgo._internal.internal.profile.Profile_t_mappingkey.T_mappingKey to stdgo._internal.internal.profile.Profile_t_mappingkey.T_mappingKey {
     public var _size(get, set) : haxe.UInt64;
     function get__size():haxe.UInt64 return this._size;
     function set__size(v:haxe.UInt64):haxe.UInt64 {
@@ -160,7 +294,7 @@ typedef T_message = stdgo._internal.internal.profile.Profile_t_message.T_message
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-@:structInit @:using(stdgo.internal.profile.Profile.T_functionKey_static_extension) abstract T_functionKey(stdgo._internal.internal.profile.Profile_t_functionkey.T_functionKey) from stdgo._internal.internal.profile.Profile_t_functionkey.T_functionKey to stdgo._internal.internal.profile.Profile_t_functionkey.T_functionKey {
+@:structInit @:using(stdgo.internal.profile.Profile.T_functionKey_static_extension) @:dox(hide) abstract T_functionKey(stdgo._internal.internal.profile.Profile_t_functionkey.T_functionKey) from stdgo._internal.internal.profile.Profile_t_functionkey.T_functionKey to stdgo._internal.internal.profile.Profile_t_functionkey.T_functionKey {
     public var _startLine(get, set) : haxe.Int64;
     function get__startLine():haxe.Int64 return this._startLine;
     function set__startLine(v:haxe.Int64):haxe.Int64 {
@@ -362,22 +496,58 @@ typedef T_message = stdgo._internal.internal.profile.Profile_t_message.T_message
         this.value = ([for (i in v) (i : stdgo.GoInt64)] : stdgo.Slice<stdgo.GoInt64>);
         return v;
     }
-    public var label(get, set) : stdgo.GoMap<stdgo.GoString, stdgo.Slice<stdgo.GoString>>;
-    function get_label():stdgo.GoMap<stdgo.GoString, stdgo.Slice<stdgo.GoString>> return this.label;
-    function set_label(v:stdgo.GoMap<stdgo.GoString, stdgo.Slice<stdgo.GoString>>):stdgo.GoMap<stdgo.GoString, stdgo.Slice<stdgo.GoString>> {
-        this.label = (v : stdgo.GoMap<stdgo.GoString, stdgo.Slice<stdgo.GoString>>);
+    public var label(get, set) : Map<String, Array<String>>;
+    function get_label():Map<String, Array<String>> return {
+        final __obj__:Map<String, Array<String>> = [];
+        for (key => value in this.label) {
+            __obj__[key] = [for (i in value) i];
+        };
+        __obj__;
+    };
+    function set_label(v:Map<String, Array<String>>):Map<String, Array<String>> {
+        this.label = {
+            final __obj__ = new stdgo.GoMap<stdgo.GoString, stdgo.Slice<stdgo.GoString>>();
+            for (key => value in v) {
+                __obj__[(key : stdgo.GoString)] = ([for (i in value) (i : stdgo.GoString)] : stdgo.Slice<stdgo.GoString>);
+            };
+            __obj__;
+        };
         return v;
     }
-    public var numLabel(get, set) : stdgo.GoMap<stdgo.GoString, stdgo.Slice<stdgo.GoInt64>>;
-    function get_numLabel():stdgo.GoMap<stdgo.GoString, stdgo.Slice<stdgo.GoInt64>> return this.numLabel;
-    function set_numLabel(v:stdgo.GoMap<stdgo.GoString, stdgo.Slice<stdgo.GoInt64>>):stdgo.GoMap<stdgo.GoString, stdgo.Slice<stdgo.GoInt64>> {
-        this.numLabel = (v : stdgo.GoMap<stdgo.GoString, stdgo.Slice<stdgo.GoInt64>>);
+    public var numLabel(get, set) : Map<String, Array<haxe.Int64>>;
+    function get_numLabel():Map<String, Array<haxe.Int64>> return {
+        final __obj__:Map<String, Array<haxe.Int64>> = [];
+        for (key => value in this.numLabel) {
+            __obj__[key] = [for (i in value) i];
+        };
+        __obj__;
+    };
+    function set_numLabel(v:Map<String, Array<haxe.Int64>>):Map<String, Array<haxe.Int64>> {
+        this.numLabel = {
+            final __obj__ = new stdgo.GoMap<stdgo.GoString, stdgo.Slice<stdgo.GoInt64>>();
+            for (key => value in v) {
+                __obj__[(key : stdgo.GoString)] = ([for (i in value) (i : stdgo.GoInt64)] : stdgo.Slice<stdgo.GoInt64>);
+            };
+            __obj__;
+        };
         return v;
     }
-    public var numUnit(get, set) : stdgo.GoMap<stdgo.GoString, stdgo.Slice<stdgo.GoString>>;
-    function get_numUnit():stdgo.GoMap<stdgo.GoString, stdgo.Slice<stdgo.GoString>> return this.numUnit;
-    function set_numUnit(v:stdgo.GoMap<stdgo.GoString, stdgo.Slice<stdgo.GoString>>):stdgo.GoMap<stdgo.GoString, stdgo.Slice<stdgo.GoString>> {
-        this.numUnit = (v : stdgo.GoMap<stdgo.GoString, stdgo.Slice<stdgo.GoString>>);
+    public var numUnit(get, set) : Map<String, Array<String>>;
+    function get_numUnit():Map<String, Array<String>> return {
+        final __obj__:Map<String, Array<String>> = [];
+        for (key => value in this.numUnit) {
+            __obj__[key] = [for (i in value) i];
+        };
+        __obj__;
+    };
+    function set_numUnit(v:Map<String, Array<String>>):Map<String, Array<String>> {
+        this.numUnit = {
+            final __obj__ = new stdgo.GoMap<stdgo.GoString, stdgo.Slice<stdgo.GoString>>();
+            for (key => value in v) {
+                __obj__[(key : stdgo.GoString)] = ([for (i in value) (i : stdgo.GoString)] : stdgo.Slice<stdgo.GoString>);
+            };
+            __obj__;
+        };
         return v;
     }
     public var _locationIDX(get, set) : Array<haxe.UInt64>;
@@ -392,7 +562,25 @@ typedef T_message = stdgo._internal.internal.profile.Profile_t_message.T_message
         this._labelX = ([for (i in v) i] : stdgo.Slice<stdgo._internal.internal.profile.Profile_label.Label>);
         return v;
     }
-    public function new(?location:Array<Location>, ?value:Array<haxe.Int64>, ?label:stdgo.GoMap<stdgo.GoString, stdgo.Slice<stdgo.GoString>>, ?numLabel:stdgo.GoMap<stdgo.GoString, stdgo.Slice<stdgo.GoInt64>>, ?numUnit:stdgo.GoMap<stdgo.GoString, stdgo.Slice<stdgo.GoString>>, ?_locationIDX:Array<haxe.UInt64>, ?_labelX:Array<Label>) this = new stdgo._internal.internal.profile.Profile_sample.Sample(([for (i in location) (i : stdgo.Ref<stdgo._internal.internal.profile.Profile_location.Location>)] : stdgo.Slice<stdgo.Ref<stdgo._internal.internal.profile.Profile_location.Location>>), ([for (i in value) (i : stdgo.GoInt64)] : stdgo.Slice<stdgo.GoInt64>), (label : stdgo.GoMap<stdgo.GoString, stdgo.Slice<stdgo.GoString>>), (numLabel : stdgo.GoMap<stdgo.GoString, stdgo.Slice<stdgo.GoInt64>>), (numUnit : stdgo.GoMap<stdgo.GoString, stdgo.Slice<stdgo.GoString>>), ([for (i in _locationIDX) (i : stdgo.GoUInt64)] : stdgo.Slice<stdgo.GoUInt64>), ([for (i in _labelX) i] : stdgo.Slice<stdgo._internal.internal.profile.Profile_label.Label>));
+    public function new(?location:Array<Location>, ?value:Array<haxe.Int64>, ?label:Map<String, Array<String>>, ?numLabel:Map<String, Array<haxe.Int64>>, ?numUnit:Map<String, Array<String>>, ?_locationIDX:Array<haxe.UInt64>, ?_labelX:Array<Label>) this = new stdgo._internal.internal.profile.Profile_sample.Sample(([for (i in location) (i : stdgo.Ref<stdgo._internal.internal.profile.Profile_location.Location>)] : stdgo.Slice<stdgo.Ref<stdgo._internal.internal.profile.Profile_location.Location>>), ([for (i in value) (i : stdgo.GoInt64)] : stdgo.Slice<stdgo.GoInt64>), {
+        final __obj__ = new stdgo.GoMap<stdgo.GoString, stdgo.Slice<stdgo.GoString>>();
+        for (key => value in label) {
+            __obj__[(key : stdgo.GoString)] = ([for (i in value) (i : stdgo.GoString)] : stdgo.Slice<stdgo.GoString>);
+        };
+        __obj__;
+    }, {
+        final __obj__ = new stdgo.GoMap<stdgo.GoString, stdgo.Slice<stdgo.GoInt64>>();
+        for (key => value in numLabel) {
+            __obj__[(key : stdgo.GoString)] = ([for (i in value) (i : stdgo.GoInt64)] : stdgo.Slice<stdgo.GoInt64>);
+        };
+        __obj__;
+    }, {
+        final __obj__ = new stdgo.GoMap<stdgo.GoString, stdgo.Slice<stdgo.GoString>>();
+        for (key => value in numUnit) {
+            __obj__[(key : stdgo.GoString)] = ([for (i in value) (i : stdgo.GoString)] : stdgo.Slice<stdgo.GoString>);
+        };
+        __obj__;
+    }, ([for (i in _locationIDX) (i : stdgo.GoUInt64)] : stdgo.Slice<stdgo.GoUInt64>), ([for (i in _labelX) i] : stdgo.Slice<stdgo._internal.internal.profile.Profile_label.Label>));
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
@@ -625,7 +813,7 @@ hasInlineFrames,
     public function __underlying__() return stdgo.Go.toInterface(this);
     public function __copy__() return this.__copy__();
 }
-@:structInit @:using(stdgo.internal.profile.Profile.T_buffer_static_extension) abstract T_buffer(stdgo._internal.internal.profile.Profile_t_buffer.T_buffer) from stdgo._internal.internal.profile.Profile_t_buffer.T_buffer to stdgo._internal.internal.profile.Profile_t_buffer.T_buffer {
+@:structInit @:using(stdgo.internal.profile.Profile.T_buffer_static_extension) @:dox(hide) abstract T_buffer(stdgo._internal.internal.profile.Profile_t_buffer.T_buffer) from stdgo._internal.internal.profile.Profile_t_buffer.T_buffer to stdgo._internal.internal.profile.Profile_t_buffer.T_buffer {
     public var _field(get, set) : StdTypes.Int;
     function get__field():StdTypes.Int return this._field;
     function set__field(v:StdTypes.Int):StdTypes.Int {
@@ -661,11 +849,11 @@ hasInlineFrames,
     public function __copy__() return this.__copy__();
 }
 typedef TagMatch = stdgo._internal.internal.profile.Profile_tagmatch.TagMatch;
-typedef T_sectionType = stdgo._internal.internal.profile.Profile_t_sectiontype.T_sectionType;
+@:dox(hide) typedef T_sectionType = stdgo._internal.internal.profile.Profile_t_sectiontype.T_sectionType;
 typedef Demangler = stdgo._internal.internal.profile.Profile_demangler.Demangler;
-typedef T_decoder = stdgo._internal.internal.profile.Profile_t_decoder.T_decoder;
-typedef T_profileMergerPointer = stdgo._internal.internal.profile.Profile_t_profilemergerpointer.T_profileMergerPointer;
-class T_profileMerger_static_extension {
+@:dox(hide) typedef T_decoder = stdgo._internal.internal.profile.Profile_t_decoder.T_decoder;
+@:dox(hide) typedef T_profileMergerPointer = stdgo._internal.internal.profile.Profile_t_profilemergerpointer.T_profileMergerPointer;
+@:dox(hide) class T_profileMerger_static_extension {
     static public function _mapFunction(_pm:T_profileMerger, _src:Function):Function {
         final _pm = (_pm : stdgo.Ref<stdgo._internal.internal.profile.Profile_t_profilemerger.T_profileMerger>);
         final _src = (_src : stdgo.Ref<stdgo._internal.internal.profile.Profile_function.Function>);
@@ -691,24 +879,24 @@ class T_profileMerger_static_extension {
         return stdgo._internal.internal.profile.Profile_t_profilemerger_static_extension.T_profileMerger_static_extension._mapSample(_pm, _src);
     }
 }
-typedef T_mapInfoPointer = stdgo._internal.internal.profile.Profile_t_mapinfopointer.T_mapInfoPointer;
-class T_mapInfo_static_extension {
+@:dox(hide) typedef T_mapInfoPointer = stdgo._internal.internal.profile.Profile_t_mapinfopointer.T_mapInfoPointer;
+@:dox(hide) class T_mapInfo_static_extension {
 
 }
-typedef T_sampleKeyPointer = stdgo._internal.internal.profile.Profile_t_samplekeypointer.T_sampleKeyPointer;
-class T_sampleKey_static_extension {
+@:dox(hide) typedef T_sampleKeyPointer = stdgo._internal.internal.profile.Profile_t_samplekeypointer.T_sampleKeyPointer;
+@:dox(hide) class T_sampleKey_static_extension {
 
 }
-typedef T_locationKeyPointer = stdgo._internal.internal.profile.Profile_t_locationkeypointer.T_locationKeyPointer;
-class T_locationKey_static_extension {
+@:dox(hide) typedef T_locationKeyPointer = stdgo._internal.internal.profile.Profile_t_locationkeypointer.T_locationKeyPointer;
+@:dox(hide) class T_locationKey_static_extension {
 
 }
-typedef T_mappingKeyPointer = stdgo._internal.internal.profile.Profile_t_mappingkeypointer.T_mappingKeyPointer;
-class T_mappingKey_static_extension {
+@:dox(hide) typedef T_mappingKeyPointer = stdgo._internal.internal.profile.Profile_t_mappingkeypointer.T_mappingKeyPointer;
+@:dox(hide) class T_mappingKey_static_extension {
 
 }
-typedef T_functionKeyPointer = stdgo._internal.internal.profile.Profile_t_functionkeypointer.T_functionKeyPointer;
-class T_functionKey_static_extension {
+@:dox(hide) typedef T_functionKeyPointer = stdgo._internal.internal.profile.Profile_t_functionkeypointer.T_functionKeyPointer;
+@:dox(hide) class T_functionKey_static_extension {
 
 }
 typedef ProfilePointer = stdgo._internal.internal.profile.Profile_profilepointer.ProfilePointer;
@@ -957,24 +1145,24 @@ class Function_static_extension {
         return [for (i in stdgo._internal.internal.profile.Profile_function_static_extension.Function_static_extension._decoder(_p)) i];
     }
 }
-typedef T_bufferPointer = stdgo._internal.internal.profile.Profile_t_bufferpointer.T_bufferPointer;
-class T_buffer_static_extension {
+@:dox(hide) typedef T_bufferPointer = stdgo._internal.internal.profile.Profile_t_bufferpointer.T_bufferPointer;
+@:dox(hide) class T_buffer_static_extension {
 
 }
 typedef TagMatchPointer = stdgo._internal.internal.profile.Profile_tagmatchpointer.TagMatchPointer;
 class TagMatch_static_extension {
 
 }
-typedef T_sectionTypePointer = stdgo._internal.internal.profile.Profile_t_sectiontypepointer.T_sectionTypePointer;
-class T_sectionType_static_extension {
+@:dox(hide) typedef T_sectionTypePointer = stdgo._internal.internal.profile.Profile_t_sectiontypepointer.T_sectionTypePointer;
+@:dox(hide) class T_sectionType_static_extension {
 
 }
 typedef DemanglerPointer = stdgo._internal.internal.profile.Profile_demanglerpointer.DemanglerPointer;
 class Demangler_static_extension {
 
 }
-typedef T_decoderPointer = stdgo._internal.internal.profile.Profile_t_decoderpointer.T_decoderPointer;
-class T_decoder_static_extension {
+@:dox(hide) typedef T_decoderPointer = stdgo._internal.internal.profile.Profile_t_decoderpointer.T_decoderPointer;
+@:dox(hide) class T_decoder_static_extension {
 
 }
 /**

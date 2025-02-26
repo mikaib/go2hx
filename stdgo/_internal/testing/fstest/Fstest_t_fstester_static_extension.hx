@@ -220,7 +220,7 @@ package stdgo._internal.testing.fstest;
             if (stdgo._internal.testing.fstest.Fstest__formatentry._formatEntry(_entry1) != (stdgo._internal.testing.fstest.Fstest__formatentry._formatEntry(_entry2))) {
                 _diffs = (_diffs.__append__((("- " : stdgo.GoString) + stdgo._internal.testing.fstest.Fstest__formatentry._formatEntry(_entry1)?.__copy__() : stdgo.GoString)?.__copy__(), (("+ " : stdgo.GoString) + stdgo._internal.testing.fstest.Fstest__formatentry._formatEntry(_entry2)?.__copy__() : stdgo.GoString)?.__copy__()));
             };
-            if (_old != null) _old.remove(_entry2.name());
+            if (_old != null) _old.__remove__(_entry2.name());
         };
         for (__4 => _entry1 in _old) {
             _diffs = (_diffs.__append__((("- " : stdgo.GoString) + stdgo._internal.testing.fstest.Fstest__formatentry._formatEntry(_entry1)?.__copy__() : stdgo.GoString)?.__copy__()));
@@ -393,8 +393,8 @@ if ((_have && _haveNot : Bool)) {
                 {
                     final __tmp__0 = (_want.__slice__((1 : stdgo.GoInt)) : stdgo.Slice<stdgo.GoString>);
                     final __tmp__1 = (_names.__slice__((1 : stdgo.GoInt)) : stdgo.Slice<stdgo.GoString>);
-                    _want = __tmp__0;
-                    _names = __tmp__1;
+                    _want = @:binopAssign __tmp__0;
+                    _names = @:binopAssign __tmp__1;
                 };
             } else if ((((_want.length) > (0 : stdgo.GoInt) : Bool) && (((_names.length == (0 : stdgo.GoInt)) || (_want[(0 : stdgo.GoInt)] < _names[(0 : stdgo.GoInt)] : Bool) : Bool)) : Bool)) {
                 _problems = (_problems.__append__((("missing: " : stdgo.GoString) + _want[(0 : stdgo.GoInt)]?.__copy__() : stdgo.GoString)?.__copy__()));

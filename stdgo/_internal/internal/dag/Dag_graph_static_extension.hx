@@ -23,7 +23,7 @@ package stdgo._internal.internal.dag;
     @:tdfield
     static public function delEdge( _g:stdgo.Ref<stdgo._internal.internal.dag.Dag_graph.Graph>, _from:stdgo.GoString, _to:stdgo.GoString):Void {
         @:recv var _g:stdgo.Ref<stdgo._internal.internal.dag.Dag_graph.Graph> = _g;
-        if (((@:checkr _g ?? throw "null pointer dereference")._edges[_from] ?? (null : stdgo.GoMap<stdgo.GoString, Bool>)) != null) ((@:checkr _g ?? throw "null pointer dereference")._edges[_from] ?? (null : stdgo.GoMap<stdgo.GoString, Bool>)).remove(_to);
+        if (((@:checkr _g ?? throw "null pointer dereference")._edges[_from] ?? (null : stdgo.GoMap<stdgo.GoString, Bool>)) != null) ((@:checkr _g ?? throw "null pointer dereference")._edges[_from] ?? (null : stdgo.GoMap<stdgo.GoString, Bool>)).__remove__(_to);
     }
     @:keep
     @:tdfield
@@ -36,7 +36,7 @@ package stdgo._internal.internal.dag;
     static public function _addNode( _g:stdgo.Ref<stdgo._internal.internal.dag.Dag_graph.Graph>, _label:stdgo.GoString):Bool {
         @:recv var _g:stdgo.Ref<stdgo._internal.internal.dag.Dag_graph.Graph> = _g;
         {
-            var __tmp__ = ((@:checkr _g ?? throw "null pointer dereference")._byLabel != null && (@:checkr _g ?? throw "null pointer dereference")._byLabel.exists(_label?.__copy__()) ? { _0 : (@:checkr _g ?? throw "null pointer dereference")._byLabel[_label?.__copy__()], _1 : true } : { _0 : (0 : stdgo.GoInt), _1 : false }), __0:stdgo.GoInt = __tmp__._0, _ok:Bool = __tmp__._1;
+            var __tmp__ = ((@:checkr _g ?? throw "null pointer dereference")._byLabel != null && (@:checkr _g ?? throw "null pointer dereference")._byLabel.__exists__(_label?.__copy__()) ? { _0 : (@:checkr _g ?? throw "null pointer dereference")._byLabel[_label?.__copy__()], _1 : true } : { _0 : (0 : stdgo.GoInt), _1 : false }), __0:stdgo.GoInt = __tmp__._0, _ok:Bool = __tmp__._1;
             if (_ok) {
                 return false;
             };
@@ -103,14 +103,14 @@ var _j = __1, _i = __0;
                     final __tmp__3 = (_i : stdgo.GoInt);
                     final __tmp__4 = _topo;
                     final __tmp__5 = (_j : stdgo.GoInt);
-                    __tmp__2[__tmp__3] = __tmp__0;
-                    __tmp__4[__tmp__5] = __tmp__1;
+                    __tmp__2[__tmp__3] = @:binopAssign __tmp__0;
+                    __tmp__4[__tmp__5] = @:binopAssign __tmp__1;
                 };
                 {
                     final __tmp__0 = (_i + (1 : stdgo.GoInt) : stdgo.GoInt);
                     final __tmp__1 = (_j - (1 : stdgo.GoInt) : stdgo.GoInt);
-                    _i = __tmp__0;
-                    _j = __tmp__1;
+                    _i = @:binopAssign __tmp__0;
+                    _j = @:binopAssign __tmp__1;
                 };
             };
         };

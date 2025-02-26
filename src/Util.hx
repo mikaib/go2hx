@@ -54,8 +54,8 @@ function mainPath(modules:Array<Dynamic>):String {
 	return "_internal." + path;
 }
 
-function kbCount(str:String):Float {
-	return str.length / 1000;
+function kbCount(str:String):Int {
+	return std.Math.ceil(str.length / 1000);
 }
 
 function deleteDirectoryRecursively(dir:String):Int {
@@ -89,8 +89,16 @@ function copyDirectoryRecursively(from:String, to:String):Int {
 	#end
 }
 
+
+function normalizeCLRF(text:String):String {
+	text = StringTools.replace(text, "\r\n", "\n");
+	text = StringTools.replace(text, "\r", "\n");
+	return text;
+}
+
 function hxmlToArgs(path:String,commands:Array<String>) {
-	final lines = sys.io.File.getContent(path).split("\n");
+	final lines = Util.normalizeCLRF(sys.io.File.getContent(path))
+	.split("\n");
 	for (line in lines) {
 		if (line != "") {
 			final parts = line.split(" ");
